@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成都味道 — 成都美食图鉴</title>
+<style>
+:root {
+  --bg: #1a1210;
+  --accent: #f59e0b;
+  --red: #dc2626;
+  --gold: #fbbf24;
+  --cream: #fef3e2;
+  --card-bg: rgba(30,20,15,0.7);
+  --font: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --radius: 12px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--cream); font-family: var(--font); line-height: 1.6; }
+
+/* ── Hero ── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(220,38,38,0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 60%, rgba(245,158,11,0.2) 0%, transparent 60%),
+    linear-gradient(160deg, #1a1210 0%, #2d1810 50%, #1a1210 100%);
+  padding: 2rem;
+  position: relative; overflow: hidden;
+}
+.hero-title {
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 900; letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--gold), var(--accent), var(--red));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: fadeUp 1s ease both;
+}
+.hero-sub {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: rgba(254,243,226,0.7); margin-top: 1.2rem;
+  animation: fadeUp 1s 0.3s ease both;
+}
+.hero-badge {
+  margin-top: 2rem;
+  display: inline-block; background: rgba(245,158,11,0.15);
+  border: 1px solid rgba(245,158,11,0.4); border-radius: 999px;
+  padding: 0.4rem 1.2rem; font-size: 0.9rem; color: var(--accent);
+  animation: fadeUp 1s 0.5s ease both;
+}
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  color: rgba(254,243,226,0.4); font-size: 0.8rem;
+  animation: bounce 2s 1.2s infinite both;
+}
+.scroll-hint::after {
+  content: ""; width: 1px; height: 40px;
+  background: linear-gradient(to bottom, rgba(245,158,11,0.6), transparent);
+}
+
+/* ── Section shared ── */
+.food-section {
+  padding: 5rem 2rem;
+  max-width: 1200px; margin: 0 auto;
+}
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+  color: var(--gold); margin-bottom: 0.5rem;
+}
+.section-desc { color: rgba(254,243,226,0.6); margin-bottom: 2.5rem; font-size: 1rem; }
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(245,158,11,0.15);
+  border-radius: var(--radius); overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  opacity: 0; transform: translateY(28px);
+}
+.card.visible {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 48px rgba(220,38,38,0.2);
+  border-color: rgba(245,158,11,0.5);
+}
+.card-img {
+  width: 100%; height: 200px; object-fit: cover;
+  background: linear-gradient(135deg, #3d1a0a, #7c2d12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+}
+.card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card-body { padding: 1.2rem; }
+.card-name { font-size: 1.3rem; font-weight: 700; color: var(--cream); margin-bottom: 0.4rem; }
+.card-desc { font-size: 0.9rem; color: rgba(254,243,226,0.65); line-height: 1.6; margin-bottom: 0.8rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag {
+  font-size: 0.75rem; padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(245,158,11,0.3);
+  background: rgba(245,158,11,0.1); color: var(--accent);
+}
+.tag.spicy { background: rgba(220,38,38,0.1); border-color: rgba(220,38,38,0.3); color: #fca5a5; }
+
+/* ── Featured full-screen ── */
+.featured {
+  min-height: 80vh; position: relative;
+  display: flex; align-items: center;
+  background-size: cover; background-position: center;
+  overflow: hidden;
+}
+.featured-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(26,18,16,0.95) 40%, rgba(26,18,16,0.3) 100%);
+}
+.featured-content {
+  position: relative; z-index: 1;
+  max-width: 560px; padding: 4rem 2rem 4rem 10%;
+}
+.featured-label {
+  font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1rem;
+}
+.featured-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900;
+  line-height: 1.1; margin-bottom: 1.2rem;
+}
+.featured-desc {
+  color: rgba(254,243,226,0.75); line-height: 1.8;
+  margin-bottom: 1.5rem; font-size: 1rem;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(-8px); }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .food-section { padding: 3rem 1rem; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .featured-content { padding: 2rem 1rem; max-width: 100%; align-self: flex-end; }
+  .featured-overlay {
+    background: linear-gradient(to bottom, rgba(26,18,16,0.4) 0%, rgba(26,18,16,0.95) 55%);
+  }
+  .featured-title { font-size: 2.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <h1 class="hero-title">成都味道</h1>
+  <p class="hero-sub">一座城市的味觉记忆 · 麻辣鲜香的精华所在</p>
+  <span class="hero-badge">🌶 15 道经典成都美食</span>
+  <div class="scroll-hint">向下探索</div>
+</section>
+
+<!-- ═══ 火锅专区 ═══ -->
+<div style="background: linear-gradient(to bottom, #1a1210, #2d1008, #1a1210);">
+<section id="hotpot" class="food-section">
+  <h2 class="section-title">🔥 火锅专区</h2>
+  <p class="section-desc">成都人的灵魂食物，红油翻滚，麻辣过瘾</p>
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&q=80" alt="成都火锅"
+          onerror="this.style.display='none';this.parentNode.style.fontSize='3rem'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">成都火锅</div>
+        <div class="card-desc">红汤滚沸，牛油底料裹挟着二荆条和花椒的双重刺激，涮一口毛肚，麻辣鲜香直冲天灵盖。</div>
+        <div class="tags">
+          <span class="tag spicy">🌶🌶🌶🌶 超辣</span>
+          <span class="tag">大龙燚</span>
+          <span class="tag">人均 ¥120</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?w=400&q=80" alt="串串香"
+          onerror="this.style.display='none';this.parentNode.innerHTML='🍢'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">串串香</div>
+        <div class="card-desc">竹签穿起各式食材，浸入麻辣汤底慢慢涮，边走边吃是成都街头最悠闲的生活方式。</div>
+        <div class="tags">
+          <span class="tag spicy">🌶🌶🌶 辣</span>
+          <span class="tag">冒椒火辣</span>
+          <span class="tag">人均 ¥50</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="font-size:3rem;">🥘</div>
+      <div class="card-body">
+        <div class="card-name">冒菜</div>
+        <div class="card-desc">一人份的火锅，用竹篓将食材在红汤中反复"冒"熟，麻辣汤汁浓郁，是成都上班族最爱的午餐。</div>
+        <div class="tags">
+          <span class="tag spicy">🌶🌶 中辣</span>
+          <span class="tag">成都各街巷</span>
+          <span class="tag">人均 ¥25</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<!-- ═══ FEATURED: 担担面 ═══ -->
+<section id="featured-dandan" class="featured"
+  style="background-image: url('https://images.unsplash.com/photo-1585032226651-759b368d7246?w=1400&q=80'); background-color:#2d1008;">
+  <div class="featured-overlay"></div>
+  <div class="featured-content">
+    <div class="featured-label">✦ 特别推荐</div>
+    <h2 class="featured-title">担担面</h2>
+    <p class="featured-desc">诞生于清朝道光年间，最初由小贩挑着担子走街串巷叫卖而得名。芝麻酱、辣椒油、花椒粉、碎米芽菜、猪肉末——每一勺都是成都百年的味道。</p>
+    <div class="tags">
+      <span class="tag spicy">🌶🌶 中辣</span>
+      <span class="tag">陈麻婆豆腐旁</span>
+      <span class="tag">¥18 起</span>
+      <span class="tag">百年经典</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 小吃专区 ═══ -->
+<div style="background: linear-gradient(to bottom, #1a1210, #1a1008, #1a1210);">
+<section id="snacks" class="food-section">
+  <h2 class="section-title">🥟 小吃专区</h2>
+  <p class="section-desc">藏在巷子里的市井烟火，每一口都是成都人的童年</p>
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-img" style="font-size:3rem;background:linear-gradient(135deg,#3d2010,#7c4520);">🥟</div>
+      <div class="card-body">
+        <div class="card-name">龙抄手</div>
+        <div class="card-desc">皮薄如纸、馅料鲜嫩，在浓郁的骨汤中轻轻漂浮，是成都人最熟悉的早餐记忆。</div>
+        <div class="tags">
+          <span class="tag spicy">🌶 微辣</span>
+          <span class="tag">龙抄手总店</span>
+          <span class="tag">人均 ¥35</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="font-size:3rem;background:linear-gradient(135deg,#4d1a00,#922b00);">🫙</div>
+      <div class="card-body">
+        <div class="card-name">钟水饺</div>
+        <div class="card-desc">创立于1931年，红油水饺的代名词。特制红油浇头配上蒜泥，咸鲜微辣，回味悠长。</div>
+        <div class="tags">
+          <span class="tag spicy">🌶🌶 辣</span>
+          <span class="tag">钟水饺老店</span>
+          <span class="tag">人均 ¥28</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="font-size:3rem;background:linear-gradient(135deg,#5c3000,#a0540a);">🫓</div>
+      <div class="card-body">
+        <div class="card-name">蛋烘糕</div>
+        <div class="card-desc">成都独有的街头小食，鸡蛋面糊在小铜锅中烘成软糯的圆饼，夹入红糖、花生碎，香甜扑鼻。</div>
+        <div class="tags">
+          <span class="tag">不辣</span>
+          <span class="tag">文殊院旁摊位</span>
+          <span class="tag">¥5</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="font-size:3rem;background:linear-gradient(135deg,#3d1a0a,#7c3515);">🍜</div>
+      <div class="card-body">
+        <div class="card-name">甜水面</div>
+        <div class="card-desc">粗圆的面条裹上甜酱、辣椒油和芝麻，口感筋道，甜辣交织，是成都小吃中最特立独行的存在。</div>
+        <div class="tags">
+          <span class="tag spicy">🌶🌶 辣</span>
+          <span class="tag">赖汤圆附近</span>
+          <span class="tag">¥12</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<!-- ═══ FEATURED: 麻婆豆腐 ═══ -->
+<section id="featured-mapo" class="featured"
+  style="background-image: url('https://images.unsplash.com/photo-1547592180-85f173990554?w=1400&q=80'); background-color:#2d0808;">
+  <div class="featured-overlay" style="background: linear-gradient(to right, rgba(26,18,16,0.95) 40%, rgba(80,10,10,0.4) 100%);"></div>
+  <div class="featured-content">
+    <div class="featured-label">✦ 百年传承</div>
+    <h2 class="featured-title">麻婆豆腐</h2>
+    <p class="featured-desc">清同治年间，成都北门万福桥旁陈兴盛饭铺的女掌柜所创。嫩豆腐、牛肉末、郫县豆瓣、花椒——麻、辣、烫、鲜、嫩、香、酥、活，八字诀成就了一道享誉世界的川菜。</p>
+    <div class="tags">
+      <span class="tag spicy">🌶🌶🌶 重辣</span>
+      <span class="tag">陈麻婆豆腐总店</span>
+      <span class="tag">¥32</span>
+      <span class="tag">川菜八字诀</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 甜品专区 ═══ -->
+<div style="background: linear-gradient(to bottom, #1a1210, #120a08, #1a1210);">
+<section id="desserts" class="food-section">
+  <h2 class="section-title">🍨 甜品 · 饮品</h2>
+  <p class="section-desc">辣过之后的甜蜜慰藉，成都人的饭后仪式感</p>
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-img" style="font-size:3rem;background:linear-gradient(135deg,#0a2040,#153060);">🧊</div>
+      <div class="card-body">
+        <div class="card-name">冰粉</div>
+        <div class="card-desc">薜荔果籽制成的Q弹冻，配上红糖水、花生碎、山楂糕，消暑解辣，是成都夏天的标配。</div>
+        <div class="tags">
+          <span class="tag">不辣</span>
+          <span class="tag">宽窄巷子</span>
+          <span class="tag">¥8</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="font-size:3rem;background:linear-gradient(135deg,#2d1500,#5c2e00);">🍡</div>
+      <div class="card-body">
+        <div class="card-name">三大炮</div>
+        <div class="card-desc">糯米团子抛向铜盘发出"砰砰砰"三声，裹上黄豆粉和红糖，粘糯香甜，是锦里最受欢迎的表演式小食。</div>
+        <div class="tags">
+          <span class="tag">不辣</span>
+          <span class="tag">锦里古街</span>
+          <span class="tag">¥15</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img" style="font-size:3rem;background:linear-gradient(135deg,#1a0a20,#3d1550);">🍵</div>
+      <div class="card-body">
+        <div class="card-name">赖汤圆</div>
+        <div class="card-desc">创于1894年，皮薄馅足，黑芝麻馅香浓细腻，在甜汤中浮沉，是成都元宵节必吃的百年老字号。</div>
+        <div class="tags">
+          <span class="tag">不辣</span>
+          <span class="tag">赖汤圆总店</span>
+          <span class="tag">¥20</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="footer" style="text-align:center;padding:3rem 2rem;background:#120a08;border-top:1px solid rgba(245,158,11,0.1);">
+  <p style="font-size:1.8rem;margin-bottom:0.5rem;">🌶</p>
+  <p style="color:var(--gold);font-size:1.1rem;font-weight:600;margin-bottom:0.4rem;">吃在成都，味在人间</p>
+  <p style="color:rgba(254,243,226,0.4);font-size:0.8rem;">© 2026 成都味道图鉴 · 内容仅供参考，实际价格以商家为准</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.card').forEach(c => observer.observe(c));
+</script>
+</body>
+</html>
