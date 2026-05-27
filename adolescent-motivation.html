@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>青少年心理发展与内驱力建设 · 自学手册</title>
+<style>
+:root{
+  --crimson:#9e1f23; --crimson-deep:#6e1416; --crimson-soft:#b9484c;
+  --gold:#c8a45c; --gold-soft:#e7d4a8;
+  --paper:#f6f3ed; --paper-2:#efeae0;
+  --ink:#2b2622; --ink-soft:#5c544c; --ink-faint:#8a8076;
+  --line:#e3ddd1; --white:#ffffff;
+  --theory:#2f6690; --theory-bg:#eaf1f6;
+  --exp:#138086; --exp-bg:#e5f1f1;
+  --case:#4a8b5c; --case-bg:#eaf3ec;
+  --teacher:#7158a8; --teacher-bg:#efebf6;
+  --parent:#c87f2c; --parent-bg:#f8efe1;
+  --child:#c05a86; --child-bg:#f8eaf0;
+  --sidebar-w:300px; --header-h:66px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+  color:var(--ink); background:var(--paper); line-height:1.78;
+  -webkit-font-smoothing:antialiased;
+}
+/* ---------- HEADER ---------- */
+header{
+  position:fixed; top:0; left:0; right:0; height:var(--header-h); z-index:50;
+  background:linear-gradient(100deg,var(--crimson-deep),var(--crimson));
+  color:#fff; display:flex; align-items:center; padding:0 26px;
+  box-shadow:0 2px 14px rgba(110,20,22,.28);
+}
+.brand{display:flex;align-items:center;gap:14px;min-width:0;}
+.seal{
+  width:38px;height:38px;border:2px solid var(--gold-soft);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex:none;
+  font-size:13px;font-weight:700;color:var(--gold-soft);letter-spacing:1px;line-height:1.05;
+  text-align:center;
+}
+.title-wrap{min-width:0;}
+.title-wrap h1{
+  font-size:19px;font-weight:700;letter-spacing:.5px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.title-wrap .sub{font-size:11.5px;color:var(--gold-soft);letter-spacing:1.5px;font-weight:400;}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:14px;}
+.header-right .meta{font-size:12px;color:#f3dcae;text-align:right;line-height:1.4;}
+.menu-btn{
+  display:none;background:rgba(255,255,255,.14);border:none;color:#fff;
+  width:40px;height:40px;border-radius:8px;font-size:20px;cursor:pointer;
+}
+/* ---------- SIDEBAR ---------- */
+nav{
+  position:fixed;top:var(--header-h);bottom:0;left:0;width:var(--sidebar-w);
+  background:var(--paper-2);border-right:1px solid var(--line);
+  overflow-y:auto;padding:18px 0 60px;z-index:40;
+}
+nav::-webkit-scrollbar{width:7px;}
+nav::-webkit-scrollbar-thumb{background:#d4ccbd;border-radius:4px;}
+.nav-intro{padding:4px 22px 14px;border-bottom:1px dashed var(--line);margin-bottom:10px;}
+.nav-intro .label{font-size:11px;color:var(--ink-faint);letter-spacing:2px;}
+.nav-intro .course{font-size:13px;color:var(--crimson);font-weight:700;margin-top:3px;}
+.nav-group{margin:2px 12px;}
+.nav-module{
+  width:100%;text-align:left;border:none;background:transparent;cursor:pointer;
+  font-family:inherit;font-size:14.5px;color:var(--ink);font-weight:600;
+  padding:11px 14px;border-radius:9px;display:flex;align-items:center;gap:10px;
+  transition:background .15s,color .15s;
+}
+.nav-module:hover{background:#e6dfcf;}
+.nav-module.active{background:var(--crimson);color:#fff;box-shadow:0 3px 10px rgba(158,31,35,.3);}
+.nav-module .idx{
+  font-size:11px;font-weight:700;width:22px;height:22px;flex:none;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  background:#ded5c2;color:var(--ink-soft);
+}
+.nav-module.active .idx{background:rgba(255,255,255,.22);color:#fff;}
+.nav-sub{list-style:none;max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.nav-sub.open{max-height:600px;}
+.nav-sub li a{
+  display:block;text-decoration:none;color:var(--ink-soft);font-size:13px;
+  padding:7px 14px 7px 48px;border-radius:7px;transition:background .12s,color .12s;
+  position:relative;
+}
+.nav-sub li a::before{
+  content:"";position:absolute;left:32px;top:50%;width:5px;height:5px;
+  background:var(--gold);border-radius:50%;transform:translateY(-50%);opacity:.5;
+}
+.nav-sub li a:hover{background:#e6dfcf;color:var(--crimson);}
+.nav-sub li a.spy{background:#e9e0cd;color:var(--crimson);font-weight:600;}
+.nav-sub li a.spy::before{opacity:1;}
+/* ---------- MAIN ---------- */
+.content{
+  position:fixed;top:var(--header-h);left:var(--sidebar-w);right:0;bottom:0;
+  overflow-y:auto;scroll-behavior:smooth;
+}
+.content::-webkit-scrollbar{width:10px;}
+.content::-webkit-scrollbar-thumb{background:#d4ccbd;border-radius:5px;}
+.module{display:none;padding:42px 7vw 120px;max-width:1040px;margin:0 auto;}
+.module.active{display:block;animation:fade .35s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+/* ---------- MODULE HERO ---------- */
+.hero{
+  background:linear-gradient(120deg,var(--crimson-deep),var(--crimson) 70%,var(--crimson-soft));
+  color:#fff;border-radius:16px;padding:34px 38px;margin-bottom:36px;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;
+  border:32px solid rgba(255,255,255,.06);border-radius:50%;
+}
+.hero .kicker{font-size:12px;letter-spacing:3px;color:var(--gold-soft);font-weight:600;}
+.hero h2{font-size:30px;font-weight:800;margin:8px 0 12px;letter-spacing:.5px;}
+.hero p{font-size:15px;color:#f1e3cc;max-width:640px;}
+.hero .q{
+  margin-top:16px;display:inline-block;background:rgba(255,255,255,.13);
+  padding:9px 16px;border-radius:10px;font-size:14px;color:#fff;
+  border-left:3px solid var(--gold);
+}
+/* ---------- TOPIC ---------- */
+.topic{margin-bottom:46px;scroll-margin-top:24px;}
+.topic-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;
+  padding-bottom:10px;border-bottom:2px solid var(--line);}
+.topic-num{
+  font-size:13px;font-weight:800;color:#fff;background:var(--crimson);
+  padding:3px 10px;border-radius:6px;flex:none;letter-spacing:1px;
+}
+.topic-head h3{font-size:22px;font-weight:800;color:var(--crimson-deep);}
+.topic-lead{font-size:15px;color:var(--ink-soft);margin:14px 0 18px;}
+.topic-lead strong{color:var(--crimson);}
+/* ---------- CARDS ---------- */
+.card{
+  background:var(--white);border-radius:12px;padding:18px 20px;margin-bottom:14px;
+  border:1px solid var(--line);border-left:5px solid var(--ink-faint);
+  box-shadow:0 1px 3px rgba(0,0,0,.03);
+}
+.card-head{display:flex;align-items:center;gap:10px;margin-bottom:9px;flex-wrap:wrap;}
+.tag{
+  font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:20px;
+  letter-spacing:.5px;flex:none;
+}
+.card-title{font-size:15.5px;font-weight:700;color:var(--ink);}
+.card-body{font-size:14.5px;color:var(--ink-soft);}
+.card-body p+p{margin-top:8px;}
+.card-body strong{color:var(--ink);}
+.card-body ul{margin:8px 0 2px;padding-left:20px;}
+.card-body li{margin:4px 0;}
+.card-body em{font-style:normal;color:var(--crimson);font-weight:600;}
+/* card variants */
+.card.theory{border-left-color:var(--theory);}
+.tag.theory{background:var(--theory-bg);color:var(--theory);}
+.card.exp{border-left-color:var(--exp);background:var(--exp-bg);}
+.tag.exp{background:#fff;color:var(--exp);border:1px solid var(--exp);}
+.card.case{border-left-color:var(--case);}
+.tag.case{background:var(--case-bg);color:var(--case);}
+.card.teacher{border-left-color:var(--teacher);background:var(--teacher-bg);}
+.tag.teacher{background:#fff;color:var(--teacher);border:1px solid #d3c7e8;}
+.card.parent{border-left-color:var(--parent);background:var(--parent-bg);}
+.tag.parent{background:#fff;color:var(--parent);border:1px solid #e7d2af;}
+.card.child{border-left-color:var(--child);background:var(--child-bg);}
+.tag.child{background:#fff;color:var(--child);border:1px solid #e7c3d4;}
+/* quote */
+.quote{
+  background:linear-gradient(108deg,#fbf4e9,#f7ece0);
+  border:1px solid var(--gold-soft);border-left:5px solid var(--gold);
+  border-radius:12px;padding:20px 24px 20px 56px;margin-bottom:14px;position:relative;
+}
+.quote::before{
+  content:"\201C";position:absolute;left:16px;top:2px;font-size:58px;
+  color:var(--gold);font-family:Georgia,serif;line-height:1;
+}
+.quote p{font-size:16px;color:var(--crimson-deep);font-weight:600;line-height:1.7;}
+.quote .who{font-size:12.5px;color:var(--ink-faint);margin-top:8px;letter-spacing:.5px;}
+.quote .tag{display:inline-block;margin-bottom:10px;background:#fff;color:var(--gold);
+  border:1px solid var(--gold-soft);}
+/* application row */
+.app-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:14px;}
+@media(min-width:760px){.app-grid.cols-2{grid-template-columns:1fr 1fr;}
+  .app-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}}
+.app-grid .card{margin-bottom:0;}
+/* callout */
+.callout{
+  background:#fdf6ec;border:1px dashed var(--gold);border-radius:10px;
+  padding:14px 18px;margin-bottom:14px;font-size:14px;color:var(--ink-soft);
+}
+.callout strong{color:var(--crimson);}
+.myth{
+  background:#fbecec;border:1px solid #e9c9c9;border-left:5px solid var(--crimson);
+  border-radius:10px;padding:14px 18px;margin-bottom:14px;font-size:14px;color:var(--ink-soft);
+}
+.myth b{color:var(--crimson);}
+/* intro / profile */
+.profile{display:flex;gap:30px;flex-wrap:wrap;align-items:flex-start;margin-bottom:30px;}
+.portrait{
+  width:208px;flex:none;border-radius:14px;overflow:hidden;
+  box-shadow:0 8px 24px rgba(110,20,22,.22);background:var(--crimson-deep);
+}
+.portrait img{width:100%;height:250px;object-fit:cover;object-position:center 28%;display:block;}
+.portrait-fallback{
+  width:208px;height:248px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;color:var(--gold-soft);
+  background:linear-gradient(150deg,var(--crimson-deep),var(--crimson));
+  font-size:64px;font-weight:800;letter-spacing:4px;
+}
+.portrait-cap{font-size:12px;color:#fff;background:var(--crimson);
+  text-align:center;padding:7px;letter-spacing:1px;}
+.profile-body{flex:1;min-width:280px;}
+.profile-body h2{font-size:27px;color:var(--crimson-deep);font-weight:800;}
+.profile-body .role{font-size:14px;color:var(--ink-soft);margin:4px 0 14px;}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.facts span{
+  font-size:12px;background:var(--white);border:1px solid var(--line);
+  color:var(--ink-soft);padding:4px 11px;border-radius:20px;
+}
+.info-table{width:100%;border-collapse:collapse;margin:6px 0 8px;}
+.info-table th{
+  text-align:left;vertical-align:top;width:96px;padding:9px 12px 9px 0;
+  font-size:13px;color:var(--crimson);font-weight:700;white-space:nowrap;
+}
+.info-table td{padding:9px 0;font-size:14px;color:var(--ink-soft);
+  border-bottom:1px solid var(--line);}
+.info-table tr:last-child td{border-bottom:none;}
+/* generic */
+.lead-para{font-size:15.5px;color:var(--ink-soft);margin-bottom:20px;}
+.section-note{font-size:12.5px;color:var(--ink-faint);margin-top:26px;
+  padding-top:14px;border-top:1px dashed var(--line);}
+.topiclist{display:grid;gap:14px;grid-template-columns:1fr;margin:20px 0;}
+@media(min-width:720px){.topiclist.three{grid-template-columns:1fr 1fr 1fr;}}
+.tcard{
+  background:var(--white);border:1px solid var(--line);border-top:4px solid var(--crimson);
+  border-radius:12px;padding:18px 20px;
+}
+.tcard .n{font-size:12px;color:var(--gold);font-weight:700;letter-spacing:2px;}
+.tcard h4{font-size:17px;color:var(--crimson-deep);margin:5px 0 7px;}
+.tcard p{font-size:13.5px;color:var(--ink-soft);}
+.qa-q{
+  background:linear-gradient(100deg,#3a2f2c,#574540);color:#fff;
+  border-radius:12px;padding:16px 20px 16px 56px;margin:6px 0 16px;position:relative;
+}
+.qa-q::before{
+  content:"问";position:absolute;left:16px;top:14px;width:26px;height:26px;
+  background:var(--gold);color:#3a2f2c;border-radius:7px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+.qa-q .role{font-size:11.5px;color:var(--gold-soft);letter-spacing:1px;}
+.qa-q p{font-size:14.5px;margin-top:3px;}
+/* ---------- FIGURE / 图示 ---------- */
+.figure{
+  margin:18px 0;background:linear-gradient(#ffffff,#fcfbf7);
+  border:1px solid var(--line);border-radius:12px;padding:18px 22px 14px;
+}
+.figure .fig-label{
+  font-size:11.5px;font-weight:700;color:var(--crimson);letter-spacing:1px;
+  margin-bottom:12px;display:flex;align-items:center;gap:8px;
+}
+.figure .fig-label::before{
+  content:"";width:13px;height:13px;border-radius:3px;background:var(--gold);flex:none;
+}
+.figure svg{width:100%;height:auto;display:block;overflow:visible;}
+.figure svg text{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;}
+.figure figcaption{
+  font-size:12.5px;color:var(--ink-faint);text-align:center;line-height:1.6;
+  margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);
+}
+.figure figcaption b{color:var(--crimson);font-weight:700;}
+.legend{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0 6px;}
+.legend .tag{cursor:default;}
+.totop{
+  position:fixed;right:26px;bottom:26px;width:46px;height:46px;border-radius:50%;
+  background:var(--crimson);color:#fff;border:none;cursor:pointer;font-size:20px;
+  box-shadow:0 4px 14px rgba(158,31,35,.4);display:none;z-index:30;
+}
+.pager{display:flex;justify-content:space-between;gap:14px;margin-top:46px;}
+.pager button{
+  flex:1;background:var(--white);border:1px solid var(--line);border-radius:10px;
+  padding:14px 18px;cursor:pointer;font-family:inherit;text-align:left;
+  transition:border-color .15s,box-shadow .15s;
+}
+.pager button:hover{border-color:var(--crimson);box-shadow:0 3px 10px rgba(0,0,0,.06);}
+.pager button:disabled{opacity:.35;cursor:default;}
+.pager .dir{font-size:11px;color:var(--ink-faint);letter-spacing:1px;}
+.pager .nm{font-size:14.5px;color:var(--crimson);font-weight:700;margin-top:2px;}
+.pager .next{text-align:right;}
+.scrim{display:none;}
+@media(max-width:900px){
+  :root{--sidebar-w:0px;}
+  .menu-btn{display:block;}
+  nav{width:286px;transform:translateX(-100%);transition:transform .25s;
+    box-shadow:4px 0 24px rgba(0,0,0,.18);}
+  nav.show{transform:none;}
+  .content{left:0;}
+  .module{padding:30px 22px 110px;}
+  .header-right .meta{display:none;}
+  .scrim.show{display:block;position:fixed;inset:var(--header-h) 0 0 0;
+    background:rgba(0,0,0,.35);z-index:39;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <button class="menu-btn" id="menuBtn" aria-label="目录">&#9776;</button>
+  <div class="brand">
+    <div class="seal">北大<br>PKU</div>
+    <div class="title-wrap">
+      <h1>青少年心理发展与内驱力建设</h1>
+      <div class="sub">北京大学教育学院 · 魏然　|　自学手册</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="meta">基于课程逐字稿 · AI 纪要 · 课件整理<br>共 9 个模块，可点选左侧目录学习</div>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+
+<nav id="nav">
+  <div class="nav-intro">
+    <div class="label">课程导航</div>
+    <div class="course">点选模块 · 右侧阅读</div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-module" data-target="m-intro"><span class="idx">师</span>主讲人简介</button>
+  </div>
+  <div class="nav-group">
+    <button class="nav-module" data-target="m-guide"><span class="idx">导</span>课程导引</button>
+    <ul class="nav-sub">
+      <li><a href="#t-goal">今天的三个目标</a></li>
+      <li><a href="#t-themes">三大主题概览</a></li>
+      <li><a href="#t-devpsy">什么是发展心理学</a></li>
+      <li><a href="#t-whole">孩子是一个完整的整体</a></li>
+    </ul>
+  </div>
+  <div class="nav-group">
+    <button class="nav-module" data-target="m-dev"><span class="idx">基</span>读懂孩子·发展规律</button>
+    <ul class="nav-sub">
+      <li><a href="#t-erikson">社会情绪发展阶段</a></li>
+      <li><a href="#t-coglang">认知与语言发展</a></li>
+      <li><a href="#t-brain">青春期的大脑</a></li>
+      <li><a href="#t-identity">身份认同四象限</a></li>
+      <li><a href="#t-diff">自我分化与融合</a></li>
+    </ul>
+  </div>
+  <div class="nav-group">
+    <button class="nav-module" data-target="m-drive"><span class="idx">一</span>内驱力</button>
+    <ul class="nav-sub">
+      <li><a href="#t-achieve">什么是成就动机</a></li>
+      <li><a href="#t-maslow">马斯洛需求理论的局限</a></li>
+      <li><a href="#t-expect">期望理论</a></li>
+      <li><a href="#t-sdt">自我决定理论</a></li>
+      <li><a href="#t-overjust">过度辩护效应</a></li>
+      <li><a href="#t-attrib">归因方式与控制点</a></li>
+      <li><a href="#t-helpless">习得性无助</a></li>
+      <li><a href="#t-mindset">成长型思维</a></li>
+      <li><a href="#t-iq">智商是一根弹簧</a></li>
+      <li><a href="#t-fatigue">自制力疲劳与课堂管理</a></li>
+    </ul>
+  </div>
+  <div class="nav-group">
+    <button class="nav-module" data-target="m-memory"><span class="idx">二</span>专注力与记忆</button>
+    <ul class="nav-sub">
+      <li><a href="#t-ebbing">艾宾浩斯遗忘曲线</a></li>
+      <li><a href="#t-sleep">睡眠与记忆巩固</a></li>
+      <li><a href="#t-neuro">大脑与记忆的神经基础</a></li>
+      <li><a href="#t-attention">注意力是有限资源</a></li>
+      <li><a href="#t-wm">工作记忆这只"小篮子"</a></li>
+      <li><a href="#t-remember">如何帮孩子记得更牢</a></li>
+      <li><a href="#t-safety">家庭情感安全与记忆</a></li>
+    </ul>
+  </div>
+  <div class="nav-group">
+    <button class="nav-module" data-target="m-health"><span class="idx">三</span>心理健康</button>
+    <ul class="nav-sub">
+      <li><a href="#t-mood">抑郁情绪 vs 抑郁障碍</a></li>
+      <li><a href="#t-signal">识别抑郁的信号</a></li>
+      <li><a href="#t-neuro4">四种"快乐"神经递质</a></li>
+      <li><a href="#t-cause">抑郁因何发生</a></li>
+      <li><a href="#t-selfhelp">可以为自己做的事</a></li>
+      <li><a href="#t-pro">寻求专业帮助</a></li>
+    </ul>
+  </div>
+  <div class="nav-group">
+    <button class="nav-module" data-target="m-qa"><span class="idx">答</span>答疑精选</button>
+    <ul class="nav-sub">
+      <li><a href="#t-qa1">休学学生的课堂支持</a></li>
+      <li><a href="#t-qa2">线上大班课的注意力</a></li>
+      <li><a href="#t-qa3">电子产品与"二手污染"</a></li>
+      <li><a href="#t-qa4">熏听到底有没有用</a></li>
+    </ul>
+  </div>
+  <div class="nav-group">
+    <button class="nav-module" data-target="m-end"><span class="idx">结</span>结语·三大主题回顾</button>
+  </div>
+</nav>
+
+<main class="content" id="content">
+<!-- ============ 主讲人 ============ -->
+<section class="module" id="m-intro">
+  <div class="hero">
+    <div class="kicker">主 讲 人</div>
+    <h2>魏然 老师</h2>
+    <p>北京大学教育学院助理教授、研究员。长期从事儿童与青少年发展的心理学研究，本课程的全部观点都建立在可复现的实验科学之上。</p>
+    <span class="q">"我不觉得我今天讲的任何一句话是所谓的真理 —— 希望老师们结合教育实践，批判性地听取。"</span>
+  </div>
+
+  <div class="profile">
+    <div class="portrait">
+      <img id="weiranPhoto" alt="魏然老师" src="data:image/jpeg;base64,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" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="portrait-fallback" style="display:none;">魏<br>然</div>
+      <div class="portrait-cap">北京大学教育学院</div>
+    </div>
+    <div class="profile-body">
+      <h2>魏 然</h2>
+      <div class="role">助理教授、研究员 · 北京大学教育学院</div>
+      <div class="facts">
+        <span>发展心理学</span><span>教育心理学</span><span>发展认知神经科学</span>
+        <span>国家重点青年人才</span><span>儿童语言习得</span><span>眼动 / 脑电研究</span>
+      </div>
+      <table class="info-table">
+        <tr><th>学术训练</th><td>发展心理学、教育心理学与发展认知神经科学。她常强调，每个人的科研训练背景都会塑造其讲解话题的方式。</td></tr>
+        <tr><th>教育背景</th><td>清华大学学士 → 哈佛大学教育学院教育学硕士 → 哈佛大学教育学院及文理学院哲学博士（聚焦人类发展与教育、心理·脑·行为方向）。</td></tr>
+        <tr><th>科研经历</th><td>曾在哈佛医学院与波士顿儿童医院认知神经科学实验室从事博士后研究；2023 年起任教于北京大学教育学院，入选国家重点青年人才。</td></tr>
+        <tr><th>研究方向</th><td>发展及教育心理学、儿童语言习得、认知发展、家庭及社会文化环境因素、早期社会化进程，以及眼动与脑电研究方法。关注儿童语言习得与执行功能的神经基础与环境因素，并以跨文化、跨语言视角研究家庭环境、亲子互动在儿童早期社会化中的作用。</td></tr>
+        <tr><th>开设课程</th><td>在北京大学开设《心理发展与教育》《婚恋家庭与心理发展》，两校（北大、清华）互选。</td></tr>
+        <tr><th>学术成果</th><td>研究论文发表于 <em>Developmental Psychology</em>、<em>Journal of Experimental Child Psychology</em>、<em>Journal of Child Language</em> 等国际期刊。</td></tr>
+        <tr><th>个人</th><td>一位一岁半女孩的母亲。她说，育儿与做老师的过程，也是一个"重新养育自己"的过程 —— 你会不断反省与反思自己过往的经历。</td></tr>
+      </table>
+      <p class="section-note">说明：以上简介依据课程介绍及北京大学教育学院官网等公开信息整理补全；如需引用更权威的头衔与成果，建议以学院官网最新页面为准。</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>关于这份手册</strong> —— 本手册由这门课的逐字稿、AI 纪要与课件整理而成。课程围绕三大主题展开：<strong>内驱力、专注力与记忆、心理健康</strong>。每个知识点都用统一的彩色标签卡片呈现，方便你在自学时快速定位：
+  </div>
+  <div class="legend">
+    <span class="tag theory">理论基础</span>
+    <span class="tag exp">经典实验</span>
+    <span class="tag case">案例故事</span>
+    <span class="tag teacher">老师可做</span>
+    <span class="tag parent">家长可做</span>
+    <span class="tag child">孩子可做</span>
+    <span class="tag" style="background:#fbf4e9;color:var(--gold);border:1px solid var(--gold-soft);">老师金句</span>
+  </div>
+
+  <div class="pager">
+    <button disabled><span class="dir">◀ 上一模块</span><div class="nm">已是开始</div></button>
+    <button class="next" onclick="goModule('m-guide')"><span class="dir">下一模块 ▶</span><div class="nm">课程导引</div></button>
+  </div>
+</section>
+
+<!-- ============ 课程导引 ============ -->
+<section class="module" id="m-guide">
+  <div class="hero">
+    <div class="kicker">第 一 站 · 课 程 导 引</div>
+    <h2>课程导引</h2>
+    <p>在进入三大主题之前，先理解这门课想达成什么、为什么由一位心理学者来讲，以及发展心理学究竟研究什么。</p>
+    <span class="q">"我们先去理解孩子，然后我们再去教育孩子。"</span>
+  </div>
+
+  <div class="topic" id="t-goal">
+    <div class="topic-head"><span class="topic-num">1</span><h3>今天的三个目标</h3></div>
+    <p class="topic-lead">魏然老师在开场时明确了这门课不追求"高大上"，而追求<strong>可用、可信、可迁移</strong>。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">课程的三个定位</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>说人话。</strong>不堆砌复杂、高大上的理论，尽量分享可以直接讲给家长和学生的心理学小知识、小技巧。</li>
+          <li><strong>重落地。</strong>聚焦可用性强的小建议，多结合实验与真实案例。</li>
+          <li><strong>懂来源。</strong>不仅给结论，更帮你理解心理学家是<em>怎么通过实验得出这些结论的</em>，以及这些结论有什么局限性。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>我每天都在 battle 小红书上的伪科学。希望大家看到可信度存疑的说法时，能够做一些反击。</p>
+      <div class="who">—— 魏然老师谈"识别伪科学育儿"</div>
+    </div>
+    <div class="myth">
+      <b>伪科学示例：</b>"孩子睡醒后不要马上抱他，会影响专注力" —— 毫无科学依据。真正与专注力有关的是：当孩子正专注地看一个东西时，不要去打扰他。睡醒后躺着，和专注力没有任何关系。
+    </div>
+  </div>
+
+  <div class="topic" id="t-themes">
+    <div class="topic-head"><span class="topic-num">2</span><h3>三大主题概览</h3></div>
+    <p class="topic-lead">这是课程<strong>最后一页 PPT</strong> 上明确列出的三大主题，也是本手册三个核心模块的来源。</p>
+    <div class="topiclist three">
+      <div class="tcard">
+        <div class="n">主题一</div>
+        <h4>内驱力</h4>
+        <p>如何激发孩子的内驱力？理解孩子学习动机的内在来源。</p>
+      </div>
+      <div class="tcard">
+        <div class="n">主题二</div>
+        <h4>专注力与记忆</h4>
+        <p>如何帮孩子学得更快、记得更牢？理解注意力与记忆的机制。</p>
+      </div>
+      <div class="tcard">
+        <div class="n">主题三</div>
+        <h4>心理健康</h4>
+        <p>如何理解、呵护孩子的心理健康？识别并陪伴情绪困境。</p>
+      </div>
+    </div>
+    <div class="callout">
+      在三大主题之前，课程还专门用一整段讲<strong>"读懂孩子的发展规律"</strong> —— 因为只有先理解不同年龄段孩子的心理特征，后面的"如何做"才真正立得住。本手册把它单列为基础模块。
+    </div>
+  </div>
+
+  <div class="topic" id="t-devpsy">
+    <div class="topic-head"><span class="topic-num">3</span><h3>什么是发展心理学</h3></div>
+    <p class="topic-lead">为什么是一位"搞心理学"的老师来讲这门课，而不是教育学老师？因为<strong>发展心理学研究的，正是支撑人学习和发展的那些最基本的能力</strong>。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">支撑发展的五大基本能力</span></div>
+      <div class="card-body">
+        <p>发展心理学研究支撑人的学习与发展的基本能力、它们之间的交互作用，以及环境因素。可以分为五大类：</p>
+        <ul>
+          <li><strong>认知发展</strong> —— 思维、记忆、决策、解决问题、注意。</li>
+          <li><strong>语言发展</strong> —— 语音、词汇、语法、语用。</li>
+          <li><strong>社会情绪发展</strong> —— 情绪的调节与理解、同理心、共情、团队合作。</li>
+          <li><strong>身体与运动发展</strong> —— 大运动与精细运动。</li>
+          <li><strong>道德与人格发展</strong> —— 道德标准、价值观与信仰体系、人格特质。</li>
+        </ul>
+        <p>本课程主要聚焦 <em>认知</em> 与 <em>社会情绪</em>，并涉及一点 <em>语言</em>。</p>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 支撑发展的五大基本能力</div>
+      <svg viewBox="0 0 720 372" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#d8cfbe" stroke-width="2.5">
+          <line x1="360" y1="188" x2="360" y2="48"/>
+          <line x1="360" y1="188" x2="582" y2="150"/>
+          <line x1="360" y1="188" x2="496" y2="305"/>
+          <line x1="360" y1="188" x2="224" y2="305"/>
+          <line x1="360" y1="188" x2="138" y2="150"/>
+        </g>
+        <circle cx="360" cy="188" r="58" fill="#9e1f23"/>
+        <text x="360" y="182" text-anchor="middle" fill="#fff" font-size="15.5" font-weight="700">孩子是一个</text>
+        <text x="360" y="203" text-anchor="middle" fill="#fff" font-size="15.5" font-weight="700">完整的整体</text>
+        <g>
+          <rect x="284" y="19" width="152" height="58" rx="12" fill="#fff" stroke="#2f6690" stroke-width="2.5"/>
+          <text x="360" y="44" text-anchor="middle" font-size="15" font-weight="700" fill="#2b2622">认知发展</text>
+          <text x="360" y="63" text-anchor="middle" font-size="10.5" fill="#8a8076">思维 · 记忆 · 注意 · 决策</text>
+        </g>
+        <g>
+          <rect x="506" y="121" width="152" height="58" rx="12" fill="#fff" stroke="#138086" stroke-width="2.5"/>
+          <text x="582" y="146" text-anchor="middle" font-size="15" font-weight="700" fill="#2b2622">语言发展</text>
+          <text x="582" y="165" text-anchor="middle" font-size="10.5" fill="#8a8076">语音 · 词汇 · 语法 · 语用</text>
+        </g>
+        <g>
+          <rect x="420" y="276" width="152" height="58" rx="12" fill="#fff" stroke="#c05a86" stroke-width="2.5"/>
+          <text x="496" y="301" text-anchor="middle" font-size="15" font-weight="700" fill="#2b2622">社会情绪发展</text>
+          <text x="496" y="320" text-anchor="middle" font-size="10.5" fill="#8a8076">情绪 · 共情 · 合作</text>
+        </g>
+        <g>
+          <rect x="148" y="276" width="152" height="58" rx="12" fill="#fff" stroke="#4a8b5c" stroke-width="2.5"/>
+          <text x="224" y="301" text-anchor="middle" font-size="15" font-weight="700" fill="#2b2622">身体与运动</text>
+          <text x="224" y="320" text-anchor="middle" font-size="10.5" fill="#8a8076">大运动 · 精细运动</text>
+        </g>
+        <g>
+          <rect x="62" y="121" width="152" height="58" rx="12" fill="#fff" stroke="#7158a8" stroke-width="2.5"/>
+          <text x="138" y="146" text-anchor="middle" font-size="15" font-weight="700" fill="#2b2622">道德与人格</text>
+          <text x="138" y="165" text-anchor="middle" font-size="10.5" fill="#8a8076">价值观 · 人格特质</text>
+        </g>
+      </svg>
+      <figcaption>五大能力之间存在<b>交互作用</b>，整体朝同一方向发展 —— 某一维度的迟缓，往往会在其他维度上同时显现。</figcaption>
+    </figure>
+    <div class="card case">
+      <div class="card-head"><span class="tag case">案例故事</span><span class="card-title">"我去买个煎饼给你焐焐" —— 什么是语用</span></div>
+      <div class="card-body">
+        <p>魏老师与先生（理工男）刚在一起时，在清华校园散步，十月有点冷。她说"师兄我有点冷"，先生回答"那你下次出来多穿点"；她又说"师兄我手有点凉"，先生说"我去买个煎饼给你焐焐"。</p>
+        <p>两句话<strong>没有任何语法错误</strong>，但你会觉得"这人多少有点大病"。问题出在 <em>语用</em> —— 根据社会规则使用语言的能力，比如反讽、幽默、言下之意。它不像语音、词汇、语法那样好测量，却是人际沟通的关键。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-whole">
+    <div class="topic-head"><span class="topic-num">4</span><h3>孩子是一个完整的整体</h3></div>
+    <p class="topic-lead">各项基本能力之间存在交互作用，<strong>整体朝同一个方向发展</strong>。看似无关的能力，常常彼此牵连。</p>
+    <div class="card exp">
+      <div class="card-head"><span class="tag exp">经典实验</span><span class="card-title">运动能力强的婴儿，语言能力也更强</span></div>
+      <div class="card-body">
+        <p>多项研究表明：运动能力（爬、走、跳、抓握等）发展更好的婴儿，语言发展也更好。原因可能有三层：</p>
+        <ul>
+          <li><strong>神经基础相近</strong> —— 面部肌肉与语言相关的神经彼此关联，大脑负责区域相邻。</li>
+          <li><strong>探索环境</strong> —— 会爬、会走的孩子能探索更大、更丰富的环境。</li>
+          <li><strong>信念的放大效应</strong> —— 孩子运动能力强、活泼，家长就会觉得"这孩子聪明"，进而提供<em>更丰富的语言输入</em>。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>家长和老师对于学习、对于孩子能力的理解和信念，对孩子的发展非常非常重要。</p>
+      <div class="who">—— 一条贯穿全课的主线</div>
+    </div>
+    <div class="callout">
+      <strong>一个提醒：</strong>如果一个孩子有发育或发展上的迟缓，这种迟缓通常会在不同维度上同时体现出来 —— 因为孩子是一个完整的整体。
+    </div>
+  </div>
+
+  <div class="pager">
+    <button onclick="goModule('m-intro')"><span class="dir">◀ 上一模块</span><div class="nm">主讲人简介</div></button>
+    <button class="next" onclick="goModule('m-dev')"><span class="dir">下一模块 ▶</span><div class="nm">读懂孩子·发展规律</div></button>
+  </div>
+</section>
+
+<!-- ============ 读懂孩子 ============ -->
+<section class="module" id="m-dev">
+  <div class="hero">
+    <div class="kicker">基 础 模 块</div>
+    <h2>读懂孩子 · 发展规律</h2>
+    <p>不同年龄段的孩子，心理特征截然不同。很多"看起来像问题"的事情，其实只是发展的正常趋势。先读懂规律，三大主题的"如何做"才真正立得住。</p>
+    <span class="q">"孩子每个阶段都有自己的发展特征 —— 我们看起来像问题的事，很多时候是他发展的正常趋势。"</span>
+  </div>
+
+  <div class="topic" id="t-erikson">
+    <div class="topic-head"><span class="topic-num">1</span><h3>社会情绪发展阶段</h3></div>
+    <p class="topic-lead">每个生命阶段都会迎来不同的"<strong>发展危机</strong>"（crisis）—— 不是灾难，而是阶段改变带来的挑战与机遇。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">埃里克森心理社会发展阶段</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>0 – 1.5 岁｜信任 vs 不信任</strong> —— 他哭的时候，会不会有人及时安抚？</li>
+          <li><strong>1.5 – 3 岁｜自主 vs 羞怯怀疑</strong> —— "我自己来，我能做到吗？"需要鼓励孩子独立尝试。</li>
+          <li><strong>3 – 6 岁｜主动 vs 内疚感</strong> —— "我能不能发起创造和行动，会不会给别人添麻烦？"</li>
+          <li><strong>6 – 12 岁｜勤奋 vs 自卑感</strong> —— "我能不能做到别人能做的事？"<em>社会比较</em>开始出现。</li>
+          <li><strong>12 – 18 岁｜同一性 vs 角色混乱</strong> —— "我到底是个什么样的人，我要往哪里去？"</li>
+          <li><strong>18 – 40 岁｜亲密 vs 孤独</strong>　·　<strong>40 – 65 岁｜繁衍 vs 停滞</strong>　·　<strong>65 岁以上｜完善 vs 绝望</strong></li>
+        </ul>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 埃里克森心理社会发展阶段（0–18 岁）</div>
+      <svg viewBox="0 0 720 312" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="174" x2="688" y2="174" stroke="#d8cfbe" stroke-width="2.5"/>
+        <polygon points="688,174 678,169 678,179" fill="#d8cfbe"/>
+        <g>
+          <g><rect x="18" y="40" width="128" height="134" rx="10" fill="#fff" stroke="#e3ddd1" stroke-width="1.5"/>
+          <path d="M18,68 v-18 a10,10 0 0,1 10,-10 h108 a10,10 0 0,1 10,10 v18 Z" fill="#9e1f23"/>
+          <text x="82" y="59" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">0 – 1.5 岁</text>
+          <text x="82" y="99" text-anchor="middle" fill="#9e1f23" font-size="15" font-weight="700">信任</text>
+          <text x="82" y="119" text-anchor="middle" fill="#8a8076" font-size="11.5">⟷　不信任</text>
+          <line x1="38" y1="132" x2="126" y2="132" stroke="#eee5d4" stroke-width="1.5"/>
+          <text x="82" y="152" text-anchor="middle" fill="#5c544c" font-size="10">需求能否被及时回应</text></g>
+          <g><rect x="158" y="40" width="128" height="134" rx="10" fill="#fff" stroke="#e3ddd1" stroke-width="1.5"/>
+          <path d="M158,68 v-18 a10,10 0 0,1 10,-10 h108 a10,10 0 0,1 10,10 v18 Z" fill="#9e1f23"/>
+          <text x="222" y="59" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1.5 – 3 岁</text>
+          <text x="222" y="99" text-anchor="middle" fill="#9e1f23" font-size="15" font-weight="700">自主</text>
+          <text x="222" y="119" text-anchor="middle" fill="#8a8076" font-size="11.5">⟷　羞怯怀疑</text>
+          <line x1="178" y1="132" x2="266" y2="132" stroke="#eee5d4" stroke-width="1.5"/>
+          <text x="222" y="152" text-anchor="middle" fill="#5c544c" font-size="10">鼓励孩子独立尝试</text></g>
+          <g><rect x="298" y="40" width="128" height="134" rx="10" fill="#fff" stroke="#e3ddd1" stroke-width="1.5"/>
+          <path d="M298,68 v-18 a10,10 0 0,1 10,-10 h108 a10,10 0 0,1 10,10 v18 Z" fill="#9e1f23"/>
+          <text x="362" y="59" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">3 – 6 岁</text>
+          <text x="362" y="99" text-anchor="middle" fill="#9e1f23" font-size="15" font-weight="700">主动</text>
+          <text x="362" y="119" text-anchor="middle" fill="#8a8076" font-size="11.5">⟷　内疚感</text>
+          <line x1="318" y1="132" x2="406" y2="132" stroke="#eee5d4" stroke-width="1.5"/>
+          <text x="362" y="152" text-anchor="middle" fill="#5c544c" font-size="10">能否发起创造与行动</text></g>
+          <g><rect x="438" y="40" width="128" height="134" rx="10" fill="#fff" stroke="#e3ddd1" stroke-width="1.5"/>
+          <path d="M438,68 v-18 a10,10 0 0,1 10,-10 h108 a10,10 0 0,1 10,10 v18 Z" fill="#9e1f23"/>
+          <text x="502" y="59" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">6 – 12 岁</text>
+          <text x="502" y="99" text-anchor="middle" fill="#9e1f23" font-size="15" font-weight="700">勤奋</text>
+          <text x="502" y="119" text-anchor="middle" fill="#8a8076" font-size="11.5">⟷　自卑感</text>
+          <line x1="458" y1="132" x2="546" y2="132" stroke="#eee5d4" stroke-width="1.5"/>
+          <text x="502" y="152" text-anchor="middle" fill="#5c544c" font-size="10">社会比较开始出现</text></g>
+          <g><rect x="578" y="40" width="128" height="134" rx="10" fill="#fff" stroke="#c8a45c" stroke-width="2.5"/>
+          <path d="M578,68 v-18 a10,10 0 0,1 10,-10 h108 a10,10 0 0,1 10,10 v18 Z" fill="#6e1416"/>
+          <text x="642" y="59" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">12 – 18 岁</text>
+          <text x="642" y="99" text-anchor="middle" fill="#9e1f23" font-size="15" font-weight="700">同一性</text>
+          <text x="642" y="119" text-anchor="middle" fill="#8a8076" font-size="11.5">⟷　角色混乱</text>
+          <line x1="598" y1="132" x2="686" y2="132" stroke="#f0e6cf" stroke-width="1.5"/>
+          <text x="642" y="152" text-anchor="middle" fill="#9e1f23" font-size="10" font-weight="700">建立自我认同</text></g>
+        </g>
+        <g><circle cx="82" cy="174" r="4.5" fill="#9e1f23"/><circle cx="222" cy="174" r="4.5" fill="#9e1f23"/><circle cx="362" cy="174" r="4.5" fill="#9e1f23"/><circle cx="502" cy="174" r="4.5" fill="#9e1f23"/><circle cx="642" cy="174" r="5.5" fill="#c8a45c"/></g>
+        <rect x="18" y="202" width="688" height="88" rx="10" fill="#f3ede0"/>
+        <text x="362" y="227" text-anchor="middle" fill="#6e1416" font-size="12.5" font-weight="700">成年之后的三个阶段（本课程不展开）</text>
+        <text x="362" y="252" text-anchor="middle" fill="#5c544c" font-size="11.5">亲密 ⟷ 孤独（18–40 岁）　·　繁衍 ⟷ 停滞（40–65 岁）　·　完善 ⟷ 绝望（65 岁以上）</text>
+        <text x="362" y="275" text-anchor="middle" fill="#8a8076" font-size="10.5">每个生命阶段都会迎来不同的"发展危机"——不是灾难，而是阶段改变带来的挑战与机遇</text>
+      </svg>
+      <figcaption>金色高亮的 <b>12–18 岁阶段</b> 是本课程关注的重点。注意：该理论颗粒度较粗，建议<b>参考着看</b>，下方用实验证据将其细化。</figcaption>
+    </figure>
+    <div class="myth">
+      <b>重要提醒 —— 这个理论"参考着看就行"：</b>埃里克森是一位伟大的心理学家，但这是一个相对古早的理论，提出时<b>没有实验科学的背书</b>，主要基于他生活中的观察，相当于"拍脑袋"想出来。它的颗粒度非常粗（6 岁和 12 岁差异极大，却被划入同一阶段）。<b>不要把它当成真理</b>，下面用有实验证据的研究把它细化。
+    </div>
+  </div>
+
+  <div class="topic" id="t-coglang">
+    <div class="topic-head"><span class="topic-num">2</span><h3>认知与语言发展</h3></div>
+    <p class="topic-lead">用有科学证据的研究，看看小学到青春期的孩子，认知和情绪理解到底发生了什么变化。</p>
+    <div class="card exp">
+      <div class="card-head"><span class="tag exp">经典实验</span><span class="card-title">4–5 岁前的孩子，为什么不会撒谎</span></div>
+      <div class="card-body">
+        <p>四五岁之前的孩子<strong>不会撒谎</strong> —— 不是道德高尚，而是他还不能理解"我看到的世界和别人看到的世界不一样，我的心理状态和别人不同"。这种能力叫 <em>心理理论 / 视角采择</em>。</p>
+        <p>所以孩子小时候惹你生气，<strong>真的不是故意的</strong> —— 他没有"故意气你"的概念，没法分析你的思维和情绪。但到 10–12 岁，他就<em>真的会故意气人了</em>。</p>
+      </div>
+    </div>
+    <div class="card case">
+      <div class="card-head"><span class="tag case">案例故事</span><span class="card-title">一岁半的九九，这样玩捉迷藏</span></div>
+      <div class="card-body">
+        <p>魏老师一岁半的女儿玩捉迷藏的方式，是<strong>把自己的眼睛盖上</strong> —— 因为她以为"我看不见，妈妈也看不见"。这正是这个年龄段孩子还无法区分"我的视角"和"他人的视角"的生动写照。</p>
+      </div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">10–12 岁：情绪理解走向成熟</span></div>
+      <div class="card-body">
+        <ul>
+          <li>能理解<strong>复杂、矛盾的情绪</strong> —— 一件事可以同时让人既开心又难过。</li>
+          <li>能区分<strong>内心感受与外部表达</strong> —— 知道社会有"表达规则"，会根据对象（同伴 / 父母）选择性地表达或隐藏情绪。</li>
+          <li>意识到<strong>情绪表达背后可能有多种动机</strong> —— 别人说"我好喜欢"，未必是真心。</li>
+          <li>共情能力走向成熟，能更深刻理解他人的观点与处境；亲社会行为发展（哪怕帮助别人对自己有代价）。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">6–12 岁：社会比较成为自我评价的基础</span></div>
+      <div class="card-body">
+        <p>上小学的孩子开始"比" —— 谁穿得好看、老师更喜欢谁。这是<strong>正常的发展阶段</strong>，不是"学坏了"。社会比较会成为孩子自我评价的基础。同时，来自<em>同伴</em>的社会接纳，开始变得和父母的评价一样重要。</p>
+        <p>风险在于：如果孩子在识字、计算、合作等任务上<strong>频繁体验挫败，又得不到正面反馈</strong>，就容易过早形成自卑。</p>
+      </div>
+    </div>
+    <div class="card parent">
+      <div class="card-head"><span class="tag parent">家长可做</span><span class="card-title">"凤尾"还是"鸡头"，取决于孩子本人</span></div>
+      <div class="card-body">
+        <p>常被问到："把孩子送进最牛的学校做凤尾，还是去普通学校做鸡头？"魏老师的回答是：<strong>拼尽全力托举到最强的地方，未必是最好的选择</strong> —— 这取决于孩子自己的自尊水平和承受能力。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-brain">
+    <div class="topic-head"><span class="topic-num">3</span><h3>青春期的大脑：油门与刹车</h3></div>
+    <p class="topic-lead">为什么青春期孩子"你不让他干什么，他就非要干什么"？答案藏在大脑发育的<strong>时间差</strong>里。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">"刹车"晚于"油门"成熟</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>刹车 —— 前额叶。</strong>位于脑门后方，负责调节行为、思考目标、抑制不利于目标的冲动（"想玩手机，但明天要考试"）。它是大脑<em>最晚成熟</em>的脑区，一直发育到 20 多岁。</li>
+          <li><strong>油门 —— 边缘系统。</strong>负责奖赏感，在青春期早期就<em>发育得特别早</em>。它尤其偏爱"冒险的感觉"。</li>
+        </ul>
+        <p>结果：青春期孩子<strong>油门早早踩满、刹车还没装好</strong>，对冒险和风险行为的奖赏感特别强。所以他们经常做父母不让做的事 —— 这是大脑发育的客观规律。</p>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 大脑的"油门"早于"刹车"成熟</div>
+      <svg viewBox="0 0 720 350" xmlns="http://www.w3.org/2000/svg">
+        <rect x="368" y="70" width="145" height="220" fill="#f6e9c8" opacity="0.55"/>
+        <text x="440" y="60" text-anchor="middle" fill="#a9842f" font-size="12" font-weight="700">青春期 · 12–18 岁</text>
+        <line x1="78" y1="70" x2="78" y2="290" stroke="#cfc7b6" stroke-width="2"/>
+        <line x1="78" y1="290" x2="690" y2="290" stroke="#cfc7b6" stroke-width="2"/>
+        <g fill="#8a8076" font-size="10.5" text-anchor="middle">
+          <text x="78" y="307">0</text><text x="199" y="307">5</text><text x="320" y="307">10</text>
+          <text x="440" y="307">15</text><text x="561" y="307">20</text><text x="682" y="307">25 岁</text>
+        </g>
+        <text x="64" y="76" text-anchor="end" fill="#8a8076" font-size="10.5">高</text>
+        <text x="64" y="288" text-anchor="end" fill="#8a8076" font-size="10.5">低</text>
+        <text x="40" y="185" fill="#5c544c" font-size="11" transform="rotate(-90 40 185)" text-anchor="middle">脑区成熟度</text>
+        <path d="M78,279 C120,250 145,215 175,198 C215,175 240,155 271,140 C310,122 340,112 368,105 C405,96 425,90 440,90 C480,88 495,88 513,88 C560,89 620,93 682,96" fill="none" stroke="#c0392b" stroke-width="4" stroke-linecap="round"/>
+        <path d="M78,283 C120,275 165,262 199,255 C245,243 285,232 320,220 C355,206 390,196 416,184 C455,168 485,158 513,149 C555,135 585,122 610,110 C640,97 665,87 682,81" fill="none" stroke="#2f6690" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="513" cy="88" r="5" fill="#c0392b"/>
+        <circle cx="513" cy="149" r="5" fill="#2f6690"/>
+        <line x1="513" y1="93" x2="513" y2="144" stroke="#a9842f" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="523" y="122" fill="#a9842f" font-size="10">差距最大</text>
+        <g font-size="11.5" font-weight="700">
+          <rect x="250" y="116" width="14" height="14" rx="3" fill="#c0392b"/>
+          <text x="271" y="127" fill="#c0392b">边缘系统（油门 · 奖赏）</text>
+          <rect x="430" y="225" width="14" height="14" rx="3" fill="#2f6690"/>
+          <text x="451" y="236" fill="#2f6690">前额叶（刹车 · 控制）</text>
+        </g>
+        <text x="440" y="270" text-anchor="middle" fill="#8a6a1e" font-size="10.5">油门已踩满，刹车仍在搭建 → 偏爱冒险</text>
+      </svg>
+      <figcaption>负责奖赏的<b>边缘系统</b>在青春期早期就发育成熟，而负责控制的<b>前额叶</b>要到 20 多岁才成熟 —— 这个"时间差"正是青少年冒险、冲动的脑科学原因。</figcaption>
+    </figure>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>为什么青春期小孩不好管？笼统地说，是因为他的大脑还没长好 —— 这不是态度问题。</p>
+      <div class="who">—— 理解青春期冒险行为的起点</div>
+    </div>
+    <div class="card teacher">
+      <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">把"对抗"翻译成"发育"</span></div>
+      <div class="card-body">
+        <p>当青少年表现出冒险、冲动、不服管，先在心里完成一次翻译：这不一定是"针对你"，而很可能是<strong>前额叶尚未成熟</strong>的正常表现。带着这个理解去沟通，能减少很多无谓的对立。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-identity">
+    <div class="topic-head"><span class="topic-num">4</span><h3>身份认同四象限</h3></div>
+    <p class="topic-lead">"老师，我怎么知道我以后要干什么？" —— 人是怎么选定自己人生目标的？用两个维度可以画出一张地图。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">探索 × 承诺，构成四个象限</span></div>
+      <div class="card-body">
+        <p>横轴是<strong>承诺</strong>（commitment，是否有明确的人生目标），纵轴是<strong>探索</strong>（是否尝试过很多不同的东西）：</p>
+        <ul>
+          <li><strong>认同达成（高探索 + 高承诺）</strong> —— 经过广泛探索后明确了方向。理想状态。</li>
+          <li><strong>认同延缓（高探索 + 低承诺）</strong> —— 还在尝试、还没有答案。这是<em>正常的</em>，是通往"认同达成"的必经之路。</li>
+          <li><strong>认同早定（低探索 + 高承诺）</strong> —— 没怎么探索就"知道"要干什么，多半是<em>父母替他定的</em>。不利于长期心理健康。</li>
+          <li><strong>认同弥散（低探索 + 低承诺）</strong> —— 既不探索也无目标，表现为迷茫、躺平。需要老师与家长重点支持。</li>
+        </ul>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 身份认同的四个象限</div>
+      <svg viewBox="0 0 640 470" xmlns="http://www.w3.org/2000/svg">
+        <rect x="135" y="57" width="210" height="170" rx="9" fill="#eaf1f6" stroke="#2f6690" stroke-width="2"/>
+        <rect x="355" y="57" width="210" height="170" rx="9" fill="#eaf3ec" stroke="#4a8b5c" stroke-width="2.5"/>
+        <rect x="135" y="237" width="210" height="170" rx="9" fill="#f3ecec" stroke="#b06a6a" stroke-width="2"/>
+        <rect x="355" y="237" width="210" height="170" rx="9" fill="#f8efe1" stroke="#c87f2c" stroke-width="2"/>
+        <g text-anchor="middle">
+          <text x="240" y="83" fill="#2f6690" font-size="10.5" font-weight="700">高探索 · 低承诺</text>
+          <text x="240" y="120" fill="#2f6690" font-size="19" font-weight="800">认同延缓</text>
+          <text x="240" y="150" fill="#5c544c" font-size="11">还在尝试，没有明确答案 ——</text>
+          <text x="240" y="169" fill="#5c544c" font-size="11">这是通往"认同达成"的必经之路</text>
+          <text x="240" y="200" fill="#2f6690" font-size="10.5">正常阶段 · 不必焦虑</text>
+
+          <text x="460" y="83" fill="#3f7d5a" font-size="10.5" font-weight="700">高探索 · 高承诺</text>
+          <text x="460" y="120" fill="#3f7d5a" font-size="19" font-weight="800">认同达成 ★</text>
+          <text x="460" y="150" fill="#5c544c" font-size="11">经过广泛探索后，明确了</text>
+          <text x="460" y="169" fill="#5c544c" font-size="11">自己的人生方向</text>
+          <text x="460" y="200" fill="#3f7d5a" font-size="10.5" font-weight="700">理想状态</text>
+
+          <text x="240" y="263" fill="#a35656" font-size="10.5" font-weight="700">低探索 · 低承诺</text>
+          <text x="240" y="300" fill="#a35656" font-size="19" font-weight="800">认同弥散</text>
+          <text x="240" y="330" fill="#5c544c" font-size="11">既不探索，也没有目标 ——</text>
+          <text x="240" y="349" fill="#5c544c" font-size="11">表现为迷茫、躺平</text>
+          <text x="240" y="380" fill="#a35656" font-size="10.5" font-weight="700">需重点关注与支持</text>
+
+          <text x="460" y="263" fill="#b06f1f" font-size="10.5" font-weight="700">低探索 · 高承诺</text>
+          <text x="460" y="300" fill="#b06f1f" font-size="19" font-weight="800">认同早定</text>
+          <text x="460" y="330" fill="#5c544c" font-size="11">没怎么探索就"知道"目标，</text>
+          <text x="460" y="349" fill="#5c544c" font-size="11">多半是父母替他定的</text>
+          <text x="460" y="380" fill="#b06f1f" font-size="10.5" font-weight="700">不利于长期心理健康</text>
+        </g>
+        <line x1="118" y1="412" x2="118" y2="44" stroke="#9e1f23" stroke-width="2"/>
+        <polygon points="118,40 113,52 123,52" fill="#9e1f23"/>
+        <text x="103" y="232" fill="#9e1f23" font-size="13" font-weight="700" transform="rotate(-90 103 232)" text-anchor="middle">探索</text>
+        <text x="108" y="64" fill="#8a8076" font-size="10" text-anchor="end">高</text>
+        <text x="108" y="408" fill="#8a8076" font-size="10" text-anchor="end">低</text>
+        <line x1="130" y1="428" x2="586" y2="428" stroke="#9e1f23" stroke-width="2"/>
+        <polygon points="590,428 578,423 578,433" fill="#9e1f23"/>
+        <text x="350" y="456" fill="#9e1f23" font-size="13" font-weight="700" text-anchor="middle">承诺（人生目标的明确程度）</text>
+        <text x="150" y="444" fill="#8a8076" font-size="10">低</text>
+        <text x="560" y="444" fill="#8a8076" font-size="10">高</text>
+      </svg>
+      <figcaption>横轴是<b>承诺</b>、纵轴是<b>探索</b>。"认同延缓"是健康的过渡；真正需要关注的，是<b>认同早定</b>与<b>认同弥散</b>这两类孩子。</figcaption>
+    </figure>
+    <div class="card teacher">
+      <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">给"下半区"的孩子更多支持</span></div>
+      <div class="card-body">
+        <p>"认同延缓"不是问题，不必焦虑。真正需要关注的是<strong>认同早定</strong>与<strong>认同弥散</strong>的孩子 —— 前者需要被允许去探索，后者需要被陪伴着重新点燃探索的兴趣。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-diff">
+    <div class="topic-head"><span class="topic-num">5</span><h3>自我分化与融合</h3></div>
+    <p class="topic-lead">青春期孩子"开始不听话"，是因为他要完成一项极重要的任务 —— <strong>自我分化</strong>：意识到"我和父母并不是同一个人"。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">自我分化的两个维度</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>内部维度</strong> —— 在压力下能区分理智与情感，做出相对理性的选择。</li>
+          <li><strong>人际维度</strong> —— 在亲密关系中保持自主性：不因害怕孤独而过度依赖，也不因害怕被吞噬而疏离。</li>
+        </ul>
+        <p>分化是每个人一生中必须完成的"科目"。分化低的孩子容易受家庭情绪波动影响，产生生理或心理问题，这往往出现在<em>父母控制欲特别强</em>的家庭里。</p>
+      </div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">分化的反面：融合</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>内部融合</strong> —— 压力下情绪反应性极高，"遇压即崩"，情绪彻底接管。</li>
+          <li><strong>人际融合</strong> —— 与他人情感世界高度纠缠，对评价极度敏感；常表现为没有原则、害怕冲突、容易丧失立场。</li>
+          <li><strong>亲职化</strong> —— 孩子承担了父母的职责，反过来"给父母做父母"、调节父母的情绪。例如父母常说"要不是因为你，我跟你爸早离了"。</li>
+        </ul>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 从"融合"到"自我分化"的两个维度</div>
+      <svg viewBox="0 0 720 332" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#c0392b"/><stop offset="1" stop-color="#4a8b5c"/>
+        </linearGradient></defs>
+        <text x="146" y="34" text-anchor="middle" fill="#c0392b" font-size="13" font-weight="800">融　合（功能失调）</text>
+        <text x="574" y="34" text-anchor="middle" fill="#3f7d5a" font-size="13" font-weight="800">自我分化（健康）</text>
+        <g>
+          <rect x="28" y="52" width="236" height="76" rx="9" fill="#fbecec" stroke="#c0392b" stroke-width="2"/>
+          <text x="146" y="76" text-anchor="middle" fill="#c0392b" font-size="13.5" font-weight="700">内部融合</text>
+          <text x="146" y="97" text-anchor="middle" fill="#5c544c" font-size="10.5">遇到压力就崩溃，情绪反应性极高，</text>
+          <text x="146" y="114" text-anchor="middle" fill="#5c544c" font-size="10.5">理智被情绪彻底接管</text>
+          <rect x="456" y="52" width="236" height="76" rx="9" fill="#eaf3ec" stroke="#4a8b5c" stroke-width="2"/>
+          <text x="574" y="76" text-anchor="middle" fill="#3f7d5a" font-size="13.5" font-weight="700">内部分化</text>
+          <text x="574" y="97" text-anchor="middle" fill="#5c544c" font-size="10.5">压力下仍能区分理智与情感，</text>
+          <text x="574" y="114" text-anchor="middle" fill="#5c544c" font-size="10.5">做出相对理性的选择</text>
+          <text x="360" y="80" text-anchor="middle" fill="#9e1f23" font-size="12" font-weight="700">内部维度</text>
+          <rect x="278" y="88" width="164" height="13" rx="6.5" fill="url(#fg)"/>
+          <polygon points="458,94 440,85 440,103" fill="#4a8b5c"/>
+        </g>
+        <g>
+          <rect x="28" y="164" width="236" height="76" rx="9" fill="#fbecec" stroke="#c0392b" stroke-width="2"/>
+          <text x="146" y="188" text-anchor="middle" fill="#c0392b" font-size="13.5" font-weight="700">人际融合</text>
+          <text x="146" y="209" text-anchor="middle" fill="#5c544c" font-size="10.5">对他人评价极度敏感，过度依赖，</text>
+          <text x="146" y="226" text-anchor="middle" fill="#5c544c" font-size="10.5">或因怕被吞噬而疏离</text>
+          <rect x="456" y="164" width="236" height="76" rx="9" fill="#eaf3ec" stroke="#4a8b5c" stroke-width="2"/>
+          <text x="574" y="188" text-anchor="middle" fill="#3f7d5a" font-size="13.5" font-weight="700">人际分化</text>
+          <text x="574" y="209" text-anchor="middle" fill="#5c544c" font-size="10.5">在亲密关系中保持自主性，</text>
+          <text x="574" y="226" text-anchor="middle" fill="#5c544c" font-size="10.5">既不黏附，也不切断</text>
+          <text x="360" y="192" text-anchor="middle" fill="#9e1f23" font-size="12" font-weight="700">人际维度</text>
+          <rect x="278" y="200" width="164" height="13" rx="6.5" fill="url(#fg)"/>
+          <polygon points="458,206 440,197 440,215" fill="#4a8b5c"/>
+        </g>
+        <rect x="28" y="262" width="664" height="56" rx="9" fill="#f8efe1" stroke="#e7d2af" stroke-width="1.5"/>
+        <text x="360" y="285" text-anchor="middle" fill="#9e1f23" font-size="12" font-weight="700">亲职化 —— 融合的一种特殊表现</text>
+        <text x="360" y="305" text-anchor="middle" fill="#5c544c" font-size="11">孩子反过来承担父母的职责、替父母调节情绪 —— 这本不该由孩子背负</text>
+      </svg>
+      <figcaption>自我分化是每个人一生必须完成的"科目"。青春期孩子"开始不听话"，正是在完成<b>从融合走向分化</b>的成长。</figcaption>
+    </figure>
+    <div class="card case">
+      <div class="card-head"><span class="tag case">案例故事</span><span class="card-title">《疯狂动物城》的朱迪 —— 自我分化的范本</span></div>
+      <div class="card-body">
+        <p>家族世代种胡萝卜，父母说"兔子不能当警察"，朱迪却清晰地坚持自己的目标，要打破家族传承。在警校垫底却凭努力成为毕业典礼上的最优秀学生（valedictorian）—— 这是<strong>理智与情感的平衡、面对困难的韧性</strong>。</p>
+        <p>人际维度上，父母让她远离狐狸、给她防狐喷雾，她<strong>没有说"你们懂什么、别管我"</strong>，而是接受了父母的关怀与爱，同时清醒地意识到那可能是偏见 —— 保持情感连接，又坚定地做自己。</p>
+      </div>
+    </div>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>孩子越懂事，往往说明父母越不懂事。如果孩子到了青春期还 200% 听父母的话，这反而是不正常的。</p>
+      <div class="who">—— 过于懂事的孩子，常常是自我分化没做好</div>
+    </div>
+    <div class="app-grid cols-3">
+      <div class="card parent">
+        <div class="card-head"><span class="tag parent">家长可做</span></div>
+        <div class="card-body"><p>把孩子当成<strong>独立的个体</strong>去尊重和信任，给他自我分化的机会。孩子可以是孩子，但<strong>不该负责调控父母的情绪</strong> —— 夫妻矛盾不要让孩子来"维和"。</p></div>
+      </div>
+      <div class="card teacher">
+        <div class="card-head"><span class="tag teacher">老师可做</span></div>
+        <div class="card-body"><p>当青少年"顶嘴""不服管"，先理解这是<strong>自我分化的正常过程</strong>，而非品行问题。它可能漫长而痛苦，但每个人都必须完成。</p></div>
+      </div>
+      <div class="card child">
+        <div class="card-head"><span class="tag child">孩子可做</span></div>
+        <div class="card-body"><p>可以既<strong>接受父母的爱与关怀</strong>，又坚定地走自己想走的路 —— 像朱迪那样，不必用"切断关系"来证明独立。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pager">
+    <button onclick="goModule('m-guide')"><span class="dir">◀ 上一模块</span><div class="nm">课程导引</div></button>
+    <button class="next" onclick="goModule('m-drive')"><span class="dir">下一模块 ▶</span><div class="nm">模块一·内驱力</div></button>
+  </div>
+</section>
+
+<!-- ============ 模块一 内驱力 ============ -->
+<section class="module" id="m-drive">
+  <div class="hero">
+    <div class="kicker">模 块 一</div>
+    <h2>内驱力：如何激发孩子的内驱力</h2>
+    <p>为什么有的孩子能下定决心做好一件事，有的孩子却毫无内在动力？这一模块从成就动机出发，拆解动机背后的理性与情感机制。</p>
+    <span class="q">核心问题：孩子的学习动机，到底从哪里来？</span>
+  </div>
+
+  <div class="topic" id="t-achieve">
+    <div class="topic-head"><span class="topic-num">1</span><h3>什么是成就动机</h3></div>
+    <p class="topic-lead">成就动机，说白了就是孩子愿不愿意、能不能<strong>下定决心做好一件事</strong>。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">成就动机的定义</span></div>
+      <div class="card-body">
+        <p>成就动机是<strong>激发、引导，并在一段时间内保持行为的内部过程</strong>。它受到内外多重因素影响：</p>
+        <ul>
+          <li><strong>学生的天赋、个性与能力</strong> —— 孩子生下来就是有差异的。</li>
+          <li><strong>学习任务的特征与情境</strong> —— 英语好的孩子，在"写英语题 vs 写数学题"间会有动力地选英语；但在"写英语题 vs 玩手机"间，大概率选手机。</li>
+          <li><strong>适当的支持与辅助</strong>。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card case">
+      <div class="card-head"><span class="tag case">案例故事</span><span class="card-title">内驱力强的孩子，长什么样</span></div>
+      <div class="card-body">
+        <p>课堂上老师们总结出的特征，与研究高度一致 —— 内驱力强的孩子会：</p>
+        <ul>
+          <li><strong>投入更多时间</strong>，会自己规划学习和时间。</li>
+          <li><strong>运用更高级的认知过程</strong> —— 解难题时不满足于"做出来就行"，一定要找到最快、最优雅的解法。</li>
+          <li><strong>容易迁移</strong> —— 一通百通，同类型的题全会。</li>
+          <li><strong>有意识地组织学习</strong>、制定计划、并记住学到的信息。</li>
+          <li><strong>不怵挑战</strong>，主动想做更难的题。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-maslow">
+    <div class="topic-head"><span class="topic-num">2</span><h3>马斯洛需求理论的局限</h3></div>
+    <p class="topic-lead">所有人都听过马斯洛 —— 但"被引用最多"不等于"最靠谱"。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">马斯洛需求层次</span></div>
+      <div class="card-body">
+        <p>核心论点：人的内在需求是行为的根本动力，只有低层需求被满足，高层需求才会成为主要动机。</p>
+        <ul>
+          <li><strong>匮乏需求</strong>（没有它就活不下去）：生理需求 → 安全需求 → 归属与爱 → 自尊。</li>
+          <li><strong>成长需求</strong>：认知需求 → 审美需求 → 自我实现 → 超越自我。</li>
+        </ul>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 马斯洛需求层次</div>
+      <svg viewBox="0 0 680 416" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="286,40 354,40 382.5,83.5 257.5,83.5" fill="#6e5119"/>
+        <polygon points="257.5,83.5 382.5,83.5 411,127 229,127" fill="#8f6a22"/>
+        <polygon points="229,127 411,127 439.5,170.5 200.5,170.5" fill="#a87d28"/>
+        <polygon points="200.5,170.5 439.5,170.5 468,214 172,214" fill="#b88a2e"/>
+        <polygon points="172,214 468,214 496.5,257.5 143.5,257.5" fill="#c66e70"/>
+        <polygon points="143.5,257.5 496.5,257.5 525,301 115,301" fill="#b94a4d"/>
+        <polygon points="115,301 525,301 553.5,344.5 86.5,344.5" fill="#a3282c"/>
+        <polygon points="86.5,344.5 553.5,344.5 582,388 58,388" fill="#8c1c20"/>
+        <g text-anchor="middle" fill="#fff" font-weight="700">
+          <text x="320" y="66" font-size="12">超越自我</text>
+          <text x="320" y="109" font-size="13">自我实现</text>
+          <text x="320" y="153" font-size="13">审美需求</text>
+          <text x="320" y="196" font-size="13">认知需求</text>
+          <text x="320" y="240" font-size="13.5">自尊</text>
+          <text x="320" y="284" font-size="13.5">归属与爱</text>
+          <text x="320" y="327" font-size="13.5">安全需求</text>
+          <text x="320" y="371" font-size="13.5">生理需求</text>
+        </g>
+        <path d="M596,42 h7 v170 h-7" fill="none" stroke="#a87d28" stroke-width="2.5"/>
+        <text x="624" y="127" fill="#a87d28" font-size="13" font-weight="800" transform="rotate(-90 624 127)" text-anchor="middle">成长需求</text>
+        <path d="M596,216 h7 v172 h-7" fill="none" stroke="#9e1f23" stroke-width="2.5"/>
+        <text x="624" y="302" fill="#9e1f23" font-size="13" font-weight="800" transform="rotate(-90 624 302)" text-anchor="middle">匮乏需求</text>
+        <text x="120" y="150" fill="#8a8076" font-size="10.5">成长需求</text>
+        <text x="120" y="166" fill="#8a8076" font-size="10.5">growth needs</text>
+        <text x="92" y="340" fill="#8a8076" font-size="10.5">匮乏需求</text>
+        <text x="92" y="356" fill="#8a8076" font-size="10.5">deficiency</text>
+      </svg>
+      <figcaption>马斯洛认为低层需求满足后，高层需求才成为主要动机。该理论<b>影响巨大，却缺乏实证基础</b> —— 一个反例（为爱情或见义勇为牺牲生命）即可将其证伪。</figcaption>
+    </figure>
+    <div class="myth">
+      <b>为什么"参考着看就行"：</b>
+      <ul style="margin:8px 0 2px;padding-left:20px;">
+        <li>这篇文章 1943 年发表、被引用 6 万多次，但<b>引用次数多不能证明理论靠谱</b>。</li>
+        <li>它主要基于观察案例和自省（思考自己），<b>缺乏定量实验证据</b> —— 同样是"拍脑袋"想出来的理论。</li>
+        <li><b>一个反例即可证伪</b>：现实中有人为了爱情、为了见义勇为而牺牲生命 —— 放弃了最底层的生理需求去追求更高需求。</li>
+        <li>它特别体现<b>西方中产阶级</b>的个人成长价值观，在更看重集体的文化里适用性有限。</li>
+        <li>最关键的：<b>知道人需要什么，并不等于就能激发动机</b>。"我很想要院士头衔"，并不会让我每天好好搞科研。</li>
+      </ul>
+    </div>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>如果这个世界上从来没有马斯洛需求理论，知乎上的心理学科普帖会少一半。它激发了大量后续研究，这很伟大 —— 但别把它当成你的人生信条。</p>
+      <div class="who">—— 马斯洛的价值，在于"启发"而非"真理"</div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-expect">
+    <div class="topic-head"><span class="topic-num">3</span><h3>期望理论</h3></div>
+    <p class="topic-lead">心理学家弗罗姆基于过往研究提出：动机不是单一因素，而是几个因素<strong>相乘</strong>的结果。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">动机 = 期望 × 工具性 × 效价</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>期望</strong> —— 我有多大可能性能做好这件事？（成功的概率）</li>
+          <li><strong>工具性</strong> —— 努力到底有没有用？（有些事努力没用，比如再努力也长不高 10 厘米）</li>
+          <li><strong>效价</strong> —— 我到底有多想要这个结果？（结果对我的价值感）</li>
+        </ul>
+        <p>三者<strong>缺一不可</strong> —— 任何一个为 0，动机就为 0。</p>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 期望理论：动机的乘法公式</div>
+      <svg viewBox="0 0 720 338" xmlns="http://www.w3.org/2000/svg">
+        <rect x="34" y="40" width="92" height="66" rx="10" fill="#9e1f23"/>
+        <text x="80" y="79" text-anchor="middle" fill="#fff" font-size="17" font-weight="800">动机</text>
+        <text x="146" y="80" text-anchor="middle" fill="#9e1f23" font-size="22" font-weight="800">=</text>
+        <g>
+          <rect x="168" y="40" width="138" height="66" rx="10" fill="#eaf1f6" stroke="#2f6690" stroke-width="2"/>
+          <text x="237" y="70" text-anchor="middle" fill="#2f6690" font-size="15" font-weight="800">期望</text>
+          <text x="237" y="91" text-anchor="middle" fill="#5c544c" font-size="10.5">成功的可能性</text>
+        </g>
+        <text x="322" y="80" text-anchor="middle" fill="#9e1f23" font-size="20" font-weight="800">×</text>
+        <g>
+          <rect x="338" y="40" width="138" height="66" rx="10" fill="#eaf1f6" stroke="#2f6690" stroke-width="2"/>
+          <text x="407" y="70" text-anchor="middle" fill="#2f6690" font-size="15" font-weight="800">工具性</text>
+          <text x="407" y="91" text-anchor="middle" fill="#5c544c" font-size="10.5">努力是否有用</text>
+        </g>
+        <text x="492" y="80" text-anchor="middle" fill="#9e1f23" font-size="20" font-weight="800">×</text>
+        <g>
+          <rect x="508" y="40" width="138" height="66" rx="10" fill="#eaf1f6" stroke="#2f6690" stroke-width="2"/>
+          <text x="577" y="70" text-anchor="middle" fill="#2f6690" font-size="15" font-weight="800">效价</text>
+          <text x="577" y="91" text-anchor="middle" fill="#5c544c" font-size="10.5">结果的价值感</text>
+        </g>
+        <text x="356" y="132" text-anchor="middle" fill="#9e1f23" font-size="11.5" font-weight="700">三者缺一不可 —— 任何一项为 0，动机就为 0</text>
+        <line x1="90" y1="300" x2="650" y2="300" stroke="#cfc7b6" stroke-width="2"/>
+        <line x1="90" y1="300" x2="90" y2="166" stroke="#cfc7b6" stroke-width="2"/>
+        <path d="M95,295 Q365,55 635,295" fill="none" stroke="#9e1f23" stroke-width="4" stroke-linecap="round"/>
+        <line x1="365" y1="176" x2="365" y2="300" stroke="#c8a45c" stroke-width="1.6" stroke-dasharray="4 3"/>
+        <circle cx="365" cy="176" r="6" fill="#c8a45c"/>
+        <text x="365" y="160" text-anchor="middle" fill="#9e7a1e" font-size="11.5" font-weight="700">动机最强</text>
+        <text x="62" y="234" fill="#5c544c" font-size="11" transform="rotate(-90 62 234)" text-anchor="middle">成就动机</text>
+        <g font-size="11" text-anchor="middle">
+          <text x="150" y="318" fill="#8a8076">太简单</text>
+          <text x="365" y="318" fill="#9e1f23" font-weight="700">中等难度</text>
+          <text x="588" y="318" fill="#8a8076">太难</text>
+        </g>
+        <text x="150" y="284" text-anchor="middle" fill="#a89a86" font-size="9.5">过易→无意义</text>
+        <text x="588" y="284" text-anchor="middle" fill="#a89a86" font-size="9.5">过难→放弃</text>
+      </svg>
+      <figcaption>给孩子定的目标应是<b>中等难度</b> —— 既不触手可得，也不遥不可及。（注：这主要适用于中等成绩的学生；天赋极强的孩子需要更难的挑战。）</figcaption>
+    </figure>
+    <div class="card teacher">
+      <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">给孩子定"中等难度"的目标</span></div>
+      <div class="card-body">
+        <p>给学生定的目标，<strong>既不应触手可得，也不应遥不可及</strong>。太简单激发不了动机，太难则会让人觉得"没意义"。大量科学证据表明：<em>中等难度的任务</em>最有利于激发成就动机。</p>
+        <p><strong>但要注意：</strong>这主要适用于中等成绩的学生。对于天赋极强的孩子，中等难度任务反而会让他觉得"没意思、不想要这个结果"—— 他们需要更有挑战性的任务。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-sdt">
+    <div class="topic-head"><span class="topic-num">4</span><h3>自我决定理论</h3></div>
+    <p class="topic-lead">动机不只来自理性。影响力最大的动机理论之一 —— 自我决定理论，指出内在动机有三个缺一不可的维度。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">内在动机的三要素</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>自主感</strong> —— 我感觉这是<em>我自己主动</em>要做的，不是别人逼我做的。</li>
+          <li><strong>关联性</strong> —— 我做这件事时，感觉自己被接纳，是某个群体的一员。</li>
+          <li><strong>胜任力</strong> —— 我相信自己<em>能把这件事做好</em>。</li>
+        </ul>
+        <p>这三者构成内在动机；而来自外界的奖赏等，属于外在动机。</p>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 自我决定理论：内在动机的三要素</div>
+      <svg viewBox="0 0 620 358" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="310" cy="126" r="112" fill="#9e1f23" fill-opacity="0.34" stroke="#9e1f23" stroke-width="2"/>
+        <circle cx="236" cy="234" r="112" fill="#2f6690" fill-opacity="0.34" stroke="#2f6690" stroke-width="2"/>
+        <circle cx="384" cy="234" r="112" fill="#4a8b5c" fill-opacity="0.34" stroke="#4a8b5c" stroke-width="2"/>
+        <text x="310" y="74" text-anchor="middle" fill="#9e1f23" font-size="16" font-weight="800">自主感</text>
+        <text x="310" y="94" text-anchor="middle" fill="#5c544c" font-size="10.5">感觉是我自己主动要做的</text>
+        <text x="174" y="276" text-anchor="middle" fill="#2f6690" font-size="16" font-weight="800">胜任力</text>
+        <text x="174" y="296" text-anchor="middle" fill="#5c544c" font-size="10.5">相信自己能把它做好</text>
+        <text x="446" y="276" text-anchor="middle" fill="#3f7d5a" font-size="16" font-weight="800">关联性</text>
+        <text x="446" y="296" text-anchor="middle" fill="#5c544c" font-size="10.5">感到被接纳、有连接</text>
+        <rect x="256" y="178" width="108" height="38" rx="19" fill="#fff" stroke="#c8a45c" stroke-width="2"/>
+        <text x="310" y="203" text-anchor="middle" fill="#9e1f23" font-size="15" font-weight="800">内在动机</text>
+      </svg>
+      <figcaption>三要素<b>缺一不可</b>，共同构成内在动机。课堂上的<b>分组竞赛</b>之所以有效，正是因为它强化了"关联性"。（外在动机则来自外界的奖赏等。）</figcaption>
+    </figure>
+    <div class="card teacher">
+      <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">用"分组竞赛"激活关联性</span></div>
+      <div class="card-body">
+        <p>课堂上的分组竞赛特别能激发动机 —— 因为在竞赛过程中，孩子建立了与同学之间的社会与情感联系，感到"我是团队的一员"。这正是<strong>关联性</strong>在起作用。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-overjust">
+    <div class="topic-head"><span class="topic-num">5</span><h3>过度辩护效应</h3></div>
+    <p class="topic-lead">奖励一定有用吗？有时候，<strong>奖励反而会摧毁内在动机</strong>。</p>
+    <div class="card exp">
+      <div class="card-head"><span class="tag exp">经典实验</span><span class="card-title">1973 年斯坦福"画画"实验</span></div>
+      <div class="card-body">
+        <p>被试是 51 名斯坦福附属幼儿园 3.5–5 岁的儿童。研究者先在幼儿园里随机摆放画纸画笔，<strong>挑出那些没人要求、自己自发画画的孩子</strong>（即本身就有内在动机的孩子），随机分到三组：</p>
+        <ul>
+          <li><strong>预期奖励组</strong> —— 事先告知"画完一幅画就有奖励"。</li>
+          <li><strong>非预期奖励组</strong> —— 不事先告知，画完后才给奖励。</li>
+          <li><strong>无奖励组</strong> —— 画完就走。</li>
+        </ul>
+        <p>一段时间后：<strong>预期奖励组的孩子，画画时间显著减少</strong>；另外两组没有明显变化。</p>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 1973 斯坦福实验：奖励如何影响内在兴趣</div>
+      <svg viewBox="0 0 660 330" xmlns="http://www.w3.org/2000/svg">
+        <line x1="72" y1="66" x2="72" y2="272" stroke="#cfc7b6" stroke-width="2"/>
+        <line x1="72" y1="272" x2="616" y2="272" stroke="#cfc7b6" stroke-width="2"/>
+        <line x1="72" y1="100" x2="616" y2="100" stroke="#cbb88f" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <text x="624" y="104" fill="#a89a86" font-size="9.5">原有水平</text>
+        <text x="54" y="170" fill="#5c544c" font-size="11" transform="rotate(-90 54 170)" text-anchor="middle">后续自发画画的兴趣</text>
+        <rect x="128" y="190" width="108" height="82" rx="4" fill="#9e1f23"/>
+        <rect x="288" y="102" width="108" height="170" rx="4" fill="#4a8b5c"/>
+        <rect x="448" y="97" width="108" height="175" rx="4" fill="#4a8b5c"/>
+        <text x="182" y="180" text-anchor="middle" fill="#9e1f23" font-size="12" font-weight="800">显著减少 ↓</text>
+        <text x="342" y="92" text-anchor="middle" fill="#3f7d5a" font-size="11.5" font-weight="700">基本不变</text>
+        <text x="502" y="87" text-anchor="middle" fill="#3f7d5a" font-size="11.5" font-weight="700">基本不变</text>
+        <g text-anchor="middle">
+          <text x="182" y="292" fill="#9e1f23" font-size="12.5" font-weight="700">预期奖励组</text>
+          <text x="182" y="309" fill="#8a8076" font-size="10">事先告知"画完有奖励"</text>
+          <text x="342" y="292" fill="#2b2622" font-size="12.5" font-weight="700">非预期奖励组</text>
+          <text x="342" y="309" fill="#8a8076" font-size="10">事后才给奖励</text>
+          <text x="502" y="292" fill="#2b2622" font-size="12.5" font-weight="700">无奖励组</text>
+          <text x="502" y="309" fill="#8a8076" font-size="10">没有奖励</text>
+        </g>
+      </svg>
+      <figcaption>被试是 51 名本就<b>自发爱画画</b>的幼儿。一段时间后，唯有"预期奖励组"的兴趣明显下降 —— 可预期的外部奖励，会侵蚀原有的内在动机。</figcaption>
+    </figure>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">过度辩护效应（overjustification effect）</span></div>
+      <div class="card-body">
+        <p>当一个人原本出于<strong>内在兴趣</strong>从事某项活动，如果再给予<em>可预期的外部奖励</em>，他会对这件事重新归因 —— 慢慢觉得"我做这个不是因为喜欢，而是为了奖励"。一旦不再给奖励，他就不再喜欢这件事了。</p>
+      </div>
+    </div>
+    <div class="card case">
+      <div class="card-head"><span class="tag case">案例故事</span><span class="card-title">"选我所爱"的悖论</span></div>
+      <div class="card-body">
+        <p>媒体常劝年轻人"找工作要选我所爱"。但工作是一件<strong>有外在奖励</strong>的事（能赚钱）。无论你多爱一份工作，当它真正变成谋生手段后，过度辩护效应就会发生 —— 你会觉得"这工作和我想象的不太一样"。这不是工作本身的问题，而是人的心理机制如此。</p>
+      </div>
+    </div>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>"选我所爱"并不是你快乐的来源。选你所爱、并且坚持下去、把这件事做好，才是你快乐的来源。</p>
+      <div class="who">—— 关于热爱与坚持</div>
+    </div>
+    <div class="app-grid cols-2">
+      <div class="card teacher">
+        <div class="card-head"><span class="tag teacher">老师可做</span></div>
+        <div class="card-body"><p>对孩子<strong>本就感兴趣</strong>的学科，慎用"可预期的物质奖励"。过度的、可预期的奖励会把"我喜欢"悄悄替换成"我为了奖励"。</p></div>
+      </div>
+      <div class="card parent">
+        <div class="card-head"><span class="tag parent">家长可做</span></div>
+        <div class="card-body"><p>少用"考到 X 分就买 Y"这类长期交易。它不仅可能伤害内在动机，屏幕类奖励本身也不利于孩子发展。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-attrib">
+    <div class="topic-head"><span class="topic-num">6</span><h3>归因方式与控制点</h3></div>
+    <p class="topic-lead">人对成功与失败的解释，叫做<strong>归因</strong>。归因方式，深刻影响着一个人的动机。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">归因的三个维度</span></div>
+      <div class="card-body">
+        <p>每一次"为什么做成 / 没做成"，都可以从三个维度分析：</p>
+        <ul>
+          <li><strong>内部 / 外部</strong> —— 是我自己的原因，还是外部的原因？</li>
+          <li><strong>稳定 / 不稳定</strong> —— 这个因素会不会改变？</li>
+          <li><strong>可控 / 不可控</strong> —— 我能不能控制它？</li>
+        </ul>
+        <p>同样是"没考好"：<br>"我太笨了" = 内部·稳定·不可控　|　"我不够努力" = 内部·不稳定·<em>可控</em><br>"题太难" = 外部·不稳定·不可控　|　"运气不好" = 外部·不稳定·不可控</p>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 同样是"没考好"，四种归因方式</div>
+      <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+        <rect x="24" y="22" width="652" height="32" rx="6" fill="#f3ede0"/>
+        <rect x="24" y="112" width="652" height="58" fill="#eaf3ec"/>
+        <rect x="24" y="54" width="652" height="58" fill="#fbecec"/>
+        <g text-anchor="middle" font-size="11.5" font-weight="700" fill="#6e1416">
+          <text x="144" y="43">孩子的归因</text>
+          <text x="339" y="43">内部 / 外部</text>
+          <text x="489" y="43">稳定性</text>
+          <text x="620" y="43">可控性</text>
+        </g>
+        <g stroke="#e3ddd1" stroke-width="1">
+          <line x1="24" y1="112" x2="676" y2="112"/><line x1="24" y1="170" x2="676" y2="170"/>
+          <line x1="24" y1="228" x2="676" y2="228"/>
+          <line x1="264" y1="54" x2="264" y2="286"/><line x1="414" y1="54" x2="414" y2="286"/><line x1="564" y1="54" x2="564" y2="286"/>
+        </g>
+        <rect x="24" y="54" width="652" height="232" rx="6" fill="none" stroke="#e3ddd1" stroke-width="1.5"/>
+        <g font-size="14" font-weight="700" text-anchor="middle">
+          <text x="144" y="80" fill="#9e1f23">"我太笨了"</text>
+          <text x="144" y="139" fill="#3f7d5a">"我不够努力"</text>
+          <text x="144" y="204" fill="#2b2622">"题太难了"</text>
+          <text x="144" y="262" fill="#2b2622">"运气不好"</text>
+        </g>
+        <g font-size="9.5" text-anchor="middle">
+          <text x="144" y="97" fill="#a35656">✕ 最易导致"躺平"</text>
+          <text x="144" y="156" fill="#3f7d5a" font-weight="700">★ 最健康的归因</text>
+        </g>
+        <g font-size="11.5" font-weight="700" text-anchor="middle">
+          <g><rect x="305" y="71" width="68" height="24" rx="12" fill="#fbe4e4"/><text x="339" y="87" fill="#9e1f23">内部</text></g>
+          <g><rect x="455" y="71" width="68" height="24" rx="12" fill="#ece6da"/><text x="489" y="87" fill="#5c544c">稳定</text></g>
+          <g><rect x="586" y="71" width="68" height="24" rx="12" fill="#fbe4e4"/><text x="620" y="87" fill="#9e1f23">不可控</text></g>
+          <g><rect x="305" y="129" width="68" height="24" rx="12" fill="#fbe4e4"/><text x="339" y="145" fill="#9e1f23">内部</text></g>
+          <g><rect x="455" y="129" width="68" height="24" rx="12" fill="#e3eef4"/><text x="489" y="145" fill="#2f6690">不稳定</text></g>
+          <g><rect x="586" y="129" width="68" height="24" rx="12" fill="#e2f0e6"/><text x="620" y="145" fill="#3f7d5a">可控</text></g>
+          <g><rect x="305" y="192" width="68" height="24" rx="12" fill="#e3eef4"/><text x="339" y="208" fill="#2f6690">外部</text></g>
+          <g><rect x="455" y="192" width="68" height="24" rx="12" fill="#e3eef4"/><text x="489" y="208" fill="#2f6690">不稳定</text></g>
+          <g><rect x="586" y="192" width="68" height="24" rx="12" fill="#ece6da"/><text x="620" y="208" fill="#5c544c">不可控</text></g>
+          <g><rect x="305" y="250" width="68" height="24" rx="12" fill="#e3eef4"/><text x="339" y="266" fill="#2f6690">外部</text></g>
+          <g><rect x="455" y="250" width="68" height="24" rx="12" fill="#e3eef4"/><text x="489" y="266" fill="#2f6690">不稳定</text></g>
+          <g><rect x="586" y="250" width="68" height="24" rx="12" fill="#ece6da"/><text x="620" y="266" fill="#5c544c">不可控</text></g>
+        </g>
+      </svg>
+      <figcaption>表现最好的孩子，倾向于把失败归因为<b>"我不够努力"</b> —— 内部、不稳定、可控。这种归因相信"下次努力就有可能成功"，能有效保护学习动机。</figcaption>
+    </figure>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">最成功的人，控制点在"内部"</span></div>
+      <div class="card-body">
+        <p>表现最好、社会适应最强的孩子（乃至最成功的人），通常会把失败归因为<strong>"我不够努力"—— 内部、不稳定、可控</strong>。他们的<em>控制点</em>在内部，相信事情的结果由自己掌握。</p>
+        <p>人还有一种倾向 —— 维持积极的自我意向："做好了是我厉害，没做好是外界原因。"</p>
+      </div>
+    </div>
+    <div class="card teacher">
+      <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">把失败引向"可控"的归因</span></div>
+      <div class="card-body">
+        <p>孩子失败时，引导他归因到<strong>"不够努力 / 方法还需调整"</strong>这类内部、不稳定、可控的因素，而不是"我太笨"。可控的归因会保护动机，让孩子相信"下次再努力就有可能成"。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-helpless">
+    <div class="topic-head"><span class="topic-num">7</span><h3>习得性无助</h3></div>
+    <p class="topic-lead">"为什么我们家孩子躺得特别平？" —— 很多时候孩子不是不在意，而是<strong>觉得努力没有用</strong>。</p>
+    <div class="card exp">
+      <div class="card-head"><span class="tag exp">经典实验</span><span class="card-title">塞利格曼的狗</span></div>
+      <div class="card-body">
+        <p>积极心理学之父塞利格曼，探讨"为什么个体在经历无法控制的失败后会停止尝试"。实验分三组狗：</p>
+        <ul>
+          <li><strong>可控组</strong> —— 笼中有按钮，按下可停止电击。</li>
+          <li><strong>不可控组</strong> —— 无论怎么做都无法停止电击。</li>
+          <li><strong>无电击组</strong>。</li>
+        </ul>
+        <p>随后把狗放进一个很矮、跳出去就能停止电击的箱子。结果：<strong>可控组和无电击组都跳了出去；不可控组放弃尝试</strong> —— 因为它已经"学会"了"我怎么努力都没用"。</p>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 塞利格曼的"习得性无助"实验</div>
+      <svg viewBox="0 0 720 308" xmlns="http://www.w3.org/2000/svg">
+        <text x="40" y="96" fill="#9e1f23" font-size="11.5" font-weight="700" transform="rotate(-90 40 96)" text-anchor="middle">第一阶段</text>
+        <text x="40" y="224" fill="#9e1f23" font-size="11.5" font-weight="700" transform="rotate(-90 40 224)" text-anchor="middle">第二阶段</text>
+        <g text-anchor="middle" font-size="13" font-weight="800">
+          <text x="178" y="32" fill="#3f7d5a">可控组</text>
+          <text x="396" y="32" fill="#9e1f23">不可控组</text>
+          <text x="614" y="32" fill="#3f7d5a">无电击组</text>
+        </g>
+        <g>
+          <rect x="80" y="44" width="196" height="74" rx="9" fill="#eaf3ec" stroke="#4a8b5c" stroke-width="1.8"/>
+          <text x="178" y="74" text-anchor="middle" fill="#5c544c" font-size="11">笼中有按钮，</text>
+          <text x="178" y="92" text-anchor="middle" fill="#5c544c" font-size="11">按下即可停止电击</text>
+          <text x="178" y="110" text-anchor="middle" fill="#3f7d5a" font-size="10.5" font-weight="700">努力 = 有用</text>
+          <rect x="298" y="44" width="196" height="74" rx="9" fill="#fbecec" stroke="#c0392b" stroke-width="2"/>
+          <text x="396" y="74" text-anchor="middle" fill="#5c544c" font-size="11">无论怎么做，</text>
+          <text x="396" y="92" text-anchor="middle" fill="#5c544c" font-size="11">都无法停止电击</text>
+          <text x="396" y="110" text-anchor="middle" fill="#9e1f23" font-size="10.5" font-weight="700">努力 = 没用</text>
+          <rect x="516" y="44" width="196" height="74" rx="9" fill="#eaf3ec" stroke="#4a8b5c" stroke-width="1.8"/>
+          <text x="614" y="84" text-anchor="middle" fill="#5c544c" font-size="11">全程没有电击</text>
+        </g>
+        <g stroke="#cfc7b6" stroke-width="2.5">
+          <line x1="178" y1="124" x2="178" y2="160"/><line x1="396" y1="124" x2="396" y2="160"/><line x1="614" y1="124" x2="614" y2="160"/>
+        </g>
+        <g fill="#cfc7b6">
+          <polygon points="178,166 172,154 184,154"/><polygon points="396,166 390,154 402,154"/><polygon points="614,166 608,154 620,154"/>
+        </g>
+        <text x="396" y="150" text-anchor="middle" fill="#8a8076" font-size="9.5">放进一个跳出去就能停止电击的矮箱</text>
+        <g>
+          <rect x="80" y="172" width="196" height="86" rx="9" fill="#4a8b5c"/>
+          <text x="178" y="208" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">✓</text>
+          <text x="178" y="234" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">跳出箱子</text>
+          <rect x="298" y="172" width="196" height="86" rx="9" fill="#9e1f23"/>
+          <text x="396" y="206" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">✕</text>
+          <text x="396" y="230" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">放弃尝试</text>
+          <text x="396" y="248" text-anchor="middle" fill="#f3d9c8" font-size="10">习得性无助</text>
+          <rect x="516" y="172" width="196" height="86" rx="9" fill="#4a8b5c"/>
+          <text x="614" y="208" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">✓</text>
+          <text x="614" y="234" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">跳出箱子</text>
+        </g>
+        <text x="396" y="284" text-anchor="middle" fill="#5c544c" font-size="11">"不可控组"学会了"我怎么努力都没用" —— 于是连"跳出去"也不再尝试</text>
+      </svg>
+      <figcaption>孩子"躺平"，往往不是不在意，而是反复经历失败后，对失败做出了<b>内部且稳定的归因</b>（"我做什么都没用"）—— 这就是习得性无助。</figcaption>
+    </figure>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">孩子"躺平"，是对失败做了内部且稳定的归因</span></div>
+      <div class="card-body">
+        <p>习得性无助 —— 孩子对失败做出了<strong>内部且稳定</strong>的归因（"我是个废物，做什么都无济于事"）。这非常可怕。"躺平"常见的成因：</p>
+        <ul>
+          <li><strong>反复经历失败</strong> —— 失败太伤害自我，于是发展出"防御性悲观"：装作不在乎，就没那么受伤。</li>
+          <li><strong>前后不一、难以预测的奖惩机制</strong> —— 孩子不知道"我做什么才能让妈妈喜欢我"。例如各家长各行其道：妈妈管时爸爸拦、心情不好混合双打、心情好了完全放飞。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">关键区分：内疚（guilt） vs 耻感（shame）</span></div>
+      <div class="card-body">
+        <p>孩子必须学会为自己的行为承担后果 —— 但应通过<strong>内疚</strong>，而不是<strong>耻感</strong>。</p>
+        <ul>
+          <li><strong>内疚</strong>："这件事我做错了。"健康的感受，能促使孩子更诚实、更愿意承担后果与亲社会。</li>
+          <li><strong>耻感</strong>："我这个人是个废物。"会阻碍诚实与亲社会行为。长期在耻感中长大的孩子，会觉得"我做什么都是个废物，那我为什么要努力？"</li>
+        </ul>
+        <p>原则：<em>就事论事，但绝不人格攻击</em>。可以说"霸凌同学这件事非常错误，你要承担后果"，但不能说"你就是个废物"。</p>
+      </div>
+    </div>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>没有人会踢一只死狗。让孩子知道：老师相信你能实现这些微小的胜利，能把它们累加成更辉煌的胜利。</p>
+      <div class="who">—— 对躺平的孩子，恒定而现实的高期望本身就是力量</div>
+    </div>
+    <div class="app-grid cols-2">
+      <div class="card teacher">
+        <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">帮孩子走出习得性无助</span></div>
+        <div class="card-body"><ul>
+          <li>给他<strong>逐步成功的机会</strong>，并为这些"微小的胜利"庆祝。</li>
+          <li>提供<strong>明确、及时、频繁的反馈</strong> —— 不要因为孩子躺平就"不管他了"，被全班忽视对孩子心理健康伤害极大。</li>
+          <li>让他感到你对他抱有<strong>恒定且现实的高期望</strong>。</li>
+        </ul></div>
+      </div>
+      <div class="card parent">
+        <div class="card-head"><span class="tag parent">家长可做</span><span class="card-title">让奖惩"可预测"</span></div>
+        <div class="card-body"><p>评价标准、奖惩机制一定要<strong>可预测、前后一致</strong>，不能妈妈说 A、爸爸说 B、姥姥说 C。说好"考到 95 分买某样东西"，就<strong>不要事后改成 98 分</strong> —— 骗孩子非常伤害孩子。每个人都需要"微小的胜利"来积累内在的积极归因。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-mindset">
+    <div class="topic-head"><span class="topic-num">8</span><h3>成长型思维</h3></div>
+    <p class="topic-lead">由斯坦福心理学家卡罗尔·德韦克（Carol Dweck）提出 —— 你怎么看待"智力"，深刻影响你怎么面对挑战。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">成长型心态 vs 固定型心态</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>成长型心态</strong> —— 相信智力和能力可以通过努力、学习和坚持来发展。倾向于接受挑战、面对困难时坚持、把失败视为成长与学习的机会。</li>
+          <li><strong>固定型心态</strong> —— 相信智力和能力是固定的、无法通过努力改变。倾向于回避挑战、面对困难时放弃，把成败视为自身价值的反映（"我是聪明还是废物"）。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card exp">
+      <div class="card-head"><span class="tag exp">经典实验</span><span class="card-title">心态是可以被"干预"改变的</span></div>
+      <div class="card-body">
+        <p><strong>纽约初中生追踪研究：</strong>追踪两年发现，持成长型心态的学生成绩持续提升（在同龄人中越来越靠前），持固定型心态的学生成绩停滞或下降。</p>
+        <p><strong>八周课程干预：</strong>实验组学习"大脑可塑性、智力可以改变"，对照组学习记忆与学习技巧。结果是<em>实验组（学心态的）效果更好</em> —— 干预可以促使学生从固定型转向成长型，进而提高数学成绩。这有随机对照实验证据，<strong>不是鸡汤</strong>。</p>
+        <p><strong>10 个月婴儿的家长干预：</strong>魏老师在哈佛参与的一项工作发现，简短的干预可以促使家长从固定心态转为成长心态，进而促进婴儿的语言发展。（注：近年也有研究未能完全复现，故结论"有较强证据但非绝对"。）</p>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 两年追踪：心态如何改变成绩轨迹</div>
+      <svg viewBox="0 0 660 312" xmlns="http://www.w3.org/2000/svg">
+        <line x1="84" y1="52" x2="84" y2="252" stroke="#cfc7b6" stroke-width="2"/>
+        <line x1="84" y1="252" x2="616" y2="252" stroke="#cfc7b6" stroke-width="2"/>
+        <text x="60" y="152" fill="#5c544c" font-size="11" transform="rotate(-90 60 152)" text-anchor="middle">成绩（同龄人中的排名）</text>
+        <polyline points="124,160 285,137 446,109 588,79" fill="none" stroke="#4a8b5c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="124,160 285,179 446,197 588,218" fill="none" stroke="#a89a86" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 0"/>
+        <g fill="#4a8b5c"><circle cx="124" cy="160" r="5"/><circle cx="285" cy="137" r="5"/><circle cx="446" cy="109" r="5"/><circle cx="588" cy="79" r="5.5"/></g>
+        <g fill="#a89a86"><circle cx="285" cy="179" r="5"/><circle cx="446" cy="197" r="5"/><circle cx="588" cy="218" r="5.5"/></g>
+        <text x="582" y="64" text-anchor="end" fill="#3f7d5a" font-size="12.5" font-weight="800">成长型心态 · 持续提升</text>
+        <text x="582" y="238" text-anchor="end" fill="#8a8076" font-size="12.5" font-weight="800">固定型心态 · 停滞或下降</text>
+        <text x="124" y="146" text-anchor="middle" fill="#8a8076" font-size="9.5">起点相近</text>
+        <g text-anchor="middle" fill="#8a8076" font-size="10.5">
+          <text x="124" y="270">初一上</text><text x="285" y="270">初一下</text>
+          <text x="446" y="270">初二上</text><text x="588" y="270">初二下</text>
+        </g>
+        <text x="350" y="294" text-anchor="middle" fill="#5c544c" font-size="11">八周干预即可促使学生从固定型转向成长型 —— 有随机对照实验证据，不是鸡汤</text>
+      </svg>
+      <figcaption>纽约初中生追踪研究显示：持<b>成长型心态</b>的学生成绩持续提升，持<b>固定型心态</b>的学生则停滞或下降。而心态，是可以通过教育干预改变的。</figcaption>
+    </figure>
+    <div class="card case">
+      <div class="card-head"><span class="tag case">案例故事</span><span class="card-title">夸"聪明" vs 夸"努力"</span></div>
+      <div class="card-body">
+        <p>如果总夸孩子<strong>"聪明"</strong> —— 一旦某次没做好，他会觉得"我笨了"。"笨"是一种稳定的内在归因，于是他<em>不敢挑战更难的事</em>，因为失败就意味着"不够聪明"。</p>
+        <p>如果总夸孩子<strong>"努力"</strong> —— 即使失败，他也会想"下次再努力点说不定就成了"，于是<em>愿意选择更有挑战性的任务</em>。</p>
+      </div>
+    </div>
+    <div class="app-grid cols-3">
+      <div class="card teacher">
+        <div class="card-head"><span class="tag teacher">老师可做</span></div>
+        <div class="card-body"><p>表扬和反馈时，多指向<strong>努力与过程</strong>，少指向"聪明"。可以专门给学生讲"大脑可塑性、智力可以改变"。</p></div>
+      </div>
+      <div class="card parent">
+        <div class="card-head"><span class="tag parent">家长可做</span></div>
+        <div class="card-body"><p>改变孩子心态，靠的不是报班，而是<strong>日常的反馈方式</strong>。家长把自己的心态，通过每一次夸奖和批评传递给孩子。</p></div>
+      </div>
+      <div class="card child">
+        <div class="card-head"><span class="tag child">孩子可做</span></div>
+        <div class="card-body"><p>把"我不擅长""我做不成"换成成长型自我对话：<strong>"我找到卡点了""这只是一次尝试""我又掌握了一个知识点"</strong>。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-iq">
+    <div class="topic-head"><span class="topic-num">9</span><h3>智商是一根弹簧</h3></div>
+    <p class="topic-lead">智商是固定的吗？它有遗传因素，但绝不是"纯天生"。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">智商最强的预测因素 —— 母亲的受教育水平</span></div>
+      <div class="card-body">
+        <p>智商的确有遗传成分，但它<strong>不由某一个基因决定</strong>（不像色盲那样可以用"大 A 小 a"算出来），而是由许多基因上的小部分共同控制。</p>
+        <p>智商最强的预测因素，是<strong>家长、尤其是母亲的受教育水平</strong> —— 不是因为父亲不重要，而是大多数情况下，与孩子互动最多的是母亲。</p>
+      </div>
+    </div>
+    <div class="card case">
+      <div class="card-head"><span class="tag case">案例故事</span><span class="card-title">海淀妈妈与海淀小孩</span></div>
+      <div class="card-body">
+        <p>用标准量表测试足够大的样本，<strong>平均智商约为 90</strong>；而在海淀测出来平均高达 110–125。一个智商完全正常的孩子，若"不巧"生在海淀，和周围孩子一比就会觉得自己"啥都不行"。</p>
+        <p>这背后是海淀家长受教育程度普遍很高 —— 也再次印证了"家长受教育水平"对孩子的影响。</p>
+      </div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">弹簧比喻：nature through nurture</span></div>
+      <div class="card-body">
+        <p>把每个人的智商想象成一根<strong>弹簧</strong>：有人天生长（如爱因斯坦一米二），有人天生短，但<em>世界上大部分人的弹簧都在 5–20 厘米这个范围内</em>。</p>
+        <p>后天因素，就是<strong>那只拉弹簧的手</strong> —— 家庭教养、学校教育、温暖的成长环境。先天决定了范围，但<strong>能不能在范围内尽量拉长，取决于后天</strong>。所以"智力可以通过努力改变"，这是科学结论，不是鸡汤。</p>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 智商是一根弹簧：先天 × 后天</div>
+      <svg viewBox="0 0 700 270" xmlns="http://www.w3.org/2000/svg">
+        <rect x="40" y="74" width="14" height="96" rx="2" fill="#6e1416"/>
+        <g stroke="#9a6f70" stroke-width="1.5"><line x1="40" y1="80" x2="54" y2="70"/><line x1="40" y1="98" x2="54" y2="88"/><line x1="40" y1="116" x2="54" y2="106"/><line x1="40" y1="134" x2="54" y2="124"/><line x1="40" y1="152" x2="54" y2="142"/><line x1="40" y1="170" x2="54" y2="160"/></g>
+        <path d="M54,122 q14,-30 28,0 q14,30 28,0 q14,-30 28,0 q14,30 28,0 q14,-30 28,0 q14,30 28,0 q14,-30 28,0 q14,30 28,0 q14,-30 28,0 q14,30 28,0" fill="none" stroke="#9e1f23" stroke-width="4" stroke-linecap="round"/>
+        <line x1="334" y1="122" x2="356" y2="122" stroke="#9e1f23" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="362" cy="122" r="10" fill="#9e1f23"/>
+        <line x1="376" y1="122" x2="448" y2="122" stroke="#c8a45c" stroke-width="3.5"/>
+        <polygon points="456,122 440,114 440,130" fill="#c8a45c"/>
+        <text x="412" y="104" text-anchor="middle" fill="#a9842f" font-size="11.5" font-weight="700">后天教养之手</text>
+        <text x="412" y="146" text-anchor="middle" fill="#8a8076" font-size="9.5">家庭 · 学校 · 成长环境</text>
+        <line x1="540" y1="60" x2="540" y2="200" stroke="#b06a6a" stroke-width="2" stroke-dasharray="5 4"/>
+        <text x="556" y="120" fill="#b06a6a" font-size="11" font-weight="700">先天决定的</text>
+        <text x="556" y="136" fill="#b06a6a" font-size="11" font-weight="700">上限</text>
+        <path d="M54,178 v10 M540,178 v10 M54,183 H540" fill="none" stroke="#8a8076" stroke-width="1.5"/>
+        <text x="297" y="202" text-anchor="middle" fill="#5c544c" font-size="11">先天决定弹簧的范围（大多数人都在相近的区间内）</text>
+        <path d="M150,218 v10 M450,218 v10 M150,223 H450" fill="none" stroke="#4a8b5c" stroke-width="1.5"/>
+        <polygon points="150,223 162,218 162,228" fill="#4a8b5c"/>
+        <polygon points="450,223 438,218 438,228" fill="#4a8b5c"/>
+        <text x="300" y="244" text-anchor="middle" fill="#3f7d5a" font-size="11.5" font-weight="700">后天决定这根弹簧实际能被拉多长</text>
+      </svg>
+      <figcaption>智商有遗传成分，但<b>不由单一基因决定</b>。先天划定范围，后天（家庭与学校的教养）决定能在范围内实现多少 —— 这就是 nature through nurture。</figcaption>
+    </figure>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>孩子的潜力，需要通过合适的教养环境才能表现出来 —— 这叫 nature through nurture。</p>
+      <div class="who">—— 先天给出范围，后天决定实现多少</div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-fatigue">
+    <div class="topic-head"><span class="topic-num">10</span><h3>自制力疲劳与课堂管理</h3></div>
+    <p class="topic-lead">自制力（执行功能）不是取之不尽的 —— 它是一种<strong>有限的、竞争性的资源</strong>。</p>
+    <div class="card exp">
+      <div class="card-head"><span class="tag exp">经典实验</span><span class="card-title">香味饼干实验</span></div>
+      <div class="card-body">
+        <p>两拨初始成绩相近的人做题：一拨在正常教室，另一拨的教室旁边放着<strong>非常香的饼干</strong>。结果，闻着饼干香味那一拨人的<strong>做题水平显著下降</strong> —— 因为大脑在同时做两件事：一边克制"不要去吃饼干"，一边还要把题做对。</p>
+      </div>
+    </div>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>有一段时间你工作特别忙，每天忙到八九十点 —— 这段时间，你能同时要求自己减肥吗？做不到。孩子也一样。</p>
+      <div class="who">—— 自制力是有限的，"既要又要还要"行不通</div>
+    </div>
+    <div class="card parent">
+      <div class="card-head"><span class="tag parent">家长可做</span><span class="card-title">不要"既要又要还要"</span></div>
+      <div class="card-body">
+        <p>理解家长的焦虑，但<strong>过犹不及</strong>。不要要求孩子同时运动好、听话、每科都学得好、还要上乐高班和演讲班。如果这段时间孩子面临压力很大的考试，<strong>就把其他的先放一放</strong> —— 否则什么都做不好。</p>
+      </div>
+    </div>
+    <div class="card teacher">
+      <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">五条课堂管理原则</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>规则一致</strong> —— 不要为了让每个学生都喜欢你而随意松动规则，否则学生不再相信规则。</li>
+          <li><strong>规则要少而精</strong> —— 数量不多，且有意义、公正、确定，并向孩子清晰解释。</li>
+          <li><strong>保持势头</strong> —— 到点立刻开始讲课，不要前面说一堆有的没的。</li>
+          <li><strong>最小干预原则</strong> —— 发现有人玩手机，走过去直接拿走即可，不要长篇说教，否则会把全班的注意力都引到那部手机上。</li>
+          <li><strong>迅速过渡</strong> —— 课堂讨论等环节提前计划、快速衔接，不要在过渡上耗费太多时间。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card teacher">
+      <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">不要打断专注的孩子</span></div>
+      <div class="card-body">
+        <p>当孩子（或学生）正专注地做一件事，<strong>不要去打扰他</strong>。把注意力从一个专注的任务中抽离、再放回去，需要约 <em>15 分钟</em>。家长一趟趟"递水果"，一堂课就这样没了。讲课讲得顺时，对玩手机的学生，拿走手机就好，不要展开更多互动。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pager">
+    <button onclick="goModule('m-dev')"><span class="dir">◀ 上一模块</span><div class="nm">读懂孩子·发展规律</div></button>
+    <button class="next" onclick="goModule('m-memory')"><span class="dir">下一模块 ▶</span><div class="nm">模块二·专注力与记忆</div></button>
+  </div>
+</section>
+
+<!-- ============ 模块二 专注力与记忆 ============ -->
+<section class="module" id="m-memory">
+  <div class="hero">
+    <div class="kicker">模 块 二</div>
+    <h2>专注力与记忆：如何学得更快、记得更牢</h2>
+    <p>要帮孩子记得更好，先要理解大脑是怎么注意、怎么记忆的。这一模块澄清流行的记忆谣言，并给出有科学依据的学习策略。</p>
+    <span class="q">核心问题：怎样帮孩子学得更快、记得更牢？</span>
+  </div>
+
+  <div class="topic" id="t-ebbing">
+    <div class="topic-head"><span class="topic-num">1</span><h3>艾宾浩斯遗忘曲线</h3></div>
+    <p class="topic-lead">遗忘曲线本身靠谱，但"艾宾浩斯记忆法"是<strong>后人杜撰</strong>的。先把真相和谣言分开。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">遗忘曲线讲了什么</span></div>
+      <div class="card-body">
+        <p>核心论点：我们学的内容会随时间推移而遗忘，而且<strong>遗忘速度"先快后慢"</strong> —— 前一两天忘得特别快，留下来的部分则能记很久。</p>
+        <p>艾宾浩斯（德国心理学家）的历史意义在于：在他之前，人类对记忆的理解都来自哲学和文学描述；他是<strong>第一个用实验方法研究记忆的人</strong>。他自创了 2000 多个无意义单音节，强迫自己每天背诵，记录遗忘的规律。</p>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 艾宾浩斯遗忘曲线</div>
+      <svg viewBox="0 0 640 308" xmlns="http://www.w3.org/2000/svg">
+        <line x1="76" y1="54" x2="76" y2="258" stroke="#cfc7b6" stroke-width="2"/>
+        <line x1="76" y1="258" x2="606" y2="258" stroke="#cfc7b6" stroke-width="2"/>
+        <g stroke="#eee5d4" stroke-width="1"><line x1="76" y1="158" x2="606" y2="158"/><line x1="76" y1="108" x2="606" y2="108"/></g>
+        <g fill="#a89a86" font-size="9.5" text-anchor="end"><text x="70" y="62">100%</text><text x="70" y="162">50%</text><text x="70" y="248">低</text></g>
+        <text x="48" y="156" fill="#5c544c" font-size="11" transform="rotate(-90 48 156)" text-anchor="middle">记忆保持率</text>
+        <path d="M100,58 L100,258 L575,258 L575,206 C545,204 510,201 480,198 C455,196 420,191 385,186 C360,183 320,177 290,170 C265,165 240,152 195,142 C160,135 130,110 100,58 Z" fill="#9e1f23" fill-opacity="0.10"/>
+        <path d="M100,58 C130,110 160,135 195,142 C240,152 265,165 290,170 C320,177 360,183 385,186 C420,191 455,196 480,198 C510,201 545,204 575,206" fill="none" stroke="#9e1f23" stroke-width="4" stroke-linecap="round"/>
+        <g fill="#9e1f23"><circle cx="100" cy="58" r="5"/><circle cx="195" cy="142" r="5"/><circle cx="290" cy="170" r="5"/><circle cx="385" cy="186" r="5"/><circle cx="480" cy="198" r="5"/><circle cx="575" cy="206" r="5"/></g>
+        <g fill="#8a8076" font-size="10" text-anchor="middle"><text x="100" y="276">立即</text><text x="195" y="276">20分钟</text><text x="290" y="276">1小时</text><text x="385" y="276">1天</text><text x="480" y="276">6天</text><text x="575" y="276">31天</text></g>
+        <path d="M118,80 q60,20 70,52" fill="none" stroke="#c8a45c" stroke-width="1.6" stroke-dasharray="4 3"/>
+        <text x="210" y="96" fill="#a9842f" font-size="11.5" font-weight="700">遗忘"先快后慢"</text>
+        <text x="210" y="112" fill="#a9842f" font-size="9.5">前一两天忘得最快</text>
+      </svg>
+      <figcaption>遗忘曲线的核心：学过的内容随时间遗忘，且<b>遗忘速度先快后慢</b>。曲线本身可被复现、是靠谱的；但所谓"艾宾浩斯记忆法"是后人杜撰。</figcaption>
+    </figure>
+    <div class="card exp">
+      <div class="card-head"><span class="tag exp">经典实验</span><span class="card-title">2015 年的成功复现</span></div>
+      <div class="card-body">
+        <p>2015 年，一位 22 岁的荷兰男性用单一背诵的方式，<strong>成功复现了艾宾浩斯的遗忘曲线</strong>。心理学认为：能被复现的实验才是靠谱的实验。所以 —— <em>遗忘曲线本身是靠谱的</em>。</p>
+      </div>
+    </div>
+    <div class="myth">
+      <b>谣言澄清："艾宾浩斯记忆法"并不存在。</b>艾宾浩斯从未提出过任何"记忆法"，他的全部理论<b>就是一条遗忘曲线</b>。所有售卖"艾宾浩斯记忆法"的课程，都是后人根据他的理论总结或杜撰出来的 —— 买它没有太大意义。
+    </div>
+  </div>
+
+  <div class="topic" id="t-sleep">
+    <div class="topic-head"><span class="topic-num">2</span><h3>睡眠与记忆巩固</h3></div>
+    <p class="topic-lead">复现实验里一个意外发现，指向一条极其重要的结论 —— <strong>睡眠促进记忆巩固</strong>。</p>
+    <div class="card exp">
+      <div class="card-head"><span class="tag exp">经典实验</span><span class="card-title">为什么 9–10 小时前学的，记得最牢</span></div>
+      <div class="card-body">
+        <p>复现实验在不同时段（20 分钟、1 小时、9 小时、1 天、2 天……）测试记忆保持率，发现：</p>
+        <ul>
+          <li><strong>位置效应</strong> —— 首位和末位的内容遗忘最少（首因效应 + 近因效应）。这就是为什么背了很多托福单词，你只记得 abandon；也是为什么考前一晚临时抱佛脚有用。</li>
+          <li><strong>意外发现</strong> —— 按"近因"推断，应是几小时前学的记得最牢；但实验发现<em>9–10 小时前</em>学的反而记得最牢，1–2 天的保持率甚至更高。这中间发生了什么？<strong>睡眠。</strong></li>
+        </ul>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 不同时间间隔后的记忆保持率</div>
+      <svg viewBox="0 0 660 318" xmlns="http://www.w3.org/2000/svg">
+        <line x1="80" y1="56" x2="80" y2="262" stroke="#cfc7b6" stroke-width="2"/>
+        <line x1="80" y1="262" x2="616" y2="262" stroke="#cfc7b6" stroke-width="2"/>
+        <text x="56" y="160" fill="#5c544c" font-size="11" transform="rotate(-90 56 160)" text-anchor="middle">记忆保持率</text>
+        <rect x="93" y="111" width="78" height="151" rx="4" fill="#bdb09a"/>
+        <rect x="193" y="144" width="78" height="118" rx="4" fill="#bdb09a"/>
+        <rect x="293" y="94" width="78" height="168" rx="4" fill="#4a8b5c"/>
+        <rect x="393" y="86" width="78" height="176" rx="4" fill="#4a8b5c"/>
+        <rect x="493" y="90" width="78" height="172" rx="4" fill="#4a8b5c"/>
+        <path d="M232,138 C250,108 270,100 300,90" fill="none" stroke="#9e1f23" stroke-width="2" stroke-dasharray="4 3"/>
+        <polygon points="302,88 289,90 296,101" fill="#9e1f23"/>
+        <text x="262" y="80" text-anchor="middle" fill="#9e1f23" font-size="11" font-weight="700">睡眠后，记忆反而回升</text>
+        <path d="M293,46 H571" fill="none" stroke="#3f7d5a" stroke-width="1.6"/>
+        <path d="M293,46 v8 M571,46 v8" stroke="#3f7d5a" stroke-width="1.6"/>
+        <text x="432" y="40" text-anchor="middle" fill="#3f7d5a" font-size="11" font-weight="700">这些时段都经历了睡眠</text>
+        <g text-anchor="middle" font-size="10.5" fill="#8a8076"><text x="132" y="280">20分钟</text><text x="232" y="280">1小时</text><text x="332" y="280">9小时</text><text x="432" y="280">1天</text><text x="532" y="280">2天</text></g>
+        <text x="332" y="304" text-anchor="middle" fill="#5c544c" font-size="11">睡眠促进记忆巩固 —— 为了学习牺牲睡眠，得不偿失</text>
+      </svg>
+      <figcaption>按"近因效应"推断，应是几小时前学的记得最牢；但实验发现 <b>9–10 小时前</b>学的反而保持最好 —— 这中间发生的，正是睡眠。</figcaption>
+    </figure>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>让孩子为了学习去牺牲睡眠，是非常得不偿失的事 —— 人的记忆，正是通过睡眠来巩固的。</p>
+      <div class="who">—— 睡眠不只关乎记忆，也关乎心情</div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">没有"金标准"，节律比时长更重要</span></div>
+      <div class="card-body">
+        <p>每个人每天需要多长睡眠，<strong>并没有一个金标准</strong> —— 它受遗传等很多因素影响（有人天生睡得少且精力充沛）。比"睡了几小时"更重要的是<strong>睡眠节律要固定</strong>：每天入睡和起床的时间大致一致。</p>
+        <p>睡眠周期平均约 1.5 小时，所以孩子可能睡 1.5 或 3 小时；若在两小时（周期中段）被叫醒，就会有"起床气"。</p>
+      </div>
+    </div>
+    <div class="card parent">
+      <div class="card-head"><span class="tag parent">家长可做</span><span class="card-title">别被"黄金睡眠时长"绑架</span></div>
+      <div class="card-body">
+        <p>不必因为孩子没睡够小红书规定的小时数而焦虑。<strong>判断标准是发展状态</strong>：如果孩子身高体重达标、发展良好，哪怕睡得比别人略少也没关系；若出现生长发育迟缓、暴躁易怒，才可能是缺觉。</p>
+        <p>给孩子稳定的作息节律。<strong>不要在孩子想睡觉时打麻将</strong> —— 这非常影响发育。从小养成健康充足的睡眠习惯，对孩子一生都重要（睡眠模式有相当的延续性）。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-neuro">
+    <div class="topic-head"><span class="topic-num">3</span><h3>大脑与记忆的神经基础</h3></div>
+    <p class="topic-lead">要帮孩子记得更好，先看看记忆发生在哪里、神经如何变化。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">神经元、突触与"用进废退"</span></div>
+      <div class="card-body">
+        <ul>
+          <li>成人大脑约有 <strong>860 亿个神经元</strong>；而婴儿的小脑袋里约有 <strong>1000 亿个</strong> —— 比成人还多。</li>
+          <li><strong>突触</strong>是神经元之间的连接。它在生命之初过量产生，之后会被<em>修剪</em>，只保留最有意义和价值的连接 —— 这就是"用进废退"。</li>
+          <li>这也是为什么孩子在出生后头几年学得特别快：<strong>神经可塑性极强</strong>，像一块小海绵。神经科学有个说法 —— <em>人生的前 1000 天，是学习能力最强的时候</em>。</li>
+        </ul>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 突触密度的一生：先过量产生，再修剪</div>
+      <svg viewBox="0 0 660 304" xmlns="http://www.w3.org/2000/svg">
+        <rect x="100" y="52" width="155" height="218" fill="#f6e9c8" opacity="0.5"/>
+        <text x="177" y="44" text-anchor="middle" fill="#a9842f" font-size="11" font-weight="700">人生前 1000 天</text>
+        <line x1="76" y1="52" x2="76" y2="270" stroke="#cfc7b6" stroke-width="2"/>
+        <line x1="76" y1="270" x2="624" y2="270" stroke="#cfc7b6" stroke-width="2"/>
+        <text x="52" y="160" fill="#5c544c" font-size="11" transform="rotate(-90 52 160)" text-anchor="middle">突触密度</text>
+        <path d="M100,200 C130,160 150,130 175,110 C205,90 235,80 255,78 C290,76 330,90 355,102 C385,116 420,124 445,130 C480,138 505,146 525,150 C555,156 575,162 595,166" fill="none" stroke="#2f6690" stroke-width="4" stroke-linecap="round"/>
+        <g fill="#2f6690"><circle cx="100" cy="200" r="5"/><circle cx="255" cy="78" r="6"/><circle cx="595" cy="166" r="5"/></g>
+        <text x="255" y="66" text-anchor="middle" fill="#2f6690" font-size="10.5" font-weight="700">峰值 · 过量产生</text>
+        <path d="M300,116 q70,-2 120,8" fill="none" stroke="#9e1f23" stroke-width="1.6" stroke-dasharray="4 3"/>
+        <text x="430" y="108" fill="#9e1f23" font-size="11" font-weight="700">突触修剪</text>
+        <text x="430" y="123" fill="#9e1f23" font-size="9.5">用进废退</text>
+        <g fill="#8a8076" font-size="10" text-anchor="middle"><text x="100" y="288">出生</text><text x="177" y="288">1岁</text><text x="255" y="288">2岁</text><text x="355" y="288">6岁</text><text x="445" y="288">12岁</text><text x="525" y="288">成年</text><text x="595" y="288">老年</text></g>
+      </svg>
+      <figcaption>婴儿大脑的神经元比成人还多。突触在生命之初<b>过量产生</b>，之后被修剪、只保留最有价值的连接 —— 这正是孩子头几年学习力惊人的原因。</figcaption>
+    </figure>
+    <div class="card case">
+      <div class="card-head"><span class="tag case">案例故事</span><span class="card-title">一岁半的九九，"捅捅、嘎嘎、死"</span></div>
+      <div class="card-body">
+        <p>魏老师带女儿去公园捞鱼，并没刻意教什么。第二天姥姥问"小鱼长什么样"，孩子答"死" —— 她从环境中吸取知识的能力极强。这正是<strong>神经可塑性</strong>的体现：你没教，他也在学。</p>
+      </div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">神经可塑性是一把双刃剑</span></div>
+      <div class="card-body">
+        <p>可塑性高 = 学习与发展的<strong>机遇期</strong>，学东西特别快；但同时也意味着，孩子在应对<strong>负面经历</strong>（家庭暴力、过度控制、虐待等）时<em>非常脆弱</em>。好的会学，不好的也会学。</p>
+        <p><strong>关于自闭症：</strong>有观点认为，突触修剪功能异常可能与自闭症有关。需要澄清两点 —— 自闭症的<em>发病与家长的养育没有任何关系</em>（产检也查不出，是"开盲盒"）；但自闭症孩子未来能发展到什么水平，<em>与家长的干预有关系</em>。若有人声称能"治好"自闭症，不要相信。</p>
+      </div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">海马体：长时记忆的"形成中枢"</span></div>
+      <div class="card-body">
+        <p>记忆在大脑中是<strong>分散性存储</strong>的，但有一个脑区至关重要 —— <strong>海马体</strong>（hippocampus），负责长时记忆的形成。缺失海马体的病人，很难形成新的长时记忆。</p>
+        <p>因为记忆是分散存储的，所以小说里"某个脑区坏了，只忘掉某一个人"的桥段并不会发生 —— 真实的脑区损伤会导致<em>广泛</em>的记忆障碍。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-attention">
+    <div class="topic-head"><span class="topic-num">4</span><h3>注意力是有限资源</h3></div>
+    <p class="topic-lead">信息要进入记忆，第一步是被"注意到"。而注意力，是一种<strong>有限的、竞争性的资源</strong>。</p>
+    <div class="card exp">
+      <div class="card-head"><span class="tag exp">经典实验</span><span class="card-title">"看不见的大猩猩"</span></div>
+      <div class="card-body">
+        <p>这是著名的<strong>选择性注意（selective attention）</strong>实验：视频里黑、白两队人在传球，被试专心数"白衣队传了几次球"。视频中途，一只大猩猩大摇大摆走过画面 —— 但<strong>很多人完全没有看到它</strong>。</p>
+        <p>当被告知"再看一遍、只看大猩猩"时，所有人都看到了。这说明：人的注意力是有限的竞争性资源，<strong>同一时间基本只能注意一件事</strong>。能同时数对传球又看到大猩猩的人，分配注意力的能力较强，但很少。</p>
+      </div>
+    </div>
+    <div class="card exp">
+      <div class="card-head"><span class="tag exp">经典实验</span><span class="card-title">感觉登记 —— 一闪而过的字母</span></div>
+      <div class="card-body">
+        <p>快速闪现一串字母，多数人只觉得"好像有字母"却说不清。<strong>感觉登记</strong>如果没有得到进一步加工，只能保留<em>极短</em>的时间。你没看到大猩猩，就不会记得有大猩猩。</p>
+      </div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">儿童的注意力极其有限</span></div>
+      <div class="card-body">
+        <p>学龄前（约五六岁）孩子玩一个游戏、看一本书，注意力时长大约只有 <strong>5–10 分钟</strong>。所以当孩子专注做事时，更不要去打扰他。</p>
+      </div>
+    </div>
+    <div class="card teacher">
+      <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">帮孩子集中注意力的三个办法</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>过滤无关刺激</strong> —— 上课、写作业时不要把手机放在旁边（大人备课也会忍不住刷短视频，那就把手机放到另一个房间）。</li>
+          <li><strong>增强材料的情感色彩</strong> —— 能激发情绪的内容更容易被记住，因为注意力和情绪激活的脑区有重叠。（两周后你大概只记得"大猩猩"。）</li>
+          <li><strong>使用提示线索</strong> —— 提高或降低嗓音、手势、重复的身体动作，都能帮孩子记得更好。越重要的内容，越要明确告诉小孩"这个很重要，要认真听"。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-wm">
+    <div class="topic-head"><span class="topic-num">5</span><h3>工作记忆这只"小篮子"</h3></div>
+    <p class="topic-lead">信息从外界进入长期记忆，必须经过一个容量很小的中转站 —— <strong>工作记忆</strong>。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">记忆的加工模型</span></div>
+      <div class="card-body">
+        <p>外部刺激 → <strong>感觉登记</strong> → 初步加工 → <strong>工作记忆</strong>（短时记忆）→ <strong>长时记忆</strong>。</p>
+        <p>一个好理解的比喻：<strong>长时记忆像一座大图书馆</strong>，储存我们学过的一切；<strong>工作记忆像一只小篮子</strong> —— 所有要放进图书馆的信息，都必须经由这只小篮子输送进去。而这只篮子，<em>容量非常有限</em>。</p>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 记忆的加工模型</div>
+      <svg viewBox="0 0 720 286" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <rect x="20" y="74" width="122" height="80" rx="10" fill="#ece6da" stroke="#cfc7b6" stroke-width="1.5"/>
+          <text x="81" y="110" text-anchor="middle" fill="#5c544c" font-size="13.5" font-weight="700">外部刺激</text>
+          <text x="81" y="130" text-anchor="middle" fill="#8a8076" font-size="9.5">来自环境的信息</text>
+          <rect x="206" y="74" width="122" height="80" rx="10" fill="#eaf1f6" stroke="#2f6690" stroke-width="2"/>
+          <text x="267" y="110" text-anchor="middle" fill="#2f6690" font-size="13.5" font-weight="700">感觉登记</text>
+          <text x="267" y="130" text-anchor="middle" fill="#5c544c" font-size="9.5">短暂感知与初筛</text>
+          <rect x="392" y="74" width="122" height="80" rx="10" fill="#fbecec" stroke="#9e1f23" stroke-width="2.5"/>
+          <text x="453" y="106" text-anchor="middle" fill="#9e1f23" font-size="13.5" font-weight="700">工作记忆</text>
+          <text x="453" y="124" text-anchor="middle" fill="#5c544c" font-size="9.5">短时记忆 · 小篮子</text>
+          <text x="453" y="138" text-anchor="middle" fill="#9e1f23" font-size="9" font-weight="700">容量有限 7±2</text>
+          <rect x="578" y="74" width="122" height="80" rx="10" fill="#eaf3ec" stroke="#4a8b5c" stroke-width="2"/>
+          <text x="639" y="110" text-anchor="middle" fill="#3f7d5a" font-size="13.5" font-weight="700">长时记忆</text>
+          <text x="639" y="130" text-anchor="middle" fill="#5c544c" font-size="9.5">像一座大图书馆</text>
+        </g>
+        <g stroke="#9e1f23" stroke-width="2.5" fill="none">
+          <line x1="142" y1="114" x2="200" y2="114"/><line x1="328" y1="114" x2="386" y2="114"/><line x1="514" y1="114" x2="572" y2="114"/>
+        </g>
+        <g fill="#9e1f23"><polygon points="206,114 194,108 194,120"/><polygon points="392,114 380,108 380,120"/><polygon points="578,114 566,108 566,120"/></g>
+        <g fill="#8a6a1e" font-size="9.5" text-anchor="middle"><text x="172" y="104">注意·感知</text><text x="358" y="104">初步加工</text><text x="544" y="104">复述·编码</text></g>
+        <line x1="267" y1="154" x2="267" y2="186" stroke="#bdb09a" stroke-width="2" stroke-dasharray="3 3"/>
+        <polygon points="267,192 261,180 273,180" fill="#bdb09a"/>
+        <text x="267" y="210" text-anchor="middle" fill="#8a8076" font-size="10">未加工 → 极短时间即消失</text>
+        <line x1="453" y1="154" x2="453" y2="186" stroke="#c0392b" stroke-width="2" stroke-dasharray="3 3"/>
+        <polygon points="453,192 447,180 459,180" fill="#c0392b"/>
+        <text x="453" y="210" text-anchor="middle" fill="#9e1f23" font-size="10">容量超载 → 信息掉出（遗忘）</text>
+        <text x="360" y="248" text-anchor="middle" fill="#5c544c" font-size="11">所有要进入"图书馆"的信息，都必须经由"小篮子"输送 —— 而篮子很小</text>
+      </svg>
+      <figcaption>长时记忆像一座大图书馆，工作记忆像一只<b>容量有限的小篮子</b>。理解这个瓶颈，才能找到帮孩子记得更牢的方法。</figcaption>
+    </figure>
+    <div class="card exp">
+      <div class="card-head"><span class="tag exp">经典实验</span><span class="card-title">购物清单 与 神奇数字 7±2</span></div>
+      <div class="card-body">
+        <p>课堂上请老师背购物清单：七项左右能背得很顺；而当清单长达十余项、<strong>超出工作记忆容量</strong>时，背诵就吃力了。能背出来的老师用了关键策略 —— <em>把所有物品编成一个离谱的故事</em>。</p>
+        <p><strong>神奇数字 7±2</strong> —— 成人工作记忆同时能记住的单元数大约在 5–9 之间。应对超载的两大策略：<strong>组块化</strong>（把多个单元组织成一个）和<strong>分组</strong>（饮料一组、水果一组、青菜一组）。</p>
+      </div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">孩子的篮子，又小又晃</span></div>
+      <div class="card-body">
+        <p>儿童工作记忆容量远小于成人：学龄前约 <strong>2–3 个单元</strong>，小学阶段约 <strong>3–5 个单元</strong>。篮子装满了，先放进去的就会"掉出来"。</p>
+        <p>而且孩子的篮子<strong>"既小又晃"</strong> —— 记东西时一旦受到干扰（心情不好、旁边有人喊他），篮子一晃，东西就掉了。所以孩子完不成你的指令，常常不是不听话，<em>而是脑子还没长好</em>。</p>
+      </div>
+    </div>
+    <div class="app-grid cols-2">
+      <div class="card parent">
+        <div class="card-head"><span class="tag parent">家长可做</span></div>
+        <div class="card-body"><p>别一次给太多步骤。"把牛奶倒进奶瓶 → 放进微波炉 → 定时 30 秒 → 回来告诉妈妈"——对你简单，但这是<strong>四件事</strong>，超过孩子篮子的容量他就乱了。</p></div>
+      </div>
+      <div class="card teacher">
+        <div class="card-head"><span class="tag teacher">老师可做</span></div>
+        <div class="card-body"><p>对多步骤任务<strong>主动拆解</strong>，并经常提醒孩子"这些步骤都有什么"。这是在替孩子尚未发育成熟的工作记忆"搭把手"。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-remember">
+    <div class="topic-head"><span class="topic-num">6</span><h3>如何帮孩子记得更牢</h3></div>
+    <p class="topic-lead">记忆不只是"存储"，它需要不断重建与提取。有效学习 = <strong>主动提取 + 有意义的加工</strong>。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">分龄而行：不同年龄，认知方式完全不同</span></div>
+      <div class="card-body">
+        <p>跟 5 岁孩子和跟 12 岁孩子聊天的方式完全不一样。帮孩子记得更牢，要按年龄段来。</p>
+      </div>
+    </div>
+    <div class="card child">
+      <div class="card-head"><span class="tag child">孩子可做</span><span class="card-title">主动提取，而不是被动重读</span></div>
+      <div class="card-body">
+        <p><strong>测试效应</strong> —— 备考过的东西记得特别牢。把测验当作学习工具，而不只是打分工具。<strong>抄写</strong>不需要深度加工，意义有限；<strong>默写</strong>则需要对信息进行有意义的加工和提取练习。魏老师小学时就把抄写作业改成默写。<em>主动回忆，比反复阅读更能促进长期记忆。</em></p>
+        <p>另一个高效方式：<strong>把学到的东西讲给别人听</strong> —— 给同学讲题，会逼你摸清机制、提取记忆、还要组织表达，是非常复杂而有效的认知任务，讲完的成就感还能激发情绪。</p>
+      </div>
+    </div>
+    <div class="app-grid cols-2">
+      <div class="card parent">
+        <div class="card-head"><span class="tag parent">家长可做</span><span class="card-title">0–2 岁：手势 + 顺应注意力</span></div>
+        <div class="card-body"><ul>
+          <li>多用<strong>手势</strong>（指、展示、招手、抱抱、儿歌动作都算）。家长手势用得越多，孩子语言发展越好。</li>
+          <li>读绘本不要逐字念，而要<strong>引导孩子参与</strong>："哪个是苹果呀？""表演一下怎么吃苹果" —— 让他指、让他演。</li>
+          <li><strong>顺应</strong>孩子的注意力：他在玩小汽车，就顺着小汽车跟他互动，不要硬把他拽来看你选的书。重定向会阻碍发展。</li>
+        </ul></div>
+      </div>
+      <div class="card teacher">
+        <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">学龄段：拆解 + 游戏化 + 多线索</span></div>
+        <div class="card-body"><ul>
+          <li><strong>拆解多步骤任务</strong>，辅助孩子有限的工作记忆。</li>
+          <li><strong>游戏化</strong> —— 用手势、动作、表情把任务变成游戏，激发情绪，记得更牢。</li>
+          <li><strong>间隔学习</strong> —— 把复习分布在几天/几周，避免突击式学习（突击只对第二天有用）。</li>
+          <li><strong>多重线索</strong> —— 多模态输入（视觉 + 语言）。如优秀的历史老师会找第一手史料、文物照片放进 PPT，视听同时体验，记忆更牢。</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="card parent">
+      <div class="card-head"><span class="tag parent">家长可做</span><span class="card-title">用生活场景训练记忆</span></div>
+      <div class="card-body">
+        <p>日常生活里有很多训练记忆的机会。比如睡前仪式，不要总是家长来推进，而是<strong>问孩子"下一步我们该干嘛了？"</strong>——"喝完奶要刷牙""刷完牙要……"，让孩子主导流程。自己生成的信息记得更牢。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-safety">
+    <div class="topic-head"><span class="topic-num">7</span><h3>家庭情感安全与记忆</h3></div>
+    <p class="topic-lead">一个常被忽视的事实：孩子身边的<strong>情感因素</strong>，和他的记忆力息息相关。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">威胁体验会损伤海马体</span></div>
+      <div class="card-body">
+        <p>海马体会受到人生历程中"威胁因素"的影响 —— 包括<strong>父母的肢体暴力、老师的体罚、情感虐待、校园霸凌</strong>，以及父母之间的冲突与冷暴力。</p>
+        <p>科学证据显示：小时候经历更多威胁体验的孩子与成人，<strong>海马体体积更小</strong>，进行记忆检索时<strong>海马体激活程度更低</strong>。也就是说，不温暖、不支持的成长环境，会给大脑结构和功能带来一些<em>难以逆转</em>的改变。</p>
+      </div>
+    </div>
+    <div class="card parent">
+      <div class="card-head"><span class="tag parent">家长可做</span><span class="card-title">"打孩子"一定要三思</span></div>
+      <div class="card-body">
+        <p>"男孩还是得打一打"——没有性别差异，并非男孩就可以随便打。打孩子通常只会让孩子学会一个道理：<strong>遇到解决不了的问题时，要用暴力去解决</strong>。而且等他进入青春期、你打不过他时，就再没有别的方式管教他了。</p>
+        <p>家庭里的暴力 —— 包括父母对孩子的暴力、父母之间的冲突与冷暴力 —— 都会在一定程度上<strong>伤害孩子的记忆力</strong>。给孩子情感安全的家，本身就是在保护他的大脑。</p>
+      </div>
+    </div>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>要让孩子更主动、更科学、更有真实情感地学习 —— 而一个有情感安全的家，是这一切的地基。</p>
+      <div class="who">—— 专注力与记忆模块的收尾</div>
+    </div>
+  </div>
+
+  <div class="pager">
+    <button onclick="goModule('m-drive')"><span class="dir">◀ 上一模块</span><div class="nm">模块一·内驱力</div></button>
+    <button class="next" onclick="goModule('m-health')"><span class="dir">下一模块 ▶</span><div class="nm">模块三·心理健康</div></button>
+  </div>
+</section>
+
+<!-- ============ 模块三 心理健康 ============ -->
+<section class="module" id="m-health">
+  <div class="hero">
+    <div class="kicker">模 块 三</div>
+    <h2>心理健康：如何理解、呵护孩子</h2>
+    <p>儿童青少年的心理问题正呈现低龄化趋势。这一模块帮助识别情绪问题、理解抑郁的神经机制，并学会如何陪伴出现心理困境的人。</p>
+    <span class="q">核心问题：如何理解并呵护孩子的心理健康？</span>
+  </div>
+
+  <div class="topic" id="t-mood">
+    <div class="topic-head"><span class="topic-num">1</span><h3>抑郁情绪 vs 抑郁障碍</h3></div>
+    <p class="topic-lead">这是两个<strong>完全不同</strong>的概念，区分它们是理解心理健康的第一步。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">一个是常态，一个是疾病</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>抑郁情绪</strong> —— 每个人每天都会有的情绪，是短暂的、可以调节的，如悲伤、灰心、失望。这是非常正常的情绪体验。</li>
+          <li><strong>抑郁障碍</strong> —— 即重度抑郁症。负面情绪<strong>持续两周以上</strong>、每天大部分时间存在，是广泛的、难以摆脱的情绪低落，并伴随<strong>学习、工作、社交的广泛功能受损</strong>。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card case">
+      <div class="card-head"><span class="tag case">案例故事</span><span class="card-title">连剥香蕉都没有力气</span></div>
+      <div class="card-body">
+        <p>儿童青少年精神心理问题正呈现<strong>越来越早发</strong>的趋势 —— 北医六院儿童精神科的号一号难求。重度抑郁严重时，患者连日常最简单的任务都无法完成：曾有一个从高中开始抑郁的孩子，最严重时<strong>没有力气张嘴吃饭</strong>，妈妈在枕边放一根香蕉，他连抬手剥开送进嘴里都做不到。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-signal">
+    <div class="topic-head"><span class="topic-num">2</span><h3>识别抑郁的信号</h3></div>
+    <p class="topic-lead">了解这些信号，是为了更早地察觉与求助 —— 但<strong>不要轻易给自己或孩子"扣帽子"</strong>。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">抑郁障碍的核心特征</span></div>
+      <div class="card-body">
+        <ul>
+          <li><strong>快感缺失</strong> —— 没有什么事能让你开心，连以前很喜欢的事（如吃蛋糕）也不再有吸引力，且很难找到替代的快乐。</li>
+          <li><strong>持续性的悲伤、无趣</strong>。</li>
+          <li><strong>注意力下降</strong>、无价值感（觉得人生、工作没有意义）。</li>
+          <li><strong>反复的负性思维</strong> —— 遇到一点小事就极度悲观。</li>
+          <li><strong>长期疲劳</strong> —— 睡多久都睡不够。</li>
+          <li><strong>食欲或睡眠紊乱</strong> —— 往两个极端走：完全没食欲 / 食欲旺盛；完全睡不着 / 怎么睡都睡不醒。</li>
+        </ul>
+        <p>抑郁症的<strong>终身患病率约 16%</strong> —— 指人生某个阶段曾被确诊（而非一辈子患病）。它其实是一件概率不低的事。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-neuro4">
+    <div class="topic-head"><span class="topic-num">3</span><h3>四种"快乐"神经递质</h3></div>
+    <p class="topic-lead">可以简单粗暴地说：人生几乎所有的快乐，都来自这四种<strong>神经递质</strong>（在突触处传递信息的化学物质）。</p>
+    <div class="topiclist">
+      <div class="tcard">
+        <div class="n">多 巴 胺</div>
+        <h4>奖赏驱动的快乐</h4>
+        <p>负责奖励、奖赏与动机。是一种明显而突然的快乐 —— 吃一块巧克力、升职加薪时的兴奋感。</p>
+      </div>
+      <div class="tcard">
+        <div class="n">血 清 素</div>
+        <h4>情绪稳定的快乐</h4>
+        <p>不是某件激动人心的事，而是"天气很好、晒着太阳散个步"那种平稳、安定的愉悦。</p>
+      </div>
+      <div class="tcard">
+        <div class="n">内 啡 肽</div>
+        <h4>运动带来的快乐</h4>
+        <p>运动时分泌，是天然的镇痛剂。长跑的人"很难受，但同时很爽"，正是内啡肽的作用。</p>
+      </div>
+      <div class="tcard">
+        <div class="n">催 产 素</div>
+        <h4>亲密关系的快乐</h4>
+        <p>负责信任与亲密关系。并非只与生产有关 —— 只要能和人建立信任，就有催产素在起作用。</p>
+      </div>
+    </div>
+    <figure class="figure">
+      <div class="fig-label">图示 · 神经递质在突触处传递"快乐"</div>
+      <svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+        <line x1="36" y1="116" x2="150" y2="116" stroke="#c98f91" stroke-width="16" stroke-linecap="round"/>
+        <ellipse cx="212" cy="116" rx="96" ry="62" fill="#f7ecec" stroke="#9e1f23" stroke-width="2.5"/>
+        <ellipse cx="476" cy="116" rx="96" ry="62" fill="#eaf3ec" stroke="#4a8b5c" stroke-width="2.5"/>
+        <g><circle cx="252" cy="92" r="9" fill="#e08a2e"/><circle cx="276" cy="116" r="9" fill="#2f6690"/><circle cx="252" cy="142" r="9" fill="#4a8b5c"/><circle cx="226" cy="118" r="9" fill="#c05a86"/></g>
+        <g><circle cx="318" cy="90" r="7.5" fill="#e08a2e"/><circle cx="342" cy="112" r="7.5" fill="#2f6690"/><circle cx="324" cy="138" r="7.5" fill="#4a8b5c"/><circle cx="352" cy="78" r="7.5" fill="#c05a86"/><circle cx="358" cy="138" r="7.5" fill="#e08a2e"/><circle cx="338" cy="156" r="7.5" fill="#2f6690"/></g>
+        <g stroke="#9e1f23" stroke-width="2" fill="none"><path d="M300,116 h66"/></g>
+        <polygon points="372,116 358,109 358,123" fill="#9e1f23"/>
+        <g stroke="#4a8b5c" stroke-width="3" fill="none"><path d="M384,90 h16 M384,116 h16 M384,142 h16"/></g>
+        <line x1="340" y1="38" x2="340" y2="62" stroke="#8a8076" stroke-width="1.5"/>
+        <text x="340" y="30" text-anchor="middle" fill="#5c544c" font-size="11" font-weight="700">突触间隙</text>
+        <text x="212" y="206" text-anchor="middle" fill="#9e1f23" font-size="11.5" font-weight="700">突触前神经元</text>
+        <text x="476" y="206" text-anchor="middle" fill="#3f7d5a" font-size="11.5" font-weight="700">突触后神经元</text>
+        <g font-size="11.5">
+          <g><circle cx="120" cy="238" r="8" fill="#e08a2e"/><text x="138" y="242" fill="#2b2622" font-weight="700">多巴胺</text><text x="196" y="242" fill="#8a8076">奖赏驱动 · 突然的快乐</text></g>
+          <g><circle cx="400" cy="238" r="8" fill="#2f6690"/><text x="418" y="242" fill="#2b2622" font-weight="700">血清素</text><text x="476" y="242" fill="#8a8076">情绪稳定 · 平和的快乐</text></g>
+          <g><circle cx="120" cy="272" r="8" fill="#4a8b5c"/><text x="138" y="276" fill="#2b2622" font-weight="700">内啡肽</text><text x="196" y="276" fill="#8a8076">运动镇痛 · 流汗的快乐</text></g>
+          <g><circle cx="400" cy="272" r="8" fill="#c05a86"/><text x="418" y="276" fill="#2b2622" font-weight="700">催产素</text><text x="476" y="276" fill="#8a8076">信任亲密 · 连接的快乐</text></g>
+        </g>
+      </svg>
+      <figcaption>神经递质是突触处传递信息的化学物质。人之所以会抑郁，<b>不是"想不开"，而是多巴胺、血清素等出了问题</b> —— 这是一个神经层面的问题。</figcaption>
+    </figure>
+    <div class="callout">
+      现在普遍认为，人之所以会抑郁，<strong>不是因为"想不开"，而是多巴胺、血清素等出了问题 —— 这是一个神经层面的问题。</strong>
+    </div>
+  </div>
+
+  <div class="topic" id="t-cause">
+    <div class="topic-head"><span class="topic-num">4</span><h3>抑郁因何发生</h3></div>
+    <p class="topic-lead">抑郁是遗传、早期经历与认知方式共同作用的结果。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">遗传因素：有，但不是"直接遗传"</span></div>
+      <div class="card-body">
+        <p>抑郁有较强的遗传因素，但<strong>没有某一个具体基因会"导致"抑郁</strong> —— 它是许多遗传因素与环境因素的组合。即使父母有抑郁，孩子也未必抑郁；但可能遗传到一些<em>更容易诱发抑郁的思维方式和情绪处理方式</em>。若家族有抑郁史，需要多留意。</p>
+      </div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">早期经历与负面的认知方式</span></div>
+      <div class="card-body">
+        <p>童年成长经历复杂、家庭支持不足，会让人对世界形成负面认知，具体表现为：</p>
+        <ul>
+          <li><strong>注意</strong>上 —— 更容易关注负向信息。</li>
+          <li><strong>记忆</strong>上 —— 更容易记住失败和痛苦。</li>
+          <li><strong>解释</strong>上 —— 同一件事有多种解释时，倾向于选择最消极的那个。</li>
+          <li><strong>反刍</strong> —— 反复回想"我那句话是不是说得不合适"。每个人都会有，但若严重影响情绪和生活，就可能与抑郁相关。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>抑郁并不是意志力不够，也不是"想多了"，而是大脑神经机制异常的结果。</p>
+      <div class="who">—— 理解抑郁，从去掉"道德评判"开始</div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-selfhelp">
+    <div class="topic-head"><span class="topic-num">5</span><h3>可以为自己做的事</h3></div>
+    <p class="topic-lead">在寻求专业帮助之外，一些"小而具体"的行为选择，能逐渐激活大脑的积极环路 —— 这些事，<strong>每个人都值得做</strong>。</p>
+    <div class="app-grid cols-2">
+      <div class="card child">
+        <div class="card-head"><span class="tag child">孩子可做</span><span class="card-title">激活身体</span></div>
+        <div class="card-body"><ul>
+          <li><strong>规律运动</strong> —— 不必去健身房撸铁，从办公桌前站起来、出去散步 10 分钟，就能调节多巴胺和内啡肽。</li>
+          <li><strong>规律睡眠</strong> —— 固定的睡眠节律，帮助调节激素与神经递质。</li>
+          <li><strong>晒太阳</strong> —— 北欧抑郁率高，与极夜有关。每天出去溜达、晒晒太阳，对情绪调节帮助很大。</li>
+        </ul></div>
+      </div>
+      <div class="card child">
+        <div class="card-head"><span class="tag child">孩子可做</span><span class="card-title">激活心理与社交</span></div>
+        <div class="card-body"><ul>
+          <li><strong>感恩练习</strong> —— 真心地回想人生中让自己开心的积极的事（不是做给别人看的形式）。</li>
+          <li><strong>冥想与正念</strong> —— 对情绪有切实好处。</li>
+          <li><strong>主动社交</strong> —— 焦虑会让人忽略身边的资源。心情不好时，<em>主动联系别人</em>，哪怕只是说几句话、一起吃个饭，效果会慢慢累积。</li>
+          <li><strong>小目标分解</strong> —— 把任务拆成简单步骤，积累"微小的胜利"。大人也需要。</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-pro">
+    <div class="topic-head"><span class="topic-num">6</span><h3>寻求专业帮助</h3></div>
+    <p class="topic-lead">最重要的一条建议 —— 如果出现抑郁障碍，<strong>一定要寻求专业帮助</strong>。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">用药须知：最危险的时刻</span></div>
+      <div class="card-body">
+        <p>抑郁障碍是需要遵医嘱服药的。药物不是唯一解、也有副作用，但它能<strong>打破恶性循环</strong>，相当于对患者的一种保护。</p>
+        <p>一个关键事实：抑郁最危险的时候，<strong>不是症状最重的时候</strong>（那时往往没有能力去执行伤害自己的事），而是<strong>擅自停药、症状刚开始缓解的初期</strong> —— 行动力恢复了，但情绪仍然低落。曾有家长觉得"差不多了"而自行停药，酿成无法挽回的后果。</p>
+      </div>
+    </div>
+    <div class="myth">
+      <b>千万不要对正在接受治疗的人说这句话：</b>"是药三分毒，差不多就停了吧。" —— 一定要遵医嘱，医生让吃多久就吃多久。
+    </div>
+    <div class="card teacher">
+      <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">认清自己的角色边界</span></div>
+      <div class="card-body">
+        <p>魏老师特别说明：她是<strong>发展心理学家，不是临床心理学家</strong>。如果学生或家人出现抑郁障碍，她会送他去专业机构（如北医六院），而不会自己"看病"。老师能做的是<em>识别信号、及时转介、用心陪伴</em> —— 而不是充当治疗者。在症状刚出现时就寻求专业帮助，治愈概率更大。</p>
+      </div>
+    </div>
+    <div class="callout" style="border-color:var(--crimson-soft);background:#fbf0f0;">
+      <strong>温馨提示：</strong>本模块涉及抑郁等心理健康议题，仅用于帮助老师与家长理解和识别。如果你或身边的人正经历情绪困扰，请及时联系专业精神心理医生或拨打当地心理援助热线寻求帮助 —— 求助是有力量的选择。
+    </div>
+  </div>
+
+  <div class="pager">
+    <button onclick="goModule('m-memory')"><span class="dir">◀ 上一模块</span><div class="nm">模块二·专注力与记忆</div></button>
+    <button class="next" onclick="goModule('m-qa')"><span class="dir">下一模块 ▶</span><div class="nm">答疑精选</div></button>
+  </div>
+</section>
+
+<!-- ============ 答疑精选 ============ -->
+<section class="module" id="m-qa">
+  <div class="hero">
+    <div class="kicker">答 疑 精 选</div>
+    <h2>答疑精选</h2>
+    <p>课程尾声，老师们结合日常教学的真实困境提问。这四个问答，把前面的理论落回到具体场景里。</p>
+    <span class="q">"解答不完的，也可以邮件我。" —— 魏然老师</span>
+  </div>
+
+  <div class="topic" id="t-qa1">
+    <div class="topic-head"><span class="topic-num">1</span><h3>休学学生的课堂支持</h3></div>
+    <div class="qa-q">
+      <div class="role">一线老师提问</div>
+      <p>我有一些学生因心理问题休学在家，上课时抵触情绪很严重。辅导老师建议我"不要过多关注他们、不要点他们"，但我总觉得这样帮不到他们。上课时，什么样的互动才能真正帮到他们？</p>
+    </div>
+    <div class="card teacher">
+      <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">先分清"现在最重要的事"是什么</span></div>
+      <div class="card-body">
+        <p>能问出这个问题，说明你是一位特别负责任的老师。但要想清楚一件事：如果孩子是因为心理问题休学，那么<strong>他人生现在最重要的问题，不是把学习搞好 —— 而是先活着、先把自己的心理调试好。</strong></p>
+        <p>如果是魏老师，她会去<strong>帮家长做"期望管理"</strong>。现实中常见到这样的家长：明知孩子随时可能伤害自己，最关心的问题却仍是"我们什么时候能再上学"。家长往往是出于"为孩子好"，但没有意识到 —— 对这个孩子来说，"活着"本身可能已经很不容易、很痛苦了，再叠加学习压力，可能把孩子推向更危险的境地。</p>
+      </div>
+    </div>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>我们人活着不是为了学习，我们是为了活得健康快乐。他可能会有其他的方式让自己健康快乐。</p>
+      <div class="who">—— 对休学孩子，心理优先于学业</div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-qa2">
+    <div class="topic-head"><span class="topic-num">2</span><h3>线上大班课的注意力</h3></div>
+    <div class="qa-q">
+      <div class="role">一线老师提问</div>
+      <p>线上大班课，孩子看不到我们真人，盯着屏幕学着学着思维就跑了。这时我想插入一个小梗、小互动把他的注意力抓回来 —— 但这样会不会反而干扰、影响他的专注力？这个度怎么权衡？</p>
+    </div>
+    <div class="card teacher">
+      <div class="card-head"><span class="tag teacher">老师可做</span><span class="card-title">关键看："梗"和课程内容有没有关系</span></div>
+      <div class="card-body">
+        <p>上网课的确挑战很大 —— 孩子看不到老师的手势和表情，而这些对教学很重要。但是：<strong>如果你插入的梗是和课程内容有关的，它不会负面影响孩子的专注力，反而会让孩子"突然醒了"。</strong></p>
+        <p>孩子很多时候<em>需要</em>这样一种认知上、情感上的刺激，才能把注意力拉回来。建议把你插入的梗、图片、表情包<strong>与课程内容结合起来</strong>，不要插完全无关的东西。让互动服务于教学目标，而不是纯粹娱乐。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-qa3">
+    <div class="topic-head"><span class="topic-num">3</span><h3>电子产品与"二手污染"</h3></div>
+    <div class="qa-q">
+      <div class="role">由上一问延伸 · 家长关心的话题</div>
+      <p>上网课必须用电子产品，那电子产品到底该怎么管？孩子的专注力、注意力会不会因此受损？</p>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">家庭中电子产品的使用，是对孩子记忆力、注意力伤害最大的事情之一</span></div>
+      <div class="card-body">
+        <p>电子产品是每个孩子都绕不开的事，不可能完全不用。关键在于<strong>使用是否"有控制"</strong>：每天用学习机 30 分钟、上网课固定一小时，时间固定、不和孩子讨价还价 —— 这完全没有问题。有研究表明，每天看屏幕<strong>超过两小时</strong>对孩子不好。</p>
+      </div>
+    </div>
+    <div class="card case">
+      <div class="card-head"><span class="tag case">案例故事</span><span class="card-title">比直接使用更可怕的"二手电子产品"</span></div>
+      <div class="card-body">
+        <p>"二手电子产品"指孩子被动暴露在电子环境里：</p>
+        <ul>
+          <li>家里老人<strong>开着电视当背景音</strong> —— 哪怕是孩子一眼都不想看的节目，那种声光变化也会伤害孩子的专注力。</li>
+          <li><strong>父母自己刷手机</strong> —— 预测孩子电子产品成瘾的<em>最重要因素</em>，就是父母自己的使用习惯。</li>
+        </ul>
+        <p>美国儿科学会建议：<strong>两岁之前不接触任何屏幕</strong>。孩子学会使用电子产品，正是通过观察大人。</p>
+      </div>
+    </div>
+    <div class="card parent">
+      <div class="card-head"><span class="tag parent">家长可做</span><span class="card-title">先管住自己的手机</span></div>
+      <div class="card-body">
+        <p>不能一边自己回家就抱着手机刷短视频，一边要求孩子"每天电子产品不超过 30 分钟" —— 这行不通。即使因为上网课必须使用电子产品，也要让孩子明白：<strong>不能以"上课"为借口，就放弃对电子产品使用的整体控制。</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-qa4">
+    <div class="topic-head"><span class="topic-num">4</span><h3>熏听到底有没有用</h3></div>
+    <div class="qa-q">
+      <div class="role">一线老师提问</div>
+      <p>现在很多家长给孩子用"倾听者"磨耳朵，在耳边放三国演义之类的故事。坐车、上下学路上长期听 —— 这对孩子未来的学习到底有没有影响？是好是坏？有没有科学依据？</p>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">理论基础</span><span class="card-title">"熏听"是商业名词，不是心理学概念</span></div>
+      <div class="card-body">
+        <p>"熏听"是商家发明的名词。方法用对了是有用的 —— 但必须强调：<strong>孩子从熏听或电子产品里学习语言和认知的速度与程度，都不如真人互动。</strong>孩子学得最快的方式，永远是亲子对话。熏听可以作为<em>补充</em>，但<strong>不能替代亲子对话的质量</strong>。</p>
+      </div>
+    </div>
+    <div class="card case">
+      <div class="card-head"><span class="tag case">案例故事</span><span class="card-title">最可怕的，是用熏听替代陪伴</span></div>
+      <div class="card-body">
+        <p>家长给孩子听儿歌、放故事，很多时候<strong>不是为了让他学习，而是为了"省心"</strong> —— 孩子安静地听很久，大人就不用陪他说话了。</p>
+        <p>一个极端案例：一位妈妈觉得自己英语发音不好，就从早到晚给孩子放英语，并且<strong>为了让孩子"专注听英语"而不跟他说话</strong> —— 结果孩子语言发育严重迟缓。从早到晚开着熏听，会让大人不知不觉变懒，<strong>降低亲子互动的质量</strong>，这才是它真正的危害所在。</p>
+      </div>
+    </div>
+    <div class="card parent">
+      <div class="card-head"><span class="tag parent">家长可做</span><span class="card-title">补充可以，限时限量</span></div>
+      <div class="card-body">
+        <p>如果平时已经花很多时间和孩子互动，那么偶尔（吃饭时、实在没法互动时）听一听没有问题。但要给明确的指标，比如<strong>每次不超过两首歌</strong> —— 否则大人会因为"太省心"而早早晚晚一直放着。把熏听放回它该有的位置：补充，而非替代。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pager">
+    <button onclick="goModule('m-health')"><span class="dir">◀ 上一模块</span><div class="nm">模块三·心理健康</div></button>
+    <button class="next" onclick="goModule('m-end')"><span class="dir">下一模块 ▶</span><div class="nm">结语·三大主题回顾</div></button>
+  </div>
+</section>
+
+<!-- ============ 结语 ============ -->
+<section class="module" id="m-end">
+  <div class="hero">
+    <div class="kicker">结 语</div>
+    <h2>三大主题回顾</h2>
+    <p>课程的最后，魏然老师回顾了贯穿全程的三大主题。把它们放在一起，正是这门课送给每位老师与家长的地图。</p>
+    <span class="q">"先去理解孩子，然后再去教育孩子。"</span>
+  </div>
+
+  <div class="topic" id="t-recap">
+    <div class="topic-head"><span class="topic-num">1</span><h3>三大主题，一句话各记一条</h3></div>
+    <div class="topiclist three">
+      <div class="tcard">
+        <div class="n">主题一 · 内驱力</div>
+        <h4>如何激发内驱力</h4>
+        <p>动机 = 期望 × 工具性 × 效价；自主、胜任、关联三感缺一不可；表扬努力而非聪明，让孩子把失败归因为"可控"。</p>
+      </div>
+      <div class="tcard">
+        <div class="n">主题二 · 专注力与记忆</div>
+        <h4>如何学得更快、记得更牢</h4>
+        <p>注意力是有限资源，工作记忆是只小篮子；睡眠巩固记忆；主动提取 + 有意义加工 + 间隔学习，胜过反复重读。</p>
+      </div>
+      <div class="tcard">
+        <div class="n">主题三 · 心理健康</div>
+        <h4>如何理解、呵护心理健康</h4>
+        <p>区分抑郁情绪与抑郁障碍；抑郁是神经机制问题，不是意志薄弱；及时寻求专业帮助，遵医嘱用药。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-insight">
+    <div class="topic-head"><span class="topic-num">2</span><h3>三点贯穿全课的启示</h3></div>
+    <p class="topic-lead">如果把这门课浓缩成几句话，大概是这样三点。</p>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">启示一</span><span class="card-title">老师的角色，正在从"知识传授者"走向"心理支持者"</span></div>
+      <div class="card-body"><p>面对学生日益复杂的心理需求，教师需要具备一定的发展心理学素养 —— 先读懂孩子，才能教好孩子。</p></div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">启示二</span><span class="card-title">做家庭中的"科学传播节点"</span></div>
+      <div class="card-body"><p>在"伪科学育儿"泛滥的背景下，教育工作者可以帮助家长识别并抵制无效甚至有害的方法 —— 理解结论是怎么来的、有什么局限，比记住结论本身更重要。</p></div>
+    </div>
+    <div class="card theory">
+      <div class="card-head"><span class="tag theory">启示三</span><span class="card-title">学习困境，往往不是"态度问题"</span></div>
+      <div class="card-body"><p>孩子的学习困境，常常是神经发育、情绪调节或家庭系统共同作用的结果。需要的是<em>系统性的理解与支持</em>，而不是简单的标签化。</p></div>
+    </div>
+  </div>
+
+  <div class="topic" id="t-thanks">
+    <div class="topic-head"><span class="topic-num">3</span><h3>写在最后</h3></div>
+    <div class="quote">
+      <span class="tag">老师金句</span>
+      <p>我不觉得我今天讲的任何一句话是所谓的真理 —— 希望老师们结合自己的教育教学实践，批判性地听取，并把它真正用到课堂与家庭里。</p>
+      <div class="who">—— 魏然老师</div>
+    </div>
+    <div class="callout">
+      这门课用大量实验和案例告诉我们：<strong>很多"看起来像问题"的事情，其实是孩子发展的正常规律。</strong>理解了规律，"如何激发内驱力""如何帮他记得更牢""如何呵护他的心理健康"才有了真正的落点。愿这份手册，成为你随时可以翻回来的地图。
+    </div>
+    <p class="section-note">本手册依据《青少年心理发展与教育》课程的逐字稿、AI 纪要及课件整理而成，供个人自学使用。课程主讲：北京大学教育学院 魏然老师。</p>
+  </div>
+
+  <div class="pager">
+    <button onclick="goModule('m-qa')"><span class="dir">◀ 上一模块</span><div class="nm">答疑精选</div></button>
+    <button class="next" onclick="goModule('m-intro')"><span class="dir">回到开头 ▶</span><div class="nm">主讲人简介</div></button>
+  </div>
+</section>
+
+</main>
+
+<button class="totop" id="toTop" aria-label="回到顶部">&#8593;</button>
+
+<script>
+const modules=[...document.querySelectorAll('.module')];
+const navModules=[...document.querySelectorAll('.nav-module')];
+const content=document.getElementById('content');
+const nav=document.getElementById('nav');
+const scrim=document.getElementById('scrim');
+
+function activate(id,push){
+  modules.forEach(m=>m.classList.toggle('active',m.id===id));
+  navModules.forEach(b=>{
+    const on=b.dataset.target===id;
+    b.classList.toggle('active',on);
+    const sub=b.parentElement.querySelector('.nav-sub');
+    if(sub)sub.classList.toggle('open',on);
+  });
+  content.scrollTop=0;
+  if(push){try{history.replaceState(null,'','#'+id);}catch(e){}}
+  closeNav();
+  buildSpy();
+}
+navModules.forEach(b=>b.addEventListener('click',()=>activate(b.dataset.target,true)));
+
+document.querySelectorAll('.nav-sub a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){const top=t.offsetTop-14;content.scrollTo({top,behavior:'smooth'});}
+    closeNav();
+  });
+});
+
+/* pager navigation */
+function goModule(id){activate(id,true);}
+window.goModule=goModule;
+
+/* scroll spy */
+let spyTargets=[];
+function buildSpy(){
+  const active=modules.find(m=>m.classList.contains('active'));
+  if(!active){spyTargets=[];return;}
+  spyTargets=[...active.querySelectorAll('.topic')];
+}
+function onScroll(){
+  document.getElementById('toTop').style.display=content.scrollTop>400?'block':'none';
+  if(!spyTargets.length)return;
+  let cur=spyTargets[0];
+  for(const t of spyTargets){if(content.scrollTop>=t.offsetTop-90)cur=t;}
+  document.querySelectorAll('.nav-sub a').forEach(a=>{
+    a.classList.toggle('spy',a.getAttribute('href')==='#'+cur.id);
+  });
+}
+content.addEventListener('scroll',onScroll);
+document.getElementById('toTop').addEventListener('click',()=>content.scrollTo({top:0,behavior:'smooth'}));
+
+/* mobile nav */
+function openNav(){nav.classList.add('show');scrim.classList.add('show');}
+function closeNav(){nav.classList.remove('show');scrim.classList.remove('show');}
+document.getElementById('menuBtn').addEventListener('click',()=>{
+  nav.classList.contains('show')?closeNav():openNav();
+});
+scrim.addEventListener('click',closeNav);
+
+/* init */
+const start=location.hash&&document.querySelector(location.hash)?location.hash.slice(1):'m-intro';
+activate(start,false);
+</script>
+</body>
+</html>
