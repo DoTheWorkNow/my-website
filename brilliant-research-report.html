@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brilliant 深度调研报告 · 含 AI 图形化导师 Koji</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231bb673'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3EB%3C/text%3E%3C/svg%3E">
+<meta name="generator" content="9-agent parallel research + first-party capture">
+<meta name="description" content="Brilliant.org 与 AI 图形化导师 Koji 深度调研报告">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --line:#26303d;
+  --txt:#e6edf3; --txt2:#9fb0c0; --txt3:#6b7a8a;
+  --green:#1bb673; --green2:#46e0a0; --blue:#4f9cf9; --gold:#f5b942;
+  --red:#f06363; --purple:#a978f0;
+  --maxw:1080px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,sans-serif;
+  background:var(--bg);color:var(--txt);line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--green2);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* layout */
+.wrap{display:flex;max-width:1400px;margin:0 auto;min-height:100vh}
+nav.toc{width:280px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;
+  background:linear-gradient(180deg,#11161d,#0d1117);border-right:1px solid var(--line);padding:26px 18px}
+nav.toc::-webkit-scrollbar{width:6px}
+nav.toc::-webkit-scrollbar-thumb{background:#2a3543;border-radius:3px}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.brand .logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--green),var(--blue));
+  display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:18px}
+.brand b{font-size:17px;letter-spacing:.3px}
+.brand-sub{font-size:11px;color:var(--txt3);margin-bottom:20px;padding-left:2px}
+nav.toc a.item{display:block;color:var(--txt2);font-size:13.5px;padding:8px 12px;border-radius:8px;
+  margin:2px 0;border-left:2px solid transparent;transition:.18s}
+nav.toc a.item:hover{background:var(--panel2);color:var(--txt);text-decoration:none}
+nav.toc a.item.active{background:rgba(27,182,115,.12);color:var(--green2);border-left-color:var(--green);font-weight:600}
+nav.toc a.item .n{display:inline-block;width:22px;color:var(--txt3);font-size:11px}
+.toc-foot{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:11px;color:var(--txt3)}
+
+main{flex:1;min-width:0;padding:0 0 80px}
+.inner{max-width:var(--maxw);margin:0 auto;padding:0 38px}
+
+/* hero */
+.hero{padding:54px 0 38px;border-bottom:1px solid var(--line);
+  background:radial-gradient(900px 400px at 20% -10%,rgba(27,182,115,.14),transparent),
+             radial-gradient(700px 360px at 90% 0%,rgba(79,156,249,.10),transparent)}
+.tag{display:inline-block;font-size:12px;color:var(--green2);background:rgba(27,182,115,.10);
+  border:1px solid rgba(27,182,115,.3);padding:4px 12px;border-radius:20px;margin-bottom:18px}
+h1.title{font-size:38px;line-height:1.2;letter-spacing:.5px;margin-bottom:14px;font-weight:800}
+h1.title span{background:linear-gradient(120deg,var(--green2),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--txt2);font-size:16px;max-width:760px}
+.meta-row{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--txt3)}
+.meta-row span{background:var(--panel);border:1px solid var(--line);padding:4px 10px;border-radius:6px}
+
+/* metric cards */
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:34px 0 10px}
+.metric{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 16px;position:relative;overflow:hidden}
+.metric::before{content:"";position:absolute;inset:0 auto auto 0;width:100%;height:3px;background:linear-gradient(90deg,var(--green),var(--blue))}
+.metric .v{font-size:25px;font-weight:800;color:var(--txt);line-height:1.1}
+.metric .v small{font-size:13px;color:var(--txt2);font-weight:600}
+.metric .l{font-size:12px;color:var(--txt3);margin-top:6px}
+
+/* sections */
+section{padding:46px 0 8px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:26px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:12px}
+h2 .h2n{font-size:14px;color:var(--green);background:rgba(27,182,115,.1);border:1px solid rgba(27,182,115,.3);
+  width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:none;font-weight:700}
+.sub{color:var(--txt2);margin:10px 0 22px;font-size:15px}
+h3{font-size:18px;margin:26px 0 10px;color:var(--txt);font-weight:700;display:flex;align-items:center;gap:8px}
+h3::before{content:"";width:4px;height:16px;background:var(--green);border-radius:2px;display:inline-block}
+p{margin:10px 0;color:#d4dde6}
+ul,ol{margin:10px 0 10px 4px;padding-left:22px;color:#d4dde6}
+li{margin:6px 0}
+strong,b{color:#fff;font-weight:700}
+em{color:var(--gold);font-style:normal}
+
+/* cards & grids */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mini{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.mini h4{font-size:14px;color:var(--green2);margin-bottom:8px;font-weight:700}
+.mini p{font-size:13.5px;margin:4px 0;color:var(--txt2)}
+
+/* table */
+.tbl{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px;background:var(--panel);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.tbl th{background:var(--panel2);color:var(--txt);text-align:left;padding:11px 14px;font-weight:700;border-bottom:1px solid var(--line);font-size:13px}
+.tbl td{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--txt2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:rgba(255,255,255,.02)}
+.tbl td b{color:var(--green2)}
+
+/* timeline */
+.tl{position:relative;margin:24px 0 8px;padding-left:30px}
+.tl::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--green),var(--blue),var(--purple))}
+.tl-item{position:relative;margin-bottom:18px}
+.tl-item::before{content:"";position:absolute;left:-26px;top:5px;width:11px;height:11px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 0 4px rgba(27,182,115,.18)}
+.tl-item .d{font-size:12px;color:var(--green2);font-weight:700;letter-spacing:.3px}
+.tl-item .e{font-size:14px;color:var(--txt);margin-top:2px}
+.tl-item .e small{display:block;color:var(--txt3);font-size:12px;margin-top:2px}
+
+/* quote */
+.quote{border-left:3px solid var(--green);background:var(--panel2);padding:14px 18px;border-radius:0 10px 10px 0;margin:14px 0;font-size:14.5px;color:#dfe8f0}
+.quote .by{display:block;margin-top:8px;font-size:12px;color:var(--txt3)}
+.quote.warn{border-left-color:var(--gold)}
+.quote.bad{border-left-color:var(--red)}
+
+/* pricing */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0}
+.price{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px 22px;position:relative}
+.price.hot{border-color:var(--green);box-shadow:0 0 0 1px var(--green),0 10px 40px rgba(27,182,115,.12)}
+.price .pill{position:absolute;top:-11px;left:22px;font-size:11px;background:var(--green);color:#04150d;font-weight:800;padding:3px 10px;border-radius:20px}
+.price h4{font-size:15px;color:var(--txt2);font-weight:700}
+.price .amt{font-size:30px;font-weight:800;margin:10px 0 2px}
+.price .amt small{font-size:14px;color:var(--txt3);font-weight:600}
+.price .note{font-size:12px;color:var(--txt3);margin-bottom:12px}
+.price ul{list-style:none;padding:0;margin:0;font-size:13px}
+.price li{padding:5px 0;color:var(--txt2);border-top:1px solid var(--line)}
+.price li::before{content:"✓ ";color:var(--green2);font-weight:800}
+
+/* chart box */
+.chartbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px 12px;margin:16px 0}
+.chartbox .ct{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:4px}
+.chartbox .cs{font-size:12px;color:var(--txt3);margin-bottom:14px}
+.cwrap{position:relative;height:300px}
+.cwrap.sm{height:240px}
+
+/* badges */
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:5px;margin-left:6px;font-weight:700;vertical-align:middle}
+.b-verified{background:rgba(27,182,115,.14);color:var(--green2);border:1px solid rgba(27,182,115,.3)}
+.b-caution{background:rgba(245,185,66,.14);color:var(--gold);border:1px solid rgba(245,185,66,.3)}
+.b-low{background:rgba(240,99,99,.12);color:var(--red);border:1px solid rgba(240,99,99,.3)}
+
+.callout{background:linear-gradient(135deg,rgba(245,185,66,.08),rgba(240,99,99,.05));
+  border:1px solid rgba(245,185,66,.25);border-radius:12px;padding:16px 20px;margin:18px 0}
+.callout b{color:var(--gold)}
+.callout.good{background:linear-gradient(135deg,rgba(27,182,115,.08),rgba(79,156,249,.05));border-color:rgba(27,182,115,.25)}
+.callout.good b{color:var(--green2)}
+
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.swot .box{border-radius:12px;padding:16px 18px;border:1px solid var(--line)}
+.swot .s{background:rgba(27,182,115,.06);border-color:rgba(27,182,115,.25)}
+.swot .w{background:rgba(240,99,99,.05);border-color:rgba(240,99,99,.25)}
+.swot h4{font-size:14px;margin-bottom:8px}
+.swot .s h4{color:var(--green2)} .swot .w h4{color:var(--red)}
+.swot ul{font-size:13px;margin:0;padding-left:18px}
+
+.srcgrid{columns:2;column-gap:24px;font-size:12.5px}
+.srcgrid a{display:block;padding:3px 0;color:var(--txt2);break-inside:avoid;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.srcgrid a:hover{color:var(--green2)}
+
+.kw{color:var(--green2);font-weight:600}
+.footer{text-align:center;color:var(--txt3);font-size:12px;padding:30px 0 10px}
+.toggle-src{cursor:pointer;color:var(--green2);font-size:13px;user-select:none}
+
+/* ---- 产品原型 / 体验 ---- */
+.shot{margin:14px 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+.shot img{width:100%;display:block}
+.cap{font-size:12px;color:var(--txt3);padding:10px 16px;background:var(--panel2)}
+.vidgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+.vidgrid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+figure{margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0a0e13}
+figure video{width:100%;display:block;background:#fff}
+figcaption{font-size:12.5px;color:var(--txt2);padding:10px 14px;background:var(--panel)}
+figcaption b{color:var(--green2)}
+.subjgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+.subj{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}
+.subj img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover}
+.subj span{display:block;font-size:12px;color:var(--txt2);padding:7px 10px;text-align:center;font-weight:600}
+.laws{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.law{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:0 12px 12px 0;padding:14px 18px}
+.law b{display:block;color:#fff;font-size:14.5px;margin-bottom:4px}
+.law p{font-size:13px;color:var(--txt2);margin:0}
+.try{display:inline-block;font-size:12px;color:#04150d;background:var(--green2);font-weight:800;padding:3px 12px;border-radius:20px;margin-left:8px}
+
+.koji-app{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--green);border-radius:16px;overflow:hidden;margin:16px 0;box-shadow:0 12px 40px rgba(27,182,115,.12)}
+.koji-chat{background:linear-gradient(180deg,#101820,#0d141a);padding:18px;display:flex;flex-direction:column;min-height:470px}
+.koji-head{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.koji-ava{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#6ef0b5,#16a866);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#04150d;box-shadow:0 0 0 4px rgba(27,182,115,.15)}
+.koji-head b{font-size:14px}.koji-head small{display:block;color:var(--txt3);font-size:11px}
+.kmsgs{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-right:4px;max-height:300px}
+.kmsgs::-webkit-scrollbar{width:5px}.kmsgs::-webkit-scrollbar-thumb{background:#2a3543;border-radius:3px}
+.bubble{max-width:94%;font-size:13.5px;line-height:1.62;padding:10px 13px;border-radius:4px 14px 14px 14px;animation:pop .3s ease}
+.bubble.k{background:rgba(27,182,115,.12);border:1px solid rgba(27,182,115,.25);color:#dff3e8;align-self:flex-start}
+.bubble.u{background:var(--panel2);border:1px solid var(--line);color:var(--txt);align-self:flex-end;border-radius:14px 4px 14px 14px}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+.kbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.kbtn{font-size:12.5px;background:var(--panel2);border:1px solid var(--line);color:var(--txt);padding:8px 12px;border-radius:20px;cursor:pointer;transition:.15s}
+.kbtn:hover{border-color:var(--green);color:var(--green2)}
+.kbtn.win{background:var(--green);color:#04150d;border-color:var(--green);font-weight:700}
+.koji-board{background:#0f1620;padding:18px;display:flex;flex-direction:column}
+.koji-board .bt{font-size:12.5px;color:var(--txt2);margin-bottom:8px}
+.koji-board .bt b{color:#fff}
+.koji-board svg{width:100%;background:#0b1118;border:1px solid var(--line);border-radius:10px}
+.slider-row{margin-top:14px;font-size:12px;color:var(--txt2)}
+.slider-row input[type=range]{width:100%;accent-color:var(--green);margin-top:6px}
+.readout{display:flex;gap:10px;margin-top:12px;font-size:11px;color:var(--txt3)}
+.readout div{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 6px;text-align:center}
+.readout b{display:block;font-size:17px;color:var(--green2);margin-top:2px}
+
+@media(max-width:920px){
+  nav.toc{display:none}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .grid2,.grid3,.swot,.price-grid{grid-template-columns:1fr}
+  .inner{padding:0 20px}
+  h1.title{font-size:28px}
+  .srcgrid{columns:1}
+  .vidgrid,.vidgrid3,.subjgrid,.laws,.koji-app{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<!-- ============ TOC ============ -->
+<nav class="toc">
+  <div class="brand"><div class="logo">B</div><b>Brilliant</b></div>
+  <div class="brand-sub">深度调研报告 · 2026.06</div>
+  <a class="item" href="#s0"><span class="n">00</span>速览摘要</a>
+  <a class="item" href="#s1"><span class="n">01</span>公司背景</a>
+  <a class="item" href="#s2"><span class="n">02</span>发展时间线</a>
+  <a class="item" href="#s3"><span class="n">03</span>创始人 Sue Khim</a>
+  <a class="item" href="#s4"><span class="n">04</span>核心产品 Brilliant</a>
+  <a class="item" href="#s5"><span class="n">05</span>Koji · AI 图形化导师</a>
+  <a class="item" href="#demo"><span class="n">▶</span>产品原型·上手体验</a>
+  <a class="item" href="#s6"><span class="n">06</span>用户人群与规模</a>
+  <a class="item" href="#s7"><span class="n">07</span>商业模式与定价</a>
+  <a class="item" href="#s8"><span class="n">08</span>融资与估值</a>
+  <a class="item" href="#s9"><span class="n">09</span>竞品与行业格局</a>
+  <a class="item" href="#s10"><span class="n">10</span>用户口碑</a>
+  <a class="item" href="#s11"><span class="n">11</span>综合研判</a>
+  <a class="item" href="#s12"><span class="n">12</span>数据存疑与来源</a>
+  <div class="toc-foot">9 个 AI Agent 并行调研<br>+ 一手浏览器抓取 + 交叉核验<br>共引用 60+ 信源</div>
+</nav>
+
+<!-- ============ MAIN ============ -->
+<main>
+<div class="hero">
+  <div class="inner">
+    <span class="tag">● 在线教育 · STEM · AI 辅导赛道</span>
+    <h1 class="title">Brilliant：用十年学习数据<br>喂养出的 <span>AI 图形化导师</span></h1>
+    <p class="lead">一家成立于 2012 年、累计千万级用户的交互式 STEM 学习平台，2026 年 5 月推出"全球首个 AI 图形化导师"<b>Koji</b>——一位坐在你身边、陪你画图、引导你思考、却绝不直接给答案的"超级耐心老师"。本报告覆盖公司背景、创始人、核心产品、用户人群、商业模式、融资、竞品与口碑。</p>
+    <div class="meta-row">
+      <span>📅 报告日期 2026-06-05</span>
+      <span>🔗 源起：多知《有超400万用户的在线教育平台，上线数学和编程AI图形化导师》</span>
+      <span>🌐 brilliant.org</span>
+      <span>🤖 9 路 Agent 并行 + 一手抓取 + 交叉核验</span>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><div class="v">2012</div><div class="l">成立年份（前身 Alltuition）</div></div>
+      <div class="metric"><div class="v">1000<small>万+</small></div><div class="l">注册用户 · 覆盖约 180 国</div></div>
+      <div class="metric"><div class="v">$94.6<small>M</small></div><div class="l">累计融资额</div></div>
+      <div class="metric"><div class="v">$3.05<small>亿</small></div><div class="l">最新估值（2022 C 轮）</div></div>
+      <div class="metric"><div class="v">Koji</div><div class="l">2026-05-29 发布的 AI 导师</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="inner">
+
+<!-- 00 速览 -->
+<section id="s0">
+  <h2><span class="h2n">00</span>速览摘要</h2>
+  <p class="sub">如果只有 90 秒，这是你需要知道的关于 Brilliant 与 Koji 的全部。</p>
+  <div class="grid2">
+    <div class="mini"><h4>🏢 它是什么</h4><p>主打"<span class="kw">做中学（Learn by doing）</span>"的交互式 STEM 在线学习平台，覆盖数学、编程/CS、数据科学、科学四大类，用交互动画+习题+可视化模拟替代传统"看视频"。公司主体 Brilliant Worldwide, Inc.，总部旧金山，约 100+ 人，未上市。</p></div>
+    <div class="mini"><h4>👩‍💼 谁创立的</h4><p>韩裔创始人/CEO <span class="kw">Sue Khim</span>，芝加哥大学数学专业辍学创业，先做助学贷款工具 Alltuition，2012 年转型 Brilliant，入选福布斯 30 under 30。理念："AI 正在让孩子变笨，它本应让他们变成天才。"</p></div>
+    <div class="mini"><h4>🤖 Koji 是什么</h4><p>2026-05-29 推出的"全球首个 AI 图形化导师"。能<span class="kw">实时"看到"你的屏幕</span>，直接在题目上画线/标注/高亮，左语音讲解+右动态图，用<span class="kw">苏格拉底式提问</span>引导你自己想通，"Speak First"主动开口降低求助门槛，<b>绝不直接给答案</b>。</p></div>
+    <div class="mini"><h4>💰 怎么赚钱</h4><p>对标 Duolingo 的 <span class="kw">freemium 订阅制</span>。免费版每天 2 把"钥匙"+广告+须按顺序；Premium 解锁全部课程+无广告+Koji 全功能。美区个人年付约 $161.88，含 6 席家庭版；订阅约占营收 85%。</p></div>
+    <div class="mini"><h4>👥 谁在用</h4><p>从 10 万 → 1000 万+ 用户。重心其实偏<span class="kw">成人自学者(约45%)与科技职场人(约30%)</span>，K12+大学生约 25%。男性约 57%，主力 18-24 岁；美国第一大市场（约33%流量），印度/英国/新加坡跟随。</p></div>
+    <div class="mini"><h4>⚔️ 护城河 vs 风险</h4><p>护城河=<span class="kw">十年自有数学/编程学习数据 + 代码化课程 + 不给答案的教学叙事</span>。风险=对手 Khanmigo（免费）、Duolingo（1.28亿MAU）规模碾压，且正反向切入数学腹地；自动续费投诉持续侵蚀口碑。</p></div>
+  </div>
+  <div class="callout good"><b>一句话定位：</b>在"答案型工具（Photomath/Chegg）被 LLM 击穿"的行业转折点上，Brilliant 押注"过程导向、深度交互、不给答案"的路线，用 Koji 把十年学习数据资产转化为难以被纯套壳 GPT 复制的产品壁垒——但它要在巨头的免费分发碾压下，守住"高客单价精品垂直"的窄门。</p></div>
+</section>
+
+<!-- 01 公司背景 -->
+<section id="s1">
+  <h2><span class="h2n">01</span>公司背景</h2>
+  <p class="sub">从一个简化助学贷款的小工具，到千万用户的 STEM 学习帝国。</p>
+  <table class="tbl">
+    <tr><th style="width:140px">维度</th><th>信息</th></tr>
+    <tr><td>公司名称</td><td><b>Brilliant</b>（品牌/网站 Brilliant.org），主体 <b>Brilliant Worldwide, Inc.</b></td></tr>
+    <tr><td>成立时间</td><td>2012 年（前身 Alltuition，2012 年 10 月正式转型为 Brilliant）<span class="badge b-verified">已核实</span></td></tr>
+    <tr><td>总部</td><td>美国加州旧金山（550 Montgomery Street, Suite 800, San Francisco, CA 94111）</td></tr>
+    <tr><td>性质</td><td>私营公司（Private），未上市，处于 Pre-IPO 阶段（二级市场 Forge/EquityZen 有股权交易）</td></tr>
+    <tr><td>业务</td><td>交互式 STEM 在线学习：数学、计算机科学/编程、数据科学、科学与技术（含 AI/神经网络/LLM）</td></tr>
+    <tr><td>团队规模</td><td>约 100+ 人（不同口径 79–116 人），横跨五大洲</td></tr>
+    <tr><td>使命</td><td>"Making a world of great problem solvers（培养满世界的优秀问题解决者）"</td></tr>
+  </table>
+
+  <h3>独特的"跨界混编"团队</h3>
+  <p>Brilliant 官方 About 页强调其团队构成极不寻常，这正是其内容质量与叙事能力的来源：</p>
+  <div class="grid3">
+    <div class="mini"><h4>🧮 学术硬核</h4><p>多位国际数学奥林匹克(IMO)奖牌得主；MIT/Caltech/Stanford/Harvard 的博士与辍学生。</p></div>
+    <div class="mini"><h4>🎨 创意叙事</h4><p>前《洋葱报》(The Onion)主编、戛纳狮子奖得主、漫威(Marvel)针织服装设计师。</p></div>
+    <div class="mini"><h4>✍️ 内容能力</h4><p>亚马逊年度畅销书排行榜前 50 名作家——把抽象 STEM 讲得有趣的底气。</p></div>
+  </div>
+
+  <h3>方法论壁垒：教学法实验飞轮</h3>
+  <p>Brilliant 十余年只打磨一个方法论——<span class="kw">Learn by doing</span>。每日海量答题数据 → 快速 A/B 测试教学方案 → 迭代课程，形成"教学法实验飞轮"。这套<b>代码化（code-based）的交互课程基础设施 + 数十亿次真实学习交互数据</b>，正是日后 Koji 得以"看懂屏幕、精准定位卡点"的底层资产。</p>
+
+  <div class="callout"><b>战略转向：</b>2022 年 12 月收购儿童交互视频平台 <b>Hellosaurus</b> 补强少儿内容；2023–2024 探索 AI 个性化学习路径；2026 年 5 月推出 Koji，正式进入"AI 私教普惠"阶段。</div>
+</section>
+
+<!-- 02 时间线 -->
+<section id="s2">
+  <h2><span class="h2n">02</span>发展时间线</h2>
+  <p class="sub">14 年，从助学工具到 AI 导师的演进轨迹。</p>
+  <div class="grid2" style="align-items:start">
+    <div>
+      <div class="tl">
+        <div class="tl-item"><div class="d">约 2011</div><div class="e">Sue Khim 在芝加哥创办 <b>Alltuition</b><small>简化学生助学金/助学贷款流程，被称"学生融资版 TurboTax"</small></div></div>
+        <div class="tl-item"><div class="d">2012-10</div><div class="e">Alltuition 团队<b>转型为 Brilliant</b><small>联合创始人 Sam Solomon、Silas Hundt 等，定位 STEM 交互学习</small></div></div>
+        <div class="tl-item"><div class="d">2012 / 2013</div><div class="e">Sue Khim 入选 <b>福布斯 30 under 30</b>（教育）<small>时年约 25–26 岁</small></div></div>
+        <div class="tl-item"><div class="d">2013-08</div><div class="e">Series A-1，<b>用户突破 10 万</b><small>Social+Capital(Chamath)、500 Startups、Kapor Capital、Learn Capital</small></div></div>
+        <div class="tl-item"><div class="d">2015-06</div><div class="e">Series B（Next Play Ventures，估值 ~$87M）</div></div>
+        <div class="tl-item"><div class="d">2017</div><div class="e"><b>转向 freemium 订阅制</b>，用户超 400 万<small>由"每周难题社区"演进为订阅课程平台</small></div></div>
+        <div class="tl-item"><div class="d">2019-04</div><div class="e">累计融资约 <b>$27M</b>、估值约 <b>$50M</b>、ARR &gt;$10M<small>约 700 万用户、40 门 STEM 课程</small></div></div>
+        <div class="tl-item"><div class="d">2022-05</div><div class="e">Series C ~$65M，估值跃升至 <b>~$3.05 亿</b><small>Union Square Ventures、Reach Capital 等</small></div></div>
+        <div class="tl-item"><div class="d">2022-12</div><div class="e">收购儿童交互视频平台 <b>Hellosaurus</b></div></div>
+        <div class="tl-item"><div class="d">2024</div><div class="e">用户突破 <b>1000 万</b>，覆盖约 180 国</div></div>
+        <div class="tl-item"><div class="d">2026-05-29</div><div class="e">🚀 推出 AI 图形化导师 <b>Koji</b><small>今夏为前 1000 名学员免费辅导</small></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="chartbox">
+        <div class="ct">融资与估值增长曲线</div>
+        <div class="cs">单位：百万美元 · 来源 Forge Global / Wikipedia / Crunchbase</div>
+        <div class="cwrap"><canvas id="valChart"></canvas></div>
+      </div>
+      <div class="chartbox">
+        <div class="ct">注册用户增长（阶梯式）</div>
+        <div class="cs">单位：万人 · 不同来源对"用户"定义不一，仅示意量级</div>
+        <div class="cwrap sm"><canvas id="userChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 创始人 -->
+<section id="s3">
+  <h2><span class="h2n">03</span>创始人 Sue Khim</h2>
+  <p class="sub">一个在芝加哥公立学校长大的韩裔移民，如何用"做中学"打了十几年的持久战。</p>
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">个人画像</h3>
+      <ul>
+        <li><b>族裔与出身：</b>韩裔，襁褓中随家移民美国，在芝加哥读公立学校长大（出生约 1986 年）。曾自述"家庭一度陷入严重财务困境"，靠学编程赚钱补贴家用。</li>
+        <li><b>教育：</b>芝加哥大学攻读<b>数学</b>专业，约 3 年后辍学创业 <span class="badge b-verified">已核实</span>（注：另有"医学院"说法已被证伪）。</li>
+        <li><b>入行技术：</b>实习时为把分配的活儿自动化，熬夜自学 Excel VBA 宏——自述入行原因是 <em>"Necessity!（或许是懒惰）"</em>。</li>
+        <li><b>荣誉：</b>福布斯 30 under 30（教育）；2022 年被 Apple 列为 4 位 AAPI 科技领袖之一。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">教育哲学</h3>
+      <ul>
+        <li><b>核心方法论："learn by doing（做中学）"</b>——围绕这一单一理念打磨十余年。</li>
+        <li><b>三大目标：</b>① 激发内在学习动力；② 培养批判性思维；③ 消除对"不知道答案"的羞耻与焦虑。</li>
+        <li><b>TEDx（2013）核心论点：</b>智力天赋应像运动天赋一样被系统化发现和培养。用"新加坡 vs 牙买加"案例论证教育投资回报，批评美国每 $100 教育支出仅 2 美分用于天才生项目。</li>
+        <li><b>STEM 女性倡导：</b>面向约 250 万女性用户，推崇居里夫人、Grace Hopper、Maryam Mirzakhani 等榜样。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="quote">"我们用一个有趣、鲜活的世界，取代了 300 年前的维多利亚式教育系统。"<span class="by">— Sue Khim（2022, Apple AAPI 专题）</span></div>
+  <div class="quote">"AI 正在让孩子变笨，它本应让他们变成天才。隆重介绍 Koji——第一个真正让孩子<b>思考</b>的 AI 导师。它只问不答、建立自信而非依赖，绝不、绝不直接把答案递给你。"<span class="by">— Sue Khim（2026-05-29, LinkedIn 发布 Koji）</span></div>
+</section>
+
+<!-- 04 核心产品 -->
+<section id="s4">
+  <h2><span class="h2n">04</span>核心产品 Brilliant</h2>
+  <p class="sub">不是"看视频再练习"，而是"先做题、在交互与可视化中建立直觉"。</p>
+
+  <h3>四大学科板块</h3>
+  <div class="grid2">
+    <div class="mini"><h4>🧮 数学（最深领域）</h4><p>算术/前代数/代数/几何/三角/微积分/微分方程/线性代数/数论/离散数学/统计。</p></div>
+    <div class="mini"><h4>💻 编程 / 计算机科学</h4><p>Python 编程、编程思维、算法与数据结构、AI 原理、计算机内存、软件工程、神经网络。</p></div>
+    <div class="mini"><h4>📊 数据科学 / 数据分析</h4><p>数据分析、统计、概率、数据可视化——使用 Airbnb、Spotify 等<b>真实公司数据集</b>实战。</p></div>
+    <div class="mini"><h4>🔬 科学与技术</h4><p>经典力学、物理、机器学习、大语言模型(LLM)、数字电路、量子计算、加密货币/区块链。</p></div>
+  </div>
+  <p style="margin-top:14px;color:var(--txt3);font-size:13px">课程规模：官方现行 subscribe 页表述 <b>40+ 门交互式课程</b><span class="badge b-caution">口径不一</span>，部分第三方称 100+ 门；均按 Beginner/Intermediate/Advanced 技能分级，而非按学校年级。</p>
+
+  <h3>vs 可汗学院（Khan Academy）</h3>
+  <table class="tbl">
+    <tr><th style="width:120px">维度</th><th>Brilliant</th><th>Khan Academy</th></tr>
+    <tr><td>学习哲学</td><td><b>做中学</b>：先做题，靠交互/可视化建立深层理解</td><td>看中学：先看视频讲解，再重复练习</td></tr>
+    <tr><td>内容广度</td><td>聚焦数学/CS/逻辑/物理的<b>深度问题解决</b></td><td>K-12 全科 + AP/SAT 备考，覆盖更广</td></tr>
+    <tr><td>价格</td><td>Freemium（免费层受限 + 付费 Premium）</td><td><b>完全免费</b></td></tr>
+    <tr><td>AI 导师</td><td>Koji（嵌入课程、能看屏幕、不给答案）</td><td>Khanmigo（通用对话助手）</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--txt3)">共识：许多家庭两者并用——可汗用于广泛作业支持，Brilliant 用于建立概念深度与 STEM 热情。</p>
+
+  <h3>克制式游戏化（习惯养成引擎）</h3>
+  <div class="grid3">
+    <div class="mini"><h4>🔥 连胜 Streak</h4><p>每天完成 3 道题或 1 节课即可续上；漏天归零（有 streak charge 可保），制造"不想断签"的损失厌恶。</p></div>
+    <div class="mini"><h4>⭐ 经验值 XP</h4><p>完成课程/解题获得，数额对应投入；重复已完成课程不再得 XP。</p></div>
+    <div class="mini"><h4>🏆 联赛 Leagues</h4><p>每组恰好 30 人，每周日重置，按周 XP 升降级。<b>10 级以化学元素命名</b>：氢→锂→碳→氖→钛→氙→钡→钕→钨→锿。</p></div>
+  </div>
+  <p style="font-size:13px;color:var(--txt3)">第三方分析指出：Brilliant 刻意只保留 Streak 与 Leagues 两个核心回路，不堆砌过多激励，把焦点留给内容本身。平台支持 iOS/Android/浏览器，当前课程需联网、不支持离线下载。</p>
+</section>
+
+<!-- 05 Koji -->
+<section id="s5">
+  <h2><span class="h2n">05</span>Koji · AI 图形化导师</h2>
+  <p class="sub">"一位坐在你身边、陪你画图、引导你思考的超级耐心的老师。" 这是 Brilliant 对 AI 时代的回答。</p>
+
+  <div class="callout good"><b>定位：</b>2026-05-29 由 Sue Khim 推出的"<b>全球首个 AI 图形化导师（world's first AI graphical tutor）</b>"。它不是被动等你提问的聊天框，而是<b>坐在你旁边、看着你做、在你卡住时引导你自己想出来</b>。<span class="badge b-verified">官方博客已核实</span></div>
+
+  <h3>六大核心机制</h3>
+  <div class="grid2">
+    <div class="mini"><h4>① 实时看屏 Visual Awareness</h4><p>能"看到"屏幕上每一次选择与停顿点，精准定位误解出在哪一步——看到"课程里发生的每一件事"。</p></div>
+    <div class="mini"><h4>② 画线 / 标注 / 高亮</h4><p>能"伸手进课程内部"：高亮某个区域、在图上标注画线、临时插入互动小问题。"He points, sketches, annotates（指点、勾画、标注）"。</p></div>
+    <div class="mini"><h4>③ 左语音讲解 + 右动态可视化</h4><p>双轨形态：语音讲解 + 实时操纵学习环境（高亮/重排组件），把抽象概念具象化。</p></div>
+    <div class="mini"><h4>④ 苏格拉底提问法</h4><p>"asks instead of tells（多问而非多讲），builds confidence instead of dependency，never, ever just hands you the answer"——绝不直接给答案。</p></div>
+    <div class="mini"><h4>⑤ Speak First 主动发言</h4><p>每节课页开头主动开口——不是朗读题目，而是"注意到"：相比上题变了什么、动手前哪里值得留意。<b>把求助门槛降到最低。</b></p></div>
+    <div class="mini"><h4>⑥ 退后/介入的分寸感</h4><p>概念学习阶段给更多帮助，接近掌握时主动退后——动态调节介入强度，避免养成依赖。</p></div>
+  </div>
+
+  <h3>底层技术与安全</h3>
+  <ul>
+    <li><b>专有数据：</b>训练于<b>数十亿次真实学习交互</b> + Brilliant 十年学习数据——这是纯套壳 GPT 不具备的资产。</li>
+    <li><b>准确性：</b>课程为<b>代码化（code-based）</b>，保证 AI 介入时的准确性，<b>数学错误率与人类内容创作者相当</b>。</li>
+    <li><b>大模型：</b>官方未点名具体底层大模型，仅称在所用模型上"开启了高级安全过滤器"，对任何问题对话设实时告警。</li>
+    <li><b>合规：</b>符合 COPPA（美国儿童隐私），第三方聊天处理为<b>零数据留存</b>。</li>
+    <li><b>训练专家：</b>"由 MIT 和 Harvard 学习专家训练" <span class="badge b-low">第三方报道·官方博客未见原文</span></li>
+  </ul>
+
+  <h3>覆盖、定价与计划</h3>
+  <div class="grid3">
+    <div class="mini"><h4>📚 课程覆盖</h4><p>上线即覆盖几乎所有基础数学与编程课程（代数/几何/算术/Python/递归/算法）；微积分等进阶课程 2026 年晚些时候上线。</p></div>
+    <div class="mini"><h4>💵 定价</h4><p>含在所有 Premium 套餐内；免费版仅<b>有限预览</b>。Sue Khim 称折合每天不到 $1，远低于人类辅导约 $300/小时。</p></div>
+    <div class="mini"><h4>🎁 1000 名免费计划</h4><p>2026 夏为前 1000 名学员免费辅导，家长可留言孩子学习目标获邀。<span class="badge b-low">第三方</span></p></div>
+  </div>
+
+  <h3>早期反响：79.5% 正面，但有专业质疑</h3>
+  <div class="grid2" style="align-items:start">
+    <div>
+      <div class="chartbox">
+        <div class="ct">Koji 发布舆论情感（761 条评论样本）</div>
+        <div class="cs">来源：Rundown AI · Sue Khim 发布帖约 410 万浏览/1.09 万赞</div>
+        <div class="cwrap sm"><canvas id="sentChart"></canvas></div>
+      </div>
+    </div>
+    <div>
+      <div class="quote">"她把十年训练数据，做成了让孩子更聪明的助手。"<span class="by">— Chamath Palihapitiya（早期投资人）</span></div>
+      <div class="quote">（学员 Claire, 14 岁）"它解释的方式很好，不像 ChatGPT 只给我一串指令。"<span class="by">— Brilliant 官方收集证言</span></div>
+      <div class="quote bad">"如果 Koji 是人类导师、像 demo 里那样教几何和代数二，我会立刻解雇他——它放任学生毫无头绪地瞎试。别被营销光环迷惑。"<span class="by">— @ninja_maths（X 数学博主，批评声音）</span></div>
+    </div>
+  </div>
+
+  <h3>未来规划</h3>
+  <p>① <b>学校作业辅导</b>：未来能针对学员具体的学校作业辅导，成为更长学习旅程的向导；② <b>多语言</b>：语音已能说几乎任何语言，课内深度多语言支持"即将到来"；③ <b>课程扩展</b>：微积分等进阶课程 2026 年内陆续上线。</p>
+</section>
+
+<!-- ▶ 产品原型 / 体验 -->
+<section id="demo">
+  <h2><span class="h2n" style="background:rgba(245,185,66,.12);color:var(--gold);border-color:rgba(245,185,66,.35)">▶</span>产品原型 · 上手体验</h2>
+  <p class="sub">下面依次是 Brilliant / Koji 的<b>真实官方产品画面</b>，以及文末一个<b>可亲手操作的 Koji 学习原型</b>——拖滑块、点按钮、甚至试试"直接要答案"，感受"看屏幕 + 画图 + 苏格拉底式不给答案"到底是什么体验。</p>
+  <p style="font-size:12px;color:var(--txt3)">📦 视频/图片为 Brilliant 官方素材，已随报告下载至同目录 <span class="kw">Brilliant调研_assets/</span> 文件夹（移动报告请连同此文件夹一起移动）。若视频不自动播放，点一下即可；个别浏览器(旧版 Safari)可能不支持 webm。</p>
+
+  <h3>① 官网真实首页</h3>
+  <div class="shot">
+    <img src="Brilliant调研_assets/home.jpeg" alt="Brilliant 官网首页">
+    <div class="cap">brilliant.org 首页（2026-06-05 实时抓取）。主标语已从"学数学和编程"升级为"<b>A world-class tutor for every home（每个家庭的世界级导师）</b>"，Koji 成为绝对 C 位；页面亮出 10,000,000+ learners 与 100,000+ 五星评价。</div>
+  </div>
+
+  <h3>② Koji 实际辅导演示 <span class="try">官方循环动画</span></h3>
+  <div class="vidgrid">
+    <figure>
+      <video src="Brilliant调研_assets/koji-tutor-demo.webm" autoplay loop muted playsinline></video>
+      <figcaption><b>Koji 辅导界面</b>：绿色小人 Koji 实时"看"着右侧题目，在图形上画线、高亮、抛出引导性中间问题——而不是直接报答案。</figcaption>
+    </figure>
+    <figure>
+      <video src="Brilliant调研_assets/koji-explore.webm" autoplay loop muted playsinline></video>
+      <figcaption><b>交互探索</b>：学习内容本身是可点、可拖、可试错的"操场"，Koji 在你操作时介入引导。</figcaption>
+    </figure>
+  </div>
+
+  <h3>③ "做中学"的产品动效（官网三大卖点）</h3>
+  <div class="vidgrid3">
+    <figure><video src="Brilliant调研_assets/concepts-click.webm" autoplay loop muted playsinline></video><figcaption><b>Concepts that click</b><br>玩着玩着概念就通了，而非死记。</figcaption></figure>
+    <figure><video src="Brilliant调研_assets/built-to-think.webm" autoplay loop muted playsinline></video><figcaption><b>Built to make you think</b><br>问对问题，直击你卡住的地方。</figcaption></figure>
+    <figure><video src="Brilliant调研_assets/adapts.webm" autoplay loop muted playsinline></video><figcaption><b>Adapts to where you are</b><br>会的加速、不会的放慢。</figcaption></figure>
+  </div>
+
+  <h3>④ 四大学科的交互课程</h3>
+  <div class="subjgrid">
+    <div class="subj"><img src="Brilliant调研_assets/subj-math.png" alt="Math"><span>🧮 Math 数学</span></div>
+    <div class="subj"><img src="Brilliant调研_assets/subj-cs.png" alt="CS"><span>💻 Computer Science</span></div>
+    <div class="subj"><img src="Brilliant调研_assets/subj-science.png" alt="Science"><span>🔬 Science 科学</span></div>
+    <div class="subj"><img src="Brilliant调研_assets/subj-data.png" alt="Data"><span>📊 Data Analysis</span></div>
+  </div>
+
+  <h3>⑤ Koji 的四条教学铁律（官方设计原则）</h3>
+  <div class="laws">
+    <div class="law"><b>① 绝不告诉学习者答案</b><p>Socratic questions only —— 只用苏格拉底式提问。</p></div>
+    <div class="law"><b>② 尊重他的思考</b><p>Honor their thinking —— 哪怕是错的答案，也有有价值的东西。</p></div>
+    <div class="law"><b>③ 答错时别轻描淡写说"没关系"</b><p>那会贬低他正在经历的努力与挣扎。</p></div>
+    <div class="law"><b>④ 确认进展，而非解释结论</b><p>别说"它的意思是…"，而要问"那这说明了什么？"</p></div>
+  </div>
+
+  <h3>⑥ 🕹️ 亲手玩：Koji 互动原型 · 斜率小课 <span class="try">可操作</span></h3>
+  <p style="font-size:13px;color:var(--txt2)">这是我按 Koji 的产品逻辑手写的高保真原型（非官方）。<b>拖动右侧滑块</b>改变直线陡峭程度，看 Koji 怎么"看着你做"；点下面的按钮和它对话——特别是试试那颗 <b>"直接告诉我答案"</b> 按钮。</p>
+  <div class="koji-app">
+    <div class="koji-chat">
+      <div class="koji-head"><div class="koji-ava">Koji</div><div><b>Koji</b><small>你的图形化数学导师 · 在线</small></div></div>
+      <div class="kmsgs" id="kmsgs"></div>
+      <div class="kbtns" id="kbtns"></div>
+    </div>
+    <div class="koji-board">
+      <div class="bt">📈 题目：下面这条直线的 <b>斜率（slope）</b> 是多少？拖滑块感受"陡峭程度"。</div>
+      <svg id="ksvg" viewBox="0 0 360 300" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="slider-row">直线陡峭程度（拖我）<input type="range" id="kslope" min="0.5" max="2" step="0.25" value="1"></div>
+      <div class="readout">
+        <div>水平 run<b id="rRun">2</b></div>
+        <div>上升 rise<b id="rRise">2.0</b></div>
+        <div>斜率 = rise/run<b id="rSlope">1.0</b></div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--txt3)">💡 体会到了吗：Koji 全程<b>不给你"斜率=1"这个答案</b>，而是把 rise/run 的三角形画给你看、反问你，逼你自己说出那声"啊哈"。这正是它对抗"AI 让孩子变懒"的核心设计。</p>
+</section>
+
+<script>
+(function(){
+  var svg=document.getElementById('ksvg');if(!svg)return;
+  var msgs=document.getElementById('kmsgs'),btns=document.getElementById('kbtns'),sl=document.getElementById('kslope');
+  var W=360,H=300,pad=34,xmax=4,ymax=9,b0=0.5;
+  function sx(x){return pad+x*(W-2*pad)/xmax}
+  function sy(y){return H-pad-y*(H-2*pad)/ymax}
+  var obs=null; // 常驻"观察"气泡
+  function bubble(t,who,keep){
+    var d=document.createElement('div');d.className='bubble '+(who||'k');d.innerHTML=t;
+    msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;
+  }
+  function draw(m,hi){
+    var y4=m*xmax+b0;
+    var x1=1,x2=3,y1=m*x1+b0,y2=m*x2+b0,rise=(m*2);
+    var axis='<line x1="'+sx(0)+'" y1="'+sy(0)+'" x2="'+sx(xmax)+'" y2="'+sy(0)+'" stroke="#2a3543" stroke-width="1.5"/>'+
+             '<line x1="'+sx(0)+'" y1="'+sy(0)+'" x2="'+sx(0)+'" y2="'+sy(ymax)+'" stroke="#2a3543" stroke-width="1.5"/>';
+    var grid='';for(var g=1;g<=xmax;g++){grid+='<line x1="'+sx(g)+'" y1="'+sy(0)+'" x2="'+sx(g)+'" y2="'+sy(ymax)+'" stroke="#18222e" stroke-width="1"/>';}
+    for(var h=1;h<=ymax;h++){grid+='<line x1="'+sx(0)+'" y1="'+sy(h)+'" x2="'+sx(xmax)+'" y2="'+sy(h)+'" stroke="#18222e" stroke-width="1"/>';}
+    var line='<line x1="'+sx(0)+'" y1="'+sy(b0)+'" x2="'+sx(xmax)+'" y2="'+sy(y4)+'" stroke="#4f9cf9" stroke-width="3"/>';
+    // 直角三角形 rise/run
+    var triCol=hi?'#f5b942':'#1bb673',triW=hi?3:2,fill=hi?'rgba(245,185,66,.15)':'rgba(27,182,115,.10)';
+    var tri='<polygon points="'+sx(x1)+','+sy(y1)+' '+sx(x2)+','+sy(y1)+' '+sx(x2)+','+sy(y2)+'" fill="'+fill+'"/>'+
+            '<line x1="'+sx(x1)+'" y1="'+sy(y1)+'" x2="'+sx(x2)+'" y2="'+sy(y1)+'" stroke="'+triCol+'" stroke-width="'+triW+'"/>'+
+            '<line x1="'+sx(x2)+'" y1="'+sy(y1)+'" x2="'+sx(x2)+'" y2="'+sy(y2)+'" stroke="'+triCol+'" stroke-width="'+triW+'"/>';
+    var pts='<circle cx="'+sx(x1)+'" cy="'+sy(y1)+'" r="4.5" fill="#46e0a0"/><circle cx="'+sx(x2)+'" cy="'+sy(y2)+'" r="4.5" fill="#46e0a0"/>';
+    var lbl='<text x="'+(sx(x1)+sx(x2))/2+'" y="'+(sy(y1)+16)+'" fill="'+triCol+'" font-size="12" text-anchor="middle">run = 2</text>'+
+            '<text x="'+(sx(x2)+8)+'" y="'+(sy(y1)+sy(y2))/2+'" fill="'+triCol+'" font-size="12">rise = '+rise.toFixed(1)+'</text>';
+    svg.innerHTML=grid+axis+tri+line+pts+lbl;
+    document.getElementById('rRise').textContent=rise.toFixed(1);
+    document.getElementById('rSlope').textContent=m.toFixed(2);
+  }
+  function observe(m){
+    var t;
+    if(m>=1.75)t='👀 哦——现在线很陡了！你看那个三角形的<b>竖直边</b>('+(2*m).toFixed(1)+')，是不是比水平边(2)长得多？';
+    else if(m<=0.75)t='👀 现在线挺平缓的。竖直边只有 '+(2*m).toFixed(1)+'，比水平边 2 还短。这跟"斜率"有什么关系呢？';
+    else t='👀 注意右边那个直角三角形：往右走 2 格，线就往上爬了 '+(2*m).toFixed(1)+' 格。';
+    if(!obs)obs=bubble(t,'k');else{obs.innerHTML=t;}
+  }
+  function uSay(t){bubble(t,'u');}
+  function setBtns(arr){
+    btns.innerHTML='';
+    arr.forEach(function(o){var x=document.createElement('button');x.className='kbtn'+(o.win?' win':'');x.textContent=o.t;x.onclick=o.f;btns.appendChild(x);});
+  }
+  var mainBtns=[
+    {t:'💡 我有个直觉',f:function(){uSay('斜率…就是这条线有多陡吧？');setTimeout(function(){bubble('完全正确，你抓到直觉了！🙌 现在把"陡"变成精确的数：看右边三角形——往右走 <b>2 格(run)</b>，线往上爬了 <b>rise</b> 格。那"<b>每往右 1 格</b>"会爬多少？这个"每格爬多少"就是斜率。',true&&'k');draw(cur,true);},400);}},
+    {t:'😣 我卡住了',f:function(){uSay('我有点卡住了…不知道从哪下手。');setTimeout(function(){bubble('卡住正说明你在认真想 💪 别急，我把那个关键三角形<b>描亮了</b>（看右边变黄的部分）。先别想"斜率"这个词——只回答我一个小问题：那条<b>水平边</b>，是几格？',true&&'k');draw(cur,true);},400);}},
+    {t:'🙏 直接告诉我答案',f:function(){uSay('能不能直接告诉我斜率等于几？');setTimeout(function(){bubble('哈，这个我可<b>不能</b>直接递给你 😌 —— 给了你，你就少了那声"啊哈！"。<br>这样：斜率 = <b>rise ÷ run</b>。三角形里 run = 2、rise = '+(2*cur).toFixed(1)+'，<b>你来除这一下</b>，结果就是你自己挣来的。',true&&'k');draw(cur,true);},400);}},
+    {t:'✅ 我算出来了',f:function(){uSay('我试试！rise ÷ run = '+(2*cur).toFixed(1)+' ÷ 2');askAnswer();}}
+  ];
+  function askAnswer(){
+    setTimeout(function(){
+      bubble('好，说出你的答案——这条线的斜率是多少？',true&&'k');
+      var correct=cur;var set={};set[correct]=1;set[correct+0.5]=1;if(correct-0.5>0)set[correct-0.5]=1;set[correct*2]=1;
+      var opts=Object.keys(set).map(parseFloat).slice(0,4).sort(function(){return 0.5-Math.random();});
+      setBtns(opts.map(function(v){return {t:'斜率 = '+v.toFixed(2),f:function(){checkAns(v,correct);}};}));
+    },400);
+  }
+  function checkAns(v,correct){
+    uSay('斜率 = '+v.toFixed(2)+' ?');
+    setTimeout(function(){
+      if(Math.abs(v-correct)<0.01){
+        bubble('🎉 <b>啊哈！你自己想通了！</b>斜率就是 rise/run = '+(2*correct).toFixed(1)+' ÷ 2 = <b>'+correct.toFixed(2)+'</b>。<br>看——这个答案不是我塞给你的，是你自己<b>看见</b>的。线越陡，这个比值越大。这就是 Koji 想要的那一刻。😊',true&&'k');
+        setBtns([{t:'🔄 再玩一遍',win:true,f:reset}]);
+      }else{
+        bubble('嗯，先别否定自己——你的思路里有对的东西 👍 再看一眼三角形：rise 是 '+(2*correct).toFixed(1)+'、run 是 2。<b>大数除以小数</b>，结果会比 1 大还是小？带着这个再除一次试试。',true&&'k');
+        draw(cur,true);
+        askAnswer();
+      }
+    },400);
+  }
+  function reset(){msgs.innerHTML='';obs=null;sl.value=1;cur=1;draw(cur,false);start();}
+  var cur=parseFloat(sl.value);
+  sl.addEventListener('input',function(){cur=parseFloat(sl.value);draw(cur,false);observe(cur);});
+  function start(){
+    bubble('👋 嗨，我是 Koji。<b>我先开个头</b>——这是 Koji 的"主动发言"习惯：在你开口之前我就先说点啥，这样你求助的门槛会低很多。',true&&'k');
+    setTimeout(function(){observe(cur);},300);
+    setBtns(mainBtns);
+  }
+  draw(cur,false);start();
+})();
+</script>
+
+<!-- 06 用户 -->
+<section id="s6">
+  <h2><span class="h2n">06</span>用户人群与规模</h2>
+  <p class="sub">名义上是"给孩子的导师"，实际重心却在成人自学者与科技职场人。</p>
+
+  <div class="callout"><b>关键校正：</b>多知文章引用的"<b>超 400 万</b>"用户对应的是 2017 年前后的旧口径；当前权威口径为 <b>1000 万+ 注册用户、覆盖约 180 个国家</b>（2024–2025）。<span class="badge b-verified">已核实</span></div>
+
+  <div class="grid2" style="align-items:start">
+    <div class="chartbox">
+      <div class="ct">用户人群构成（第三方估算）</div>
+      <div class="cs">来源：CanvasBusinessModel · 属分析机构估算口径</div>
+      <div class="cwrap"><canvas id="segChart"></canvas></div>
+    </div>
+    <div class="chartbox">
+      <div class="ct">网站流量地域分布（2026-04）</div>
+      <div class="cs">来源：SimilarWeb · 超 50% 流量来自北美以外</div>
+      <div class="cwrap"><canvas id="geoChart"></canvas></div>
+    </div>
+  </div>
+
+  <h3>人群画像要点</h3>
+  <ul>
+    <li><b>重心偏成人/职场，而非 K12：</b>终身学习者约 45%（25–50 岁、本科以上、可支配收入较高，增速最快、LTV 最高）；科技职场人士约 30%（开发者/数据科学家/工程师）；学生约 25%（K12+大学，历史约 60% 男性）；B2B 企业客户同比约 +40%。</li>
+    <li><b>人口统计：</b>访客约 57% 男性 / 43% 女性；最大年龄群体 18–24 岁。</li>
+    <li><b>地域：</b>美国第一大市场（约 33% 流量、约 35% 收入），其后蒙古 7.6%（异常偏高）、印度 5.9%、新加坡 5.3%、英国 3.7%。</li>
+    <li><b>App 表现：</b>App Store 4.7 星（约 2.8 万评分）、Google Play 4.6 星（约 7.5 万评价）；Sensor Tower 估美区月下载 iOS 约 6 万 + Google Play 约 10 万。</li>
+    <li><b>教育优惠：</b>合格 K-12 师生通过 Brilliant for Educators 可<b>免费</b>获得 Premium。</li>
+  </ul>
+  <p style="font-size:12.5px;color:var(--txt3)">⚠️ 人群占比（45/30/25%）来自商业分析博客估算，非官方数据；付费订阅的绝对数字公司从未披露。</p>
+</section>
+
+<!-- 07 商业模式 -->
+<section id="s7">
+  <h2><span class="h2n">07</span>商业模式与定价</h2>
+  <p class="sub">把 Duolingo 的游戏化留存引擎，搬到了高客单价的严肃 STEM 自学场景。</p>
+
+  <h3>Freemium 三档结构</h3>
+  <p style="font-size:12.5px;color:var(--txt3)">注：价格按地区本地化。下方为美区第三方交叉口径；2026-06-05 一手抓取的新加坡区为 月 SGD 40 / 年 SGD 25/月 / 家庭 SGD 150。同期另存在 $24.99 月 / $299.88 年 的历史版本，属时间/地区差异。</p>
+  <div class="price-grid">
+    <div class="price">
+      <h4>个人 · 月付</h4>
+      <div class="amt">$27.99<small>/月</small></div>
+      <div class="note">随时取消 · 灵活体验</div>
+      <ul><li>全部课程无限访问</li><li>Koji 完整功能</li><li>无广告</li><li>可任意跳学</li></ul>
+    </div>
+    <div class="price hot">
+      <span class="pill">最受欢迎 · 省约 52%</span>
+      <h4>个人 · 年付</h4>
+      <div class="amt">$161.88<small>/年</small></div>
+      <div class="note">折合约 $13.49/月</div>
+      <ul><li>个人月付全部权益</li><li>一次性支付更划算</li><li>7 天 Premium 免费试用</li><li>新内容持续更新</li></ul>
+    </div>
+    <div class="price">
+      <h4>家庭版 Family</h4>
+      <div class="amt">6<small> 个席位</small></div>
+      <div class="note">固定价 · 每人独立账号</div>
+      <ul><li>适合家庭/学习小组</li><li>各成员独立进度</li><li>团队版(Group)3 席起约 $407.88/年</li><li>美元价仅结账页展示</li></ul>
+    </div>
+  </div>
+
+  <h3>免费版 vs Premium</h3>
+  <table class="tbl">
+    <tr><th>权益</th><th>免费版 Free</th><th>Premium 付费版</th></tr>
+    <tr><td>每日学习量</td><td>每天 <b>2 把钥匙</b>（各解锁 1 节课/练习）</td><td><b>无限制</b>，想学多少学多少</td></tr>
+    <tr><td>学习顺序</td><td>必须按顺序，不能跳学</td><td>任意跳到任意课程任意一节</td></tr>
+    <tr><td>广告</td><td>课间有偶发广告</td><td>全平台完全无广告</td></tr>
+    <tr><td>AI 导师 Koji</td><td>仅<b>有限预览</b></td><td>完整无限访问</td></tr>
+    <tr><td>课程数</td><td>受限预览</td><td>解锁全部 40+（部分页称 90+）课程</td></tr>
+  </table>
+
+  <div class="grid2">
+    <div class="mini"><h4>📈 营收结构（估算）</h4><p>个人/家庭订阅约占 <b>85%</b>；Brilliant for Teams（企业/机构）约占 15%，提供多年合同带来收入稳定性。</p></div>
+    <div class="mini"><h4>🆚 与 Duolingo 对比</h4><p>同样 freemium + 钥匙/生命值限制 + streak/XP/联赛；但 Brilliant 定价高约 59%（约 £144/年 vs £59/年），定位"严肃 STEM"而非语言，用更高客单价覆盖更窄但付费意愿更强的人群。</p></div>
+  </div>
+  <div class="callout">⚠️ <b>财务口径提示：</b>2019 年 ARR &gt;$10M 与 2024 年营收约 $14.3M 均来自第三方/背景文章，<b>未经一手验证</b>；当前年营收第三方估算分歧极大（$5M–$10M 到 $50M–$100M 不等）。</div>
+</section>
+
+<!-- 08 融资 -->
+<section id="s8">
+  <h2><span class="h2n">08</span>融资与估值</h2>
+  <p class="sub">14 年累计约 $94.6M，估值从 560 万美元长到 3.05 亿美元——但增长并不线性。</p>
+
+  <div class="grid2" style="align-items:start">
+    <div>
+      <table class="tbl">
+        <tr><th>时间</th><th>轮次</th><th>金额/估值</th></tr>
+        <tr><td>2011-03</td><td>种子轮</td><td>~$0.91M · 估值 ~$5.6M</td></tr>
+        <tr><td>2012-08</td><td>Series A</td><td>~$2.94M · 估值 ~$17M</td></tr>
+        <tr><td>2013-08</td><td>Series A-1</td><td>~$6.27M · 估值 ~$39.6M</td></tr>
+        <tr><td>2015-06</td><td>Series B</td><td>~$11.21M · 估值 ~$87M</td></tr>
+        <tr><td>2018-06</td><td>Series B-1/B-2</td><td>~$8.31M</td></tr>
+        <tr><td>2019-04</td><td>里程碑</td><td><b>累计 ~$27M · 估值 ~$50M</b></td></tr>
+        <tr><td>2022-05</td><td>Series C/C-1</td><td><b>~$65M · 估值 ~$304.8M</b></td></tr>
+      </table>
+      <p style="font-size:12.5px;color:var(--txt3)">主要源 Forge Global，并与 Wikipedia/Crunchbase 交叉印证；Crunchbase 明细页返回 403，融资细节主要依赖 Forge 单一权威源。</p>
+    </div>
+    <div class="chartbox">
+      <div class="ct">投后估值跃迁（单位：百万美元）</div>
+      <div class="cs">2019→2022 三年估值增长约 6 倍</div>
+      <div class="cwrap"><canvas id="valBar"></canvas></div>
+    </div>
+  </div>
+
+  <h3>关键投资方</h3>
+  <div class="grid3">
+    <div class="mini"><h4>早期穿越多轮</h4><p>Kapor Capital、Hyde Park Angels、Social+Capital（Chamath Palihapitiya）、500 Startups、Learn Capital。</p></div>
+    <div class="mini"><h4>成长期</h4><p>Next Play Ventures（与 LinkedIn 创始人 Reid Hoffman 关联，2015 Series B）。</p></div>
+    <div class="mini"><h4>Series C（2022）</h4><p>Union Square Ventures(USV)、Reach Capital（教育科技基金）、Nimble Partners、KD Capital。</p></div>
+  </div>
+
+  <div class="callout"><b>重要校正：</b>多知文章所述"2019 年 4 月融资 2700 万美元"<b>更可能是截至 2019 年的累计融资总额</b>，而非一笔新融资——Forge 融资史显示 2018-06 后直接跳到 2022-05 Series C，期间并无 2019 年新一轮。<span class="badge b-caution">建议改述为"累计约 $27M"</span></div>
+</section>
+
+<!-- 09 竞品 -->
+<section id="s9">
+  <h2><span class="h2n">09</span>竞品与行业格局</h2>
+  <p class="sub">一个 5 年翻 2.4 倍的赛道，但 Brilliant 在规模上比对手小一个数量级。</p>
+
+  <div class="grid3" style="margin-bottom:6px">
+    <div class="metric"><div class="v">$37<small>亿</small></div><div class="l">2025 AI 辅导服务市场</div></div>
+    <div class="metric"><div class="v">$90<small>亿</small></div><div class="l">2030E（约 2.4 倍）</div></div>
+    <div class="metric"><div class="v">5000<small>万+</small></div><div class="l">Khanmigo+Duolingo 合计学习者</div></div>
+  </div>
+
+  <h3>核心竞品对标</h3>
+  <table class="tbl">
+    <tr><th>玩家</th><th>定位/规模</th><th>与 Koji 的关系</th></tr>
+    <tr><td><b>Khanmigo</b><br>可汗学院</td><td>GPT-4 苏格拉底式对话辅导，K-12 公认领先；走<b>免费/公益</b>路线</td><td>最大正面对手。是<b>通用对话助手</b>，未与学习环境深度集成；Koji 则嵌入课程、能看屏幕画图</td></tr>
+    <tr><td><b>Duolingo Max</b></td><td><b>1.28 亿 MAU</b>、付费订户 1090 万；AI agent 2026 贡献 30%+ 营收</td><td>Brilliant 商业模式的"原型"，但已并入 Math 课程，<b>正面切入数学腹地</b>，分发碾压</td></tr>
+    <tr><td><b>Synthesis Tutor</b></td><td>高端进阶、多感官、对神经多样性友好；约 $300/年</td><td>偏低龄视觉化启蒙，与 Brilliant 青少年-成人深度学习不完全重叠</td></tr>
+    <tr><td><b>Photomath</b></td><td>拍照即给解题步骤，2023 被 <b>Google 收购</b></td><td>"直接给答案"路线，与 Koji 哲学正相反，是其营销对照组</td></tr>
+    <tr><td><b>Chegg</b></td><td>答案/解题库，2025Q2 订阅营收暴跌 <b>-39%</b>、订户 -40%</td><td><b>反面教材</b>：单纯"提供答案"的护城河被 LLM 瞬间击穿</td></tr>
+  </table>
+
+  <div class="callout good"><b>战略洞察：</b>Chegg 的崩塌（被公司明确归因于 ChatGPT）证明了"答案检索型"商业模式在 LLM 时代的脆弱。这正是 Brilliant 押注"<b>过程导向、不给答案、深度交互</b>"路线的战略合理性所在——赛道正从"答案检索"向"苏格拉底式 agent"迁移。</div>
+
+  <div class="swot">
+    <div class="box s"><h4>✓ 护城河</h4><ul>
+      <li>十年自有交互学习数据，纯套壳 GPT 不具备</li>
+      <li>产品级深度集成 + 图形化交互（看屏幕、画图标注）</li>
+      <li>"不给答案 + MIT/Harvard 训练"的可持续教学叙事</li>
+      <li>基础数学到大学微积分的内容厚度</li>
+    </ul></div>
+    <div class="box w"><h4>✗ 风险</h4><ul>
+      <li>规模/分发劣势：用户/营收/团队比对手小一个数量级</li>
+      <li>价格更高、付费墙更硬，在免费 LLM 替代品前性价比感知弱</li>
+      <li>Google（已吞 Photomath）、Duolingo（已并入数学）正面碾压</li>
+      <li>"图形化导师"是可被复制的交互形态，先发窗口期有限</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- 10 口碑 -->
+<section id="s10">
+  <h2><span class="h2n">10</span>用户口碑</h2>
+  <p class="sub">"内容体验好评 + 商业模式差评"的鲜明割裂。</p>
+
+  <div class="grid2" style="align-items:start">
+    <div class="chartbox">
+      <div class="ct">各平台评分概览</div>
+      <div class="cs">2026 上半年检索口径 · 满分 5</div>
+      <div class="cwrap sm"><canvas id="ratingChart"></canvas></div>
+    </div>
+    <div>
+      <h3 style="margin-top:0">👍 高频好评</h3>
+      <ul>
+        <li><b>交互式"做中学"是最大卖点</b>："让你思考而非只看视频""通过可视化建立直觉"。</li>
+        <li><b>趣味性/习惯养成</b>：连胜、经验值、联赛让人"上瘾"。</li>
+        <li><b>界面体验</b>：干净、直观、易导航。</li>
+        <li><b>客服口碑突出</b>：反应快、肯帮忙，部分账单问题被迅速甚至"破例"解决。</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>👎 两大痛点</h3>
+  <div class="grid2">
+    <div>
+      <h4 style="color:var(--red);font-size:14px;margin:8px 0">① 订阅与退款（最尖锐）</h4>
+      <p style="font-size:13px;color:var(--txt2)">这是 Brilliant 口碑最大软肋。BBB 三年 66 起投诉（产品 48/账单 8/服务 7），未获 BBB 认证。共性：扣款前无提醒、试用默认转年付、退款标"不可退"、网站找不到取消按钮。</p>
+      <div class="quote bad">"免费试用结束后默认给我订了年付，但注册时价格被刻意以每月形式显示……照样收了我 $129 一整年，争论后他们说'不退款'，只关了账户。"<span class="by">— BBB 投诉原文（节选）</span></div>
+    </div>
+    <div>
+      <h4 style="color:var(--gold);font-size:14px;margin:8px 0">② 内容深度与难度</h4>
+      <p style="font-size:13px;color:var(--txt2)">"有点肤浅、习题太简单""知识往往很表层，难以迁移到平台之外""交互大多只是拖滑块"。宣传"15 分钟一课"，但卡住时实际会拉长到 30–45 分钟。</p>
+      <div class="quote warn">"适合入门知识，但对需要深入理解的人，内容太轻量、不够有意义。"<span class="by">— 第三方测评聚合</span></div>
+    </div>
+  </div>
+
+  <table class="tbl">
+    <tr><th>平台</th><th>评分</th><th>样本量</th><th>倾向</th></tr>
+    <tr><td>App Store（美区）</td><td><b>4.7</b>/5</td><td>~2.8 万</td><td>最正面，赞交互"做中学"</td></tr>
+    <tr><td>Google Play</td><td><b>4.5–4.6</b>/5</td><td>~7.5 万–10 万</td><td>正面，赞习惯养成</td></tr>
+    <tr><td>Trustpilot</td><td><b>4</b>/5</td><td>2700+</td><td>偏正面，投诉集中扣费</td></tr>
+    <tr><td>BBB</td><td>未认证</td><td>66 起投诉</td><td>负面，账单/产品纠纷为主</td></tr>
+  </table>
+  <div class="callout">综合判断：产品交互设计是真实护城河，但<b>自动续费/退款的"暗黑模式"持续侵蚀信任</b>，是品牌口碑最大风险点。深度不足使其更适合作入门/兴趣/保持手感的补充工具，而非系统化进阶的主力。</div>
+</section>
+
+<!-- 11 研判 -->
+<section id="s11">
+  <h2><span class="h2n">11</span>综合研判</h2>
+  <p class="sub">站在教育从业者视角，Brilliant 与 Koji 给我们的启示。</p>
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">✅ 它做对了什么</h3>
+      <ul>
+        <li><b>十年只磨一个方法论：</b>"做中学"+代码化交互课程，沉淀出别人抄不走的<b>学习数据资产</b>，AI 时代直接变现为 Koji 的壁垒。</li>
+        <li><b>教学法叙事踩中时代痛点：</b>在"孩子用 AI 作弊、判断力退化"的集体焦虑下，"<b>引导思考而非替你思考</b>"是极强的差异化定位。</li>
+        <li><b>产品形态创新：</b>从"对话框旁路"升级到"看屏幕+画图标注"的图形化导师，把 AI 真正嵌进了学习环境。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">⚠️ 它的隐忧</h3>
+      <ul>
+        <li><b>规模与分发的代差：</b>面对 Khanmigo（免费）和 Duolingo（1.28 亿 MAU 且已切入数学），垂直精品的获客天花板明显。</li>
+        <li><b>口碑的"暗黑模式"债务：</b>自动续费投诉若不解决，会持续对冲产品力带来的信任。</li>
+        <li><b>内容深度争议：</b>"轻量、难迁移"的批评，限制了它从"兴趣补充"走向"主力学习"。</li>
+        <li><b>Koji 效果待独立验证：</b>当前口碑仍以官方/媒体转述为主，专业人士已对其 demo 的教学有效性提出质疑。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout good"><b>对教育产品的迁移启示：</b>① AI 产品的真护城河不在模型，而在"<b>专有内容 + 学习行为数据</b>"的深度耦合；② "过程导向、不给答案"在 LLM 普及后比"答案供给"更可持续；③ 图形化/可视化交互是把抽象学科 AI 化的关键一招，值得在教研产品中借鉴；④ 再好的产品力也会被"暗黑订阅模式"反噬——增长与信任要一起算账。</div>
+</section>
+
+<!-- 12 来源 -->
+<section id="s12">
+  <h2><span class="h2n">12</span>数据存疑与来源</h2>
+  <p class="sub">诚实标注每一处不确定性，是调研报告的底线。</p>
+
+  <h3>需要打星号的数据</h3>
+  <table class="tbl">
+    <tr><th>事项</th><th>状态</th><th>说明</th></tr>
+    <tr><td>用户数"超 400 万"</td><td><span class="badge b-caution">已过时</span></td><td>系 2017 年旧口径；当前应为 1000 万+（180 国）</td></tr>
+    <tr><td>Koji 发布时间</td><td><span class="badge b-verified">2026-05-29</span></td><td>原素材误记 2025；官方博客+多媒体均为 2026</td></tr>
+    <tr><td>"2019 年融 2700 万"</td><td><span class="badge b-caution">口径存疑</span></td><td>更可能是截至 2019 累计融资额，非单笔新轮</td></tr>
+    <tr><td>2019 ARR &gt;$10M</td><td><span class="badge b-low">未经一手验证</span></td><td>仅第三方/背景文章引用，权威库未列</td></tr>
+    <tr><td>课程数量</td><td><span class="badge b-caution">口径不一</span></td><td>官方现行 40+，部分第三方称 100+</td></tr>
+    <tr><td>Koji "MIT/Harvard 训练" + "1000 人免费"</td><td><span class="badge b-low">第三方</span></td><td>官方博客正文未核到原文</td></tr>
+    <tr><td>人群占比 45/30/25%</td><td><span class="badge b-low">估算</span></td><td>来自商业分析博客，非官方</td></tr>
+  </table>
+  <p style="font-size:12.5px;color:var(--txt3);margin-top:10px">核验方法：9 路 AI Agent 并行 WebSearch/WebFetch 交叉比对，叠加 2026-06-05 用 Playwright 对 brilliant.org 首页与 /subscribe 页的一手实时抓取（故定价显示新加坡区 SGD），最后由独立 Agent 做事实核查。最稳一手证据：Koji 官方博客、官方 subscribe 页、Forge Global 融资史。</p>
+
+  <h3 id="srcToggle" class="toggle-src">▸ 展开全部信息来源（60+ 条）</h3>
+  <div id="srcList" style="display:none">
+    <div class="srcgrid">
+      <a href="https://mp.weixin.qq.com/s/ke0RuIRunrURtvwCGnRyAQ" target="_blank">多知原文报道</a>
+      <a href="https://brilliant.org/" target="_blank">brilliant.org 官网</a>
+      <a href="https://brilliant.org/about/" target="_blank">官方 About</a>
+      <a href="https://blog.brilliant.org/a-world-class-tutor-in-every-home/" target="_blank">Koji 发布博客</a>
+      <a href="https://brilliant.org/help/features/how-does-koji-work/" target="_blank">Koji 工作机制帮助页</a>
+      <a href="https://brilliant.org/subscribe/" target="_blank">官方订阅/定价页</a>
+      <a href="https://brilliant.org/courses/" target="_blank">官方课程页</a>
+      <a href="https://brilliant.org/help/why-brilliant/brilliant-vs-khan-academy/" target="_blank">官方 vs 可汗学院</a>
+      <a href="https://en.wikipedia.org/wiki/Brilliant_(website)" target="_blank">Wikipedia: Brilliant</a>
+      <a href="https://en.wikipedia.org/wiki/Sue_Khim" target="_blank">Wikipedia: Sue Khim</a>
+      <a href="https://grokipedia.com/page/Sue_Khim" target="_blank">Grokipedia: Sue Khim</a>
+      <a href="https://www.crunchbase.com/organization/brilliant-org" target="_blank">Crunchbase</a>
+      <a href="https://www.cbinsights.com/company/brilliant-worldwide" target="_blank">CB Insights</a>
+      <a href="https://forgeglobal.com/brilliant_ipo/" target="_blank">Forge Global 融资史</a>
+      <a href="https://pitchbook.com/profiles/company/51664-60" target="_blank">PitchBook</a>
+      <a href="https://www.similarweb.com/website/brilliant.org/" target="_blank">SimilarWeb 流量</a>
+      <a href="https://www.semrush.com/website/brilliant.org/overview/" target="_blank">SEMrush</a>
+      <a href="https://techcrunch.com/2013/08/11/backed-by-social-captial-brilliant-org-is-finding-and-challenging-the-brightest-technical-talent-in-the-world/" target="_blank">TechCrunch 2013</a>
+      <a href="https://www.imore.com/celebrating-women-tech-meet-sue-khim-co-founder-and-ceo-brilliant" target="_blank">iMore: Sue Khim 访谈</a>
+      <a href="https://chicagomaroon.com/17334/news/tedx-sue-khim/" target="_blank">Chicago Maroon TEDx</a>
+      <a href="https://polsky.uchicago.edu/people/sue-khim/" target="_blank">UChicago Polsky</a>
+      <a href="https://www.linkedin.com/in/sue-khim-70b86014/" target="_blank">Sue Khim LinkedIn</a>
+      <a href="https://digg.com/ai/hqutws0i" target="_blank">Digg: Koji 报道</a>
+      <a href="https://www.thenews.com.pk/latest/1404161-koji-worlds-first-ai-tutor-that-teaches-kids-how-to-think-not-memorize" target="_blank">The News: Koji</a>
+      <a href="https://www.rundown.ai/tools/koji-by-brilliant" target="_blank">Rundown AI: 情感分析</a>
+      <a href="https://kidscreen.com/2022/12/07/brilliant-to-acquire-interactive-video-platform-hellosaurus/" target="_blank">Kidscreen: 收购 Hellosaurus</a>
+      <a href="https://trophy.so/blog/brilliant-gamification-case-study" target="_blank">Trophy: 游戏化案例</a>
+      <a href="https://www.trustpilot.com/review/brilliant.org" target="_blank">Trustpilot 评价</a>
+      <a href="https://apps.apple.com/us/app/brilliant-learn-math-coding/id913335252" target="_blank">App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=org.brilliant.android" target="_blank">Google Play</a>
+      <a href="https://www.bbb.org/us/ca/san-francisco/profile/online-education/brilliantorg-1116-532075/complaints" target="_blank">BBB 投诉记录</a>
+      <a href="https://e-student.org/brilliant-org-review/" target="_blank">e-student 测评</a>
+      <a href="https://myelearningworld.com/brilliant-pricing/" target="_blank">定价测评</a>
+      <a href="https://getlatka.com/companies/Brilliant" target="_blank">Getlatka 财务</a>
+      <a href="https://canvasbusinessmodel.com/blogs/target-market/brilliant-org-target-market" target="_blank">CanvasBusinessModel 人群</a>
+      <a href="https://app.sensortower.com/overview/913335252?country=us" target="_blank">Sensor Tower 下载量</a>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  本报告由 9 路 AI Agent 并行调研 + Playwright 一手抓取 + 独立事实核查生成 · 数据截至 2026-06-05<br>
+  所有数据均标注可信度，存疑项已明确提示 · 仅供研究参考
+</div>
+
+</div><!-- /inner -->
+</main>
+</div><!-- /wrap -->
+
+<script>
+// ---- scroll-spy ----
+const links=[...document.querySelectorAll('nav.toc a.item')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+function spy(){
+  let i=secs.length-1;
+  for(let k=0;k<secs.length;k++){
+    if(secs[k].getBoundingClientRect().top<140) i=k;
+  }
+  links.forEach(l=>l.classList.remove('active'));
+  if(links[i])links[i].classList.add('active');
+}
+document.addEventListener('scroll',spy,{passive:true});spy();
+
+// source toggle
+const st=document.getElementById('srcToggle'),sl=document.getElementById('srcList');
+st.addEventListener('click',()=>{const o=sl.style.display==='none';sl.style.display=o?'block':'none';st.textContent=(o?'▾':'▸')+' '+st.textContent.slice(2)});
+
+// ---- charts ----
+const GRID='#26303d',TXT='#9fb0c0';
+Chart.defaults.color=TXT;Chart.defaults.font.family='-apple-system,PingFang SC,sans-serif';
+Chart.defaults.font.size=11;
+const gridcfg={grid:{color:GRID},ticks:{color:TXT}};
+
+// valuation line
+new Chart(document.getElementById('valChart'),{
+  type:'line',
+  data:{labels:['2011','2012','2013','2015','2019','2022'],
+    datasets:[{label:'投后估值',data:[5.6,17,39.6,87,50,304.8],borderColor:'#46e0a0',backgroundColor:'rgba(70,224,160,.12)',fill:true,tension:.35,pointRadius:4,pointBackgroundColor:'#46e0a0'}]},
+  options:{plugins:{legend:{display:false}},scales:{y:{...gridcfg,title:{display:true,text:'百万美元',color:TXT}},x:gridcfg}}
+});
+
+// user growth
+new Chart(document.getElementById('userChart'),{
+  type:'bar',
+  data:{labels:['2013','2017','2019','2024'],
+    datasets:[{label:'注册用户(万)',data:[10,400,700,1000],backgroundColor:['#2a6f53','#1bb673','#46e0a0','#4f9cf9'],borderRadius:6}]},
+  options:{plugins:{legend:{display:false}},scales:{y:{...gridcfg,title:{display:true,text:'万人',color:TXT}},x:gridcfg}}
+});
+
+// sentiment doughnut
+new Chart(document.getElementById('sentChart'),{
+  type:'doughnut',
+  data:{labels:['正面 79.5%','负面 20.5%'],datasets:[{data:[79.5,20.5],backgroundColor:['#1bb673','#f06363'],borderColor:'#161b22',borderWidth:3}]},
+  options:{cutout:'62%',plugins:{legend:{position:'bottom'}}}
+});
+
+// segments
+new Chart(document.getElementById('segChart'),{
+  type:'doughnut',
+  data:{labels:['终身学习者 45%','科技职场人 30%','学生(K12+大学) 25%'],
+    datasets:[{data:[45,30,25],backgroundColor:['#1bb673','#4f9cf9','#f5b942'],borderColor:'#161b22',borderWidth:3}]},
+  options:{cutout:'58%',plugins:{legend:{position:'bottom'}}}
+});
+
+// geo
+new Chart(document.getElementById('geoChart'),{
+  type:'bar',
+  data:{labels:['美国','蒙古','印度','新加坡','英国','其他'],
+    datasets:[{data:[32.89,7.63,5.93,5.28,3.74,44.54],backgroundColor:['#4f9cf9','#a978f0','#f5b942','#46e0a0','#1bb673','#3a4757'],borderRadius:5}]},
+  options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{...gridcfg,title:{display:true,text:'流量占比 %',color:TXT}},y:gridcfg}}
+});
+
+// valuation bar (funding section)
+new Chart(document.getElementById('valBar'),{
+  type:'bar',
+  data:{labels:['2011','2013','2015','2019','2022'],
+    datasets:[{label:'估值',data:[5.6,39.6,87,50,304.8],backgroundColor:'#4f9cf9',borderRadius:6}]},
+  options:{plugins:{legend:{display:false}},scales:{y:{...gridcfg,title:{display:true,text:'百万美元',color:TXT}},x:gridcfg}}
+});
+
+// ratings
+new Chart(document.getElementById('ratingChart'),{
+  type:'bar',
+  data:{labels:['App Store','Google Play','Trustpilot','e-student'],
+    datasets:[{label:'评分',data:[4.7,4.6,4.0,4.4],backgroundColor:['#1bb673','#46e0a0','#f5b942','#4f9cf9'],borderRadius:6}]},
+  options:{plugins:{legend:{display:false}},scales:{y:{...gridcfg,min:3,max:5,title:{display:true,text:'评分(满分5)',color:TXT}},x:gridcfg}}
+});
+</script>
+</body>
+</html>
