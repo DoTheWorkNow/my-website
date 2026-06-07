@@ -215,19 +215,26 @@ main { min-width: 0; flex: 1; }
 #doc ul, #doc ol { padding-left: 24px; }
 #doc li { margin: 7px 0; }
 #doc hr { border: 0; border-top: 1px dashed var(--line); margin: 30px 0; }
-#doc table {
+.table-wrap {
   width: 100%;
-  border-collapse: collapse;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  overflow: hidden;
-  display: block;
   margin: 18px 0;
   overflow-x: auto;
-  font-size: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
 }
-#doc thead, #doc tbody, #doc tr { width: 100%; }
+.table-wrap::-webkit-scrollbar { height: 9px; }
+.table-wrap::-webkit-scrollbar-thumb { background: #c7d2e1; border-radius: 8px; }
+#doc table {
+  width: 100%;
+  min-width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  overflow: hidden;
+  margin: 0;
+  font-size: 14px;
+  table-layout: auto;
+}
 #doc th, #doc td { padding: 11px 13px; border-bottom: 1px solid var(--line); vertical-align: top; min-width: 120px; }
 #doc th { background: #e8f0fb; color: #19315c; text-align: left; font-weight: 800; }
 #doc tr:last-child td { border-bottom: 0; }
@@ -394,6 +401,12 @@ renderer.code = function(code, infostring) {
 };
 marked.use({ renderer, gfm: true, breaks: false });
 doc.innerHTML = marked.parse(rawMarkdown);
+doc.querySelectorAll('table').forEach(table => {
+  const wrap = document.createElement('div');
+  wrap.className = 'table-wrap';
+  table.parentNode.insertBefore(wrap, table);
+  wrap.appendChild(table);
+});
 mermaid.initialize({
   startOnLoad: false,
   theme: 'base',
